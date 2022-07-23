@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "skullcraft:block/charger_top",
+    "side": "skullcraft:block/charger_side"
+  }
+}
