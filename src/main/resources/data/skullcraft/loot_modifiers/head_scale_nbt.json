@@ -1,0 +1,53 @@
+{
+  "type": "skullcraft:skull_nbt_ops",
+  "conditions": [
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:player_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:player_wall_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:skeleton_skull"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:skeleton_wall_skull"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:wither_skeleton_skull"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:wither_skeleton_wall_skull"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:zombie_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:zombie_wall_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:creeper_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:creeper_wall_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:dragon_head"
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:dragon_wall_head"
+    }
+  ]
+}

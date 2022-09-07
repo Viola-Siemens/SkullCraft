@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "RSR",
+    "S#S",
+    "BSB"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:player_head"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "minecraft:soul_soil"
+    },
+    "B": {
+      "item": "minecraft:chiseled_stone_bricks"
+    }
+  },
+  "result": {
+    "item": "skullcraft:skull_charger"
+  }
+}
