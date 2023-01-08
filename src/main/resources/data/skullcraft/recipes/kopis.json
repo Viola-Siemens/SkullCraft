@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "H"
+  ],
+  "key": {
+    "B": {
+      "item": "skullcraft:kopis_blade"
+    },
+    "H": {
+      "item": "skullcraft:kopis_hilt"
+    }
+  },
+  "result": {
+    "item": "skullcraft:kopis"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "ui.skull_charger": {
+    "category": "block",
+    "sounds": [
+      "skullcraft:charge"
+    ],
+    "subtitle": "subtitles.block.skull_charger"
+  }
+}

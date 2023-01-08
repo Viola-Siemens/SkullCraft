@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "com.hexagram2021.skullcraft.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "skullcraft.refmap.json",
+  "minVersion": "0.8",
+  "client": [
+    "BlockEntityWithoutLevelRendererMixin",
+    "CustomHeadLayerMixin"
+  ],
+  "mixins": [
+    "AbstractSkullBlockMixin",
+    "DeathLootMixin",
+    "PlayerHeadDeathLootMixin",
+    "SkullBlockEntityMixin"
+  ]
+}

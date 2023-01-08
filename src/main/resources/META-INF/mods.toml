@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[44,)"
+license="MIT"
+issueTrackerURL="https://github.com/Viola-Siemens/SkullCraft/issues"
+
+[[mods]]
+modId="skullcraft"
+version="${file.jarVersion}"
+displayName="Skull Craft"
+logoFile="logo.png"
+credits="Liu Dongyu"
+authors="Hexagram"
+description='''
+With this mod, you can make your head bigger, wider or longer.
+
+And also you can get a mob skull easier.
+'''
+
+[[dependencies.skullcraft]]
+    modId="forge"
+    mandatory=true
+    versionRange="[44,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.skullcraft]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.3,1.20)"
+    ordering="NONE"
+    side="BOTH"
