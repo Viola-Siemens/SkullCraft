@@ -63,7 +63,6 @@ public class PiglinSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		PIGLIN,
 		PIGLIN_BRUTE,
 		ZOMBIFIED_PIGLIN
 	}

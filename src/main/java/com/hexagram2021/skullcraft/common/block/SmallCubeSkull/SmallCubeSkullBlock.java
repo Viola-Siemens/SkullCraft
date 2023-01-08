@@ -65,6 +65,7 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 		SHEEP,
 		BAT,
 		SHULKER,
-		ALLAY
+		ALLAY,
+		VEX
 	}
 }

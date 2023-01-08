@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +41,6 @@ public class CubeSkullBlockRenderer implements BlockEntityRenderer<CubeSkullBloc
 		map.put(CubeSkullBlock.Types.SPIDER, new ResourceLocation("textures/entity/spider/spider.png"));
 		map.put(CubeSkullBlock.Types.CAVE_SPIDER, new ResourceLocation("textures/entity/spider/cave_spider.png"));
 		map.put(CubeSkullBlock.Types.PIG, new ResourceLocation("textures/entity/pig/pig.png"));
-		map.put(CubeSkullBlock.Types.VEX, new ResourceLocation("textures/entity/illager/vex.png"));
 		map.put(CubeSkullBlock.Types.ENDERMAN, new ResourceLocation("textures/entity/enderman/enderman.png"));
 		map.put(CubeSkullBlock.Types.SNOW_GOLEM, new ResourceLocation("textures/entity/snow_golem.png"));
 		map.put(CubeSkullBlock.Types.TECHNOBLADE, new ResourceLocation(MODID, "textures/entity/technoblade.png"));
@@ -54,7 +54,6 @@ public class CubeSkullBlockRenderer implements BlockEntityRenderer<CubeSkullBloc
 		builder.put(CubeSkullBlock.Types.SPIDER, new CubeSkullModel(set.bakeLayer(CubeSkullModel.SPIDER_HEAD)));
 		builder.put(CubeSkullBlock.Types.CAVE_SPIDER, new CubeSkullModel(set.bakeLayer(CubeSkullModel.CAVE_SPIDER_HEAD)));
 		builder.put(CubeSkullBlock.Types.PIG, new CubeSkullModel(set.bakeLayer(CubeSkullModel.PIG_HEAD)));
-		builder.put(CubeSkullBlock.Types.VEX, new CubeSkullModel(set.bakeLayer(CubeSkullModel.VEX_HEAD)));
 		builder.put(CubeSkullBlock.Types.ENDERMAN, new CubeSkullModel(set.bakeLayer(CubeSkullModel.ENDERMAN_HEAD)));
 		builder.put(CubeSkullBlock.Types.SNOW_GOLEM, new CubeSkullModel(set.bakeLayer(CubeSkullModel.SNOW_GOLEM_HEAD)));
 		builder.put(CubeSkullBlock.Types.TECHNOBLADE, new CubeSkullModel(set.bakeLayer(CubeSkullModel.TECHNOBLADE_HEAD)));
@@ -96,5 +95,9 @@ public class CubeSkullBlockRenderer implements BlockEntityRenderer<CubeSkullBloc
 	public static RenderType getRenderType(SkullBlock.Type skullType) {
 		ResourceLocation skin = SKIN_BY_TYPE.get(skullType);
 		return RenderType.entityCutoutNoCullZOffset(skin);
+	}
+
+	static {
+		SkullBlockRenderer.SKIN_BY_TYPE.putAll(SKIN_BY_TYPE);
 	}
 }

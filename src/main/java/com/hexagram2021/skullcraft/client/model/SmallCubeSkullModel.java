@@ -20,6 +20,7 @@ public class SmallCubeSkullModel extends SkullModelBase {
 	public static final ModelLayerLocation BAT_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "bat_head"), "main");
 	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "shulker_head"), "main");
 	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "allay_head"), "main");
+	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "vex_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;

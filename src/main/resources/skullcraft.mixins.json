@@ -5,7 +5,6 @@
   "refmap": "skullcraft.refmap.json",
   "minVersion": "0.8",
   "client": [
-    "BlockEntityWithoutLevelRendererMixin",
     "CustomHeadLayerMixin"
   ],
   "mixins": [

@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -75,5 +76,9 @@ public class WardenSkullBlockRenderer implements BlockEntityRenderer<WardenSkull
 	public static RenderType getRenderType(SkullBlock.Type skullType) {
 		ResourceLocation skin = SKIN_BY_TYPE.get(skullType);
 		return RenderType.entityCutoutNoCullZOffset(skin);
+	}
+
+	static {
+		SkullBlockRenderer.SKIN_BY_TYPE.putAll(SKIN_BY_TYPE);
 	}
 }

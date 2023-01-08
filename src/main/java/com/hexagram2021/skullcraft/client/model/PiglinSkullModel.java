@@ -19,7 +19,6 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class PiglinSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation PIGLIN_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "piglin_head"), "main");
 	public static final ModelLayerLocation PIGLIN_BRUTE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "piglin_brute_head"), "main");
 	public static final ModelLayerLocation ZOMBIFIED_PIGLIN_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "zombified_piglin_head"), "main");
 

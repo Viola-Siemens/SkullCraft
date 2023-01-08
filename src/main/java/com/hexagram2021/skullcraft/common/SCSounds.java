@@ -20,6 +20,6 @@ public class SCSounds {
 
 	@SuppressWarnings("SameParameterValue")
 	private static RegistryObject<SoundEvent> registerSound(String name) {
-		return REGISTER.register(name, () -> new SoundEvent(new ResourceLocation(MODID, name)));
+		return REGISTER.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, name)));
 	}
 }

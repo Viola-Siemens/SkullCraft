@@ -68,7 +68,6 @@ public class CubeSkullBlock extends AbstractSkullBlock {
 		SPIDER,
 		CAVE_SPIDER,
 		PIG,
-		VEX,
 		ENDERMAN,
 		SNOW_GOLEM,
 		TECHNOBLADE

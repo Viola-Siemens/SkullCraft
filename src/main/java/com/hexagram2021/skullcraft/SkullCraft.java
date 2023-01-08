@@ -76,7 +76,7 @@ public class SkullCraft {
 	public static CreativeModeTab ITEM_GROUP;
 
 	public void creativeTabEvent(CreativeModeTabEvent.Register event) {
-		ITEM_GROUP = event.registerCreativeModeTab(new ResourceLocation(MODID, "itemGroup"), builder -> builder
+		ITEM_GROUP = event.registerCreativeModeTab(new ResourceLocation(MODID, "item_group"), builder -> builder
 				.icon(() -> new ItemStack(SCBlocks.SKULL_CHARGER.asItem()))
 				.title(Component.translatable("itemGroup.skullcraft")).displayItems(
 						(flags, output, hasPermission) -> SCItems.ItemEntry.REGISTERED_ITEMS.forEach(output::accept)

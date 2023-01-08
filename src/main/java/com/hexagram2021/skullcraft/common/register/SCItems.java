@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -142,11 +141,6 @@ public class SCItems {
 						SCBlocks.CubeSkulls.PIG_HEAD.get(), SCBlocks.CubeSkulls.PIG_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
-		public static final ItemEntry<StandingAndWallBlockItem> VEX_HEAD = new ItemEntry<>(
-				"vex_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.VEX_HEAD.get(), SCBlocks.CubeSkulls.VEX_WALL_HEAD.get(), props, Direction.DOWN
-				)
-		);
 		public static final ItemEntry<StandingAndWallBlockItem> ENDERMAN_HEAD = new ItemEntry<>(
 				"enderman_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
 						SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(), props, Direction.DOWN
@@ -195,6 +189,11 @@ public class SCItems {
 						SCBlocks.SmallCubeSkulls.ALLAY_HEAD.get(), SCBlocks.SmallCubeSkulls.ALLAY_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
+		public static final ItemEntry<StandingAndWallBlockItem> VEX_HEAD = new ItemEntry<>(
+				"vex_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
 
 
 		private SmallCubeSkulls() {}
@@ -228,25 +227,10 @@ public class SCItems {
 	}
 
 	public static class PiglinSkulls {
-		public static final ItemEntry<StandingAndWallBlockItem> PIGLIN_HEAD = new ItemEntry<>(
-				"piglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.PiglinSkulls.PIGLIN_HEAD.get(), SCBlocks.PiglinSkulls.PIGLIN_WALL_HEAD.get(), props, Direction.DOWN
-				) {
-					@Override
-					public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-						return true;
-					}
-				}
-		);
 		public static final ItemEntry<StandingAndWallBlockItem> PIGLIN_BRUTE_HEAD = new ItemEntry<>(
 				"piglin_brute_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
 						SCBlocks.PiglinSkulls.PIGLIN_BRUTE_HEAD.get(), SCBlocks.PiglinSkulls.PIGLIN_BRUTE_WALL_HEAD.get(), props, Direction.DOWN
-				) {
-					@Override
-					public boolean makesPiglinsNeutral(ItemStack stack, LivingEntity wearer) {
-						return true;
-					}
-				}
+				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ZOMBIFIED_PIGLIN_HEAD = new ItemEntry<>(
 				"zombified_piglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(

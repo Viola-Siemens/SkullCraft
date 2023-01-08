@@ -22,7 +22,6 @@ public class CubeSkullModel extends SkullModelBase {
 	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "spider_head"), "main");
 	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "cave_spider_head"), "main");
 	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "pig_head"), "main");
-	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "vex_head"), "main");
 	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "enderman_head"), "main");
 	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "snow_golem_head"), "main");
 	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "technoblade_head"), "main");
@@ -123,11 +122,6 @@ public class CubeSkullModel extends SkullModelBase {
 	public static LayerDefinition createMobHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 32);
-	}
-
-	public static LayerDefinition createMob2HeadLayer() {
-		MeshDefinition meshdefinition = createHeadModel();
-		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
 	@Override

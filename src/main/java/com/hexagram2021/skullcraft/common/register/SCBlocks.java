@@ -99,9 +99,6 @@ public class SCBlocks {
 		public static final BlockEntry<CubeSkullBlock> PIG_HEAD = new BlockEntry<>(
 				"pig_head", SKULL_PROPERTIES, (props) -> new CubeSkullBlock(props, CubeSkullBlock.Types.PIG)
 		);
-		public static final BlockEntry<CubeSkullBlock> VEX_HEAD = new BlockEntry<>(
-				"vex_head", SKULL_PROPERTIES, (props) -> new CubeSkullBlock(props, CubeSkullBlock.Types.VEX)
-		);
 		public static final BlockEntry<CubeSkullBlock> ENDERMAN_HEAD = new BlockEntry<>(
 				"enderman_head", SKULL_PROPERTIES, (props) -> new CubeSkullBlock(props, CubeSkullBlock.Types.ENDERMAN)
 		);
@@ -129,9 +126,6 @@ public class SCBlocks {
 		);
 		public static final BlockEntry<CubeWallSkullBlock> PIG_WALL_HEAD = new BlockEntry<>(
 				"pig_wall_head", SKULL_PROPERTIES, (props) -> new CubeWallSkullBlock(props, CubeSkullBlock.Types.PIG)
-		);
-		public static final BlockEntry<CubeWallSkullBlock> VEX_WALL_HEAD = new BlockEntry<>(
-				"vex_wall_head", SKULL_PROPERTIES, (props) -> new CubeWallSkullBlock(props, CubeSkullBlock.Types.VEX)
 		);
 		public static final BlockEntry<CubeWallSkullBlock> ENDERMAN_WALL_HEAD = new BlockEntry<>(
 				"enderman_wall_head", SKULL_PROPERTIES, (props) -> new CubeWallSkullBlock(props, CubeSkullBlock.Types.ENDERMAN)
@@ -163,6 +157,9 @@ public class SCBlocks {
 		public static final BlockEntry<SmallCubeSkullBlock> ALLAY_HEAD = new BlockEntry<>(
 				"allay_head", SKULL_PROPERTIES, (props) -> new SmallCubeSkullBlock(props, SmallCubeSkullBlock.Types.ALLAY)
 		);
+		public static final BlockEntry<SmallCubeSkullBlock> VEX_HEAD = new BlockEntry<>(
+				"vex_head", SKULL_PROPERTIES, (props) -> new SmallCubeSkullBlock(props, SmallCubeSkullBlock.Types.VEX)
+		);
 		public static final BlockEntry<SmallCubeWallSkullBlock> SHEEP_WALL_HEAD = new BlockEntry<>(
 				"sheep_wall_head", SKULL_PROPERTIES, (props) -> new SmallCubeWallSkullBlock(props, SmallCubeSkullBlock.Types.SHEEP)
 		);
@@ -174,6 +171,9 @@ public class SCBlocks {
 		);
 		public static final BlockEntry<SmallCubeWallSkullBlock> ALLAY_WALL_HEAD = new BlockEntry<>(
 				"allay_wall_head", SKULL_PROPERTIES, (props) -> new SmallCubeWallSkullBlock(props, SmallCubeSkullBlock.Types.ALLAY)
+		);
+		public static final BlockEntry<SmallCubeWallSkullBlock> VEX_WALL_HEAD = new BlockEntry<>(
+				"vex_wall_head", SKULL_PROPERTIES, (props) -> new SmallCubeWallSkullBlock(props, SmallCubeSkullBlock.Types.VEX)
 		);
 
 		private SmallCubeSkulls() {}
@@ -209,17 +209,11 @@ public class SCBlocks {
 	}
 
 	public static class PiglinSkulls {
-		public static final BlockEntry<PiglinSkullBlock> PIGLIN_HEAD = new BlockEntry<>(
-				"piglin_head", SKULL_PROPERTIES, (props) -> new PiglinSkullBlock(props, PiglinSkullBlock.Types.PIGLIN)
-		);
 		public static final BlockEntry<PiglinSkullBlock> PIGLIN_BRUTE_HEAD = new BlockEntry<>(
 				"piglin_brute_head", SKULL_PROPERTIES, (props) -> new PiglinSkullBlock(props, PiglinSkullBlock.Types.PIGLIN_BRUTE)
 		);
 		public static final BlockEntry<PiglinSkullBlock> ZOMBIFIED_PIGLIN_HEAD = new BlockEntry<>(
 				"zombified_piglin_head", SKULL_PROPERTIES, (props) -> new PiglinSkullBlock(props, PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN)
-		);
-		public static final BlockEntry<PiglinWallSkullBlock> PIGLIN_WALL_HEAD = new BlockEntry<>(
-				"piglin_wall_head", SKULL_PROPERTIES, (props) -> new PiglinWallSkullBlock(props, PiglinSkullBlock.Types.PIGLIN)
 		);
 		public static final BlockEntry<PiglinWallSkullBlock> PIGLIN_BRUTE_WALL_HEAD = new BlockEntry<>(
 				"piglin_brute_wall_head", SKULL_PROPERTIES, (props) -> new PiglinWallSkullBlock(props, PiglinSkullBlock.Types.PIGLIN_BRUTE)

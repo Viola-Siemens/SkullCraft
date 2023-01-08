@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -32,14 +33,12 @@ import java.util.Map;
 public class PiglinSkullBlockRenderer implements BlockEntityRenderer<PiglinSkullBlockEntity> {
 	private final Map<SkullBlock.Type, SkullModelBase> modelByType;
 	public static final Map<SkullBlock.Type, ResourceLocation> SKIN_BY_TYPE = Util.make(Maps.newHashMap(), (map) -> {
-		map.put(PiglinSkullBlock.Types.PIGLIN, new ResourceLocation("textures/entity/piglin/piglin.png"));
 		map.put(PiglinSkullBlock.Types.PIGLIN_BRUTE, new ResourceLocation("textures/entity/piglin/piglin_brute.png"));
 		map.put(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new ResourceLocation("textures/entity/piglin/zombified_piglin.png"));
 	});
 
 	public static Map<SkullBlock.Type, SkullModelBase> createSkullRenderers(EntityModelSet set) {
 		ImmutableMap.Builder<SkullBlock.Type, SkullModelBase> builder = ImmutableMap.builder();
-		builder.put(PiglinSkullBlock.Types.PIGLIN, new PiglinSkullModel(set.bakeLayer(PiglinSkullModel.PIGLIN_HEAD)));
 		builder.put(PiglinSkullBlock.Types.PIGLIN_BRUTE, new PiglinSkullModel(set.bakeLayer(PiglinSkullModel.PIGLIN_BRUTE_HEAD)));
 		builder.put(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new PiglinSkullModel(set.bakeLayer(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD)));
 		return builder.build();
@@ -80,5 +79,9 @@ public class PiglinSkullBlockRenderer implements BlockEntityRenderer<PiglinSkull
 	public static RenderType getRenderType(SkullBlock.Type skullType) {
 		ResourceLocation skin = SKIN_BY_TYPE.get(skullType);
 		return RenderType.entityCutoutNoCullZOffset(skin);
+	}
+
+	static {
+		SkullBlockRenderer.SKIN_BY_TYPE.putAll(SKIN_BY_TYPE);
 	}
 }

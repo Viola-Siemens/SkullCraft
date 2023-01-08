@@ -71,8 +71,6 @@ public class DeathLootMixin {
 			skullItem = SCItems.CubeSkulls.SPIDER_HEAD.get();
 		} else if(current instanceof Pig) {
 			skullItem = SCItems.CubeSkulls.PIG_HEAD.get();
-		} else if(current instanceof Vex) {
-			skullItem = SCItems.CubeSkulls.VEX_HEAD.get();
 		} else if(current instanceof EnderMan) {
 			skullItem = SCItems.CubeSkulls.ENDERMAN_HEAD.get();
 		} else if(current instanceof SnowGolem) {
@@ -85,8 +83,10 @@ public class DeathLootMixin {
 			skullItem = SCItems.SmallCubeSkulls.SHULKER_HEAD.get();
 		} else if(current instanceof Allay) {
 			skullItem = SCItems.SmallCubeSkulls.ALLAY_HEAD.get();
+		} else if(current instanceof Vex) {
+			skullItem = SCItems.SmallCubeSkulls.VEX_HEAD.get();
 		} else if(current instanceof MushroomCow mushroomCow) {
-			skullItem = switch (mushroomCow.getMushroomType()) {
+			skullItem = switch (mushroomCow.getVariant()) {
 				case RED -> SCItems.CowSkulls.RED_MOOSHROOM_HEAD.get();
 				case BROWN -> SCItems.CowSkulls.BROWN_MOOSHROOM_HEAD.get();
 			};
@@ -94,8 +94,6 @@ public class DeathLootMixin {
 			skullItem = SCItems.CowSkulls.COW_HEAD.get();
 		} else if(current instanceof PiglinBrute) {
 			skullItem = SCItems.PiglinSkulls.PIGLIN_BRUTE_HEAD.get();
-		} else if(current instanceof AbstractPiglin) {
-			skullItem = SCItems.PiglinSkulls.PIGLIN_HEAD.get();
 		} else if(current instanceof ZombifiedPiglin) {
 			skullItem = SCItems.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get();
 		} else if(current instanceof Warden) {
@@ -111,6 +109,8 @@ public class DeathLootMixin {
 				skullItem = Items.DRAGON_HEAD;
 			} else if(current instanceof WitherBoss) {
 				skullItem = Items.WITHER_SKELETON_SKULL;
+			} else if(current instanceof AbstractPiglin) {
+				skullItem = Items.PIGLIN_HEAD;
 			}
 		}
 

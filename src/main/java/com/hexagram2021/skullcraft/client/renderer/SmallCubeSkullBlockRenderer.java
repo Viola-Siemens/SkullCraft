@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -39,6 +40,7 @@ public class SmallCubeSkullBlockRenderer implements BlockEntityRenderer<SmallCub
 		map.put(SmallCubeSkullBlock.Types.BAT, new ResourceLocation("textures/entity/bat.png"));
 		map.put(SmallCubeSkullBlock.Types.SHULKER, new ResourceLocation("textures/entity/shulker/shulker.png"));
 		map.put(SmallCubeSkullBlock.Types.ALLAY, new ResourceLocation("textures/entity/allay/allay.png"));
+		map.put(SmallCubeSkullBlock.Types.VEX, new ResourceLocation("textures/entity/illager/vex.png"));
 	});
 
 	public static Map<SkullBlock.Type, SkullModelBase> createSkullRenderers(EntityModelSet set) {
@@ -47,6 +49,7 @@ public class SmallCubeSkullBlockRenderer implements BlockEntityRenderer<SmallCub
 		builder.put(SmallCubeSkullBlock.Types.BAT, new SmallCubeSkullModel(set.bakeLayer(SmallCubeSkullModel.BAT_HEAD)));
 		builder.put(SmallCubeSkullBlock.Types.SHULKER, new SmallCubeSkullModel(set.bakeLayer(SmallCubeSkullModel.SHULKER_HEAD)));
 		builder.put(SmallCubeSkullBlock.Types.ALLAY, new SmallCubeSkullModel(set.bakeLayer(SmallCubeSkullModel.ALLAY_HEAD)));
+		builder.put(SmallCubeSkullBlock.Types.VEX, new SmallCubeSkullModel(set.bakeLayer(SmallCubeSkullModel.VEX_HEAD)));
 		return builder.build();
 	}
 
@@ -85,5 +88,9 @@ public class SmallCubeSkullBlockRenderer implements BlockEntityRenderer<SmallCub
 	public static RenderType getRenderType(SkullBlock.Type skullType) {
 		ResourceLocation skin = SKIN_BY_TYPE.get(skullType);
 		return RenderType.entityCutoutNoCullZOffset(skin);
+	}
+
+	static {
+		SkullBlockRenderer.SKIN_BY_TYPE.putAll(SKIN_BY_TYPE);
 	}
 }

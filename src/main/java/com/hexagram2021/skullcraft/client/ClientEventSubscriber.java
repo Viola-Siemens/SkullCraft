@@ -77,7 +77,6 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(CubeSkullModel.SPIDER_HEAD, CubeSkullModel::createSpiderHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.CAVE_SPIDER_HEAD, CubeSkullModel::createSpiderHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.PIG_HEAD, CubeSkullModel::createPigHeadLayer);
-		event.registerLayerDefinition(CubeSkullModel.VEX_HEAD, CubeSkullModel::createMob2HeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.ENDERMAN_HEAD, CubeSkullModel::createEndermanHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.SNOW_GOLEM_HEAD, CubeSkullModel::createSnowGolemHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.TECHNOBLADE_HEAD, CubeSkullModel::createTechnobladeHeadLayer);
@@ -86,12 +85,12 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(SmallCubeSkullModel.BAT_HEAD, SmallCubeSkullModel::createBatHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.SHULKER_HEAD, SmallCubeSkullModel::createShulkerHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.ALLAY_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
+		event.registerLayerDefinition(SmallCubeSkullModel.VEX_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
 
 		event.registerLayerDefinition(CowSkullModel.COW_HEAD, CowSkullModel::createCowHeadLayer);
 		event.registerLayerDefinition(CowSkullModel.RED_MOOSHROOM_HEAD, CowSkullModel::createCowHeadLayer);
 		event.registerLayerDefinition(CowSkullModel.BROWN_MOOSHROOM_HEAD, CowSkullModel::createCowHeadLayer);
 
-		event.registerLayerDefinition(PiglinSkullModel.PIGLIN_HEAD, PiglinSkullModel::createPiglinHeadLayer);
 		event.registerLayerDefinition(PiglinSkullModel.PIGLIN_BRUTE_HEAD, PiglinSkullModel::createPiglinHeadLayer);
 		event.registerLayerDefinition(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD, PiglinSkullModel::createPiglinHeadLayer);
 
@@ -106,6 +105,16 @@ public class ClientEventSubscriber {
 		event.registerBlockEntityRenderer(SCBlockEntities.COW_SKULL.get(), CowSkullBlockRenderer::new);
 		event.registerBlockEntityRenderer(SCBlockEntities.PIGLIN_SKULL.get(), PiglinSkullBlockRenderer::new);
 		event.registerBlockEntityRenderer(SCBlockEntities.WARDEN_SKULL.get(), WardenSkullBlockRenderer::new);
+	}
+
+	@SubscribeEvent
+	public static void onCreateSkullModels(EntityRenderersEvent.CreateSkullModels skullModelEvent) {
+		CowSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+		CubeSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+		HumanSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+		PiglinSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+		SmallCubeSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+		WardenSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
 	}
 
 	public static void modConstruction() {
