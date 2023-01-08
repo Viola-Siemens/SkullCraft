@@ -10,7 +10,6 @@ import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 import org.jetbrains.annotations.NotNull;
 
@@ -26,10 +25,8 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 
 	private final Container skullCharger;
 	private final ContainerData skullChargerData;
-	protected final Level level;
 
 	final Slot inputSlot;
-	final Slot fuelSlot;
 
 	Runnable slotUpdateListener = () -> {};
 
@@ -43,7 +40,6 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		checkContainerDataCount(data, DATA_COUNT);
 		this.skullCharger = container;
 		this.skullChargerData = data;
-		this.level = inventory.player.level;
 
 
 		this.inputSlot = this.addSlot(new Slot(container, INPUT_SLOT, 143, 33) {
@@ -63,7 +59,7 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 				return 1;
 			}
 		});
-		this.fuelSlot = this.addSlot(new Slot(container, FUEL_SLOT, 20, 51) {
+		this.addSlot(new Slot(container, FUEL_SLOT, 20, 51) {
 			@Override
 			public boolean mayPlace(@NotNull ItemStack itemStack) {
 				return itemStack.is(Items.SOUL_SOIL);

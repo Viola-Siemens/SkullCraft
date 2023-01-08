@@ -2,8 +2,6 @@ package com.hexagram2021.skullcraft.mixin;
 
 import com.hexagram2021.skullcraft.SkullCraft;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.nbt.CompoundTag;
