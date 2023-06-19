@@ -301,8 +301,7 @@ public class SCItems {
 			return this.properties.get();
 		}
 
-		@NotNull
-		@Override
+		@Override @NotNull
 		public Item asItem() {
 			return this.item.get();
 		}

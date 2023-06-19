@@ -1,6 +1,7 @@
 package com.hexagram2021.skullcraft.common.register;
 
 import com.hexagram2021.skullcraft.common.crafting.SkullChargerMenu;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,7 +14,7 @@ public class SCContainerTypes {
 	public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MODID);
 
 	public static final RegistryObject<MenuType<SkullChargerMenu>> SKULL_CHARGER_MENU = REGISTER.register(
-			"skull_charger", () -> new MenuType<>(SkullChargerMenu::new)
+			"skull_charger", () -> new MenuType<>(SkullChargerMenu::new, FeatureFlags.VANILLA_SET)
 	);
 
 	public static void init(IEventBus bus) {
