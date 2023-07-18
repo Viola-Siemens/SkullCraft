@@ -2,16 +2,9 @@ package com.hexagram2021.skullcraft;
 
 import com.hexagram2021.skullcraft.client.ClientEventSubscriber;
 import com.hexagram2021.skullcraft.common.SCContent;
-import com.hexagram2021.skullcraft.common.register.SCBlocks;
-import com.hexagram2021.skullcraft.common.register.SCItems;
 import com.mojang.logging.LogUtils;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.DistExecutor;
@@ -62,8 +55,6 @@ public class SkullCraft {
 		);
 		SCContent.modConstruction(bus, runLater);
 
-		bus.addListener(this::creativeTabEvent);
-
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, bootstrapErrorToXCPInDev(() -> ClientEventSubscriber::modConstruction));
 
 		MinecraftForge.EVENT_BUS.register(this);
@@ -71,15 +62,5 @@ public class SkullCraft {
 
 	private void setup(final FMLCommonSetupEvent event) {
 		event.enqueueWork(SCContent::init);
-	}
-
-	public static CreativeModeTab ITEM_GROUP;
-
-	public void creativeTabEvent(CreativeModeTabEvent.Register event) {
-		ITEM_GROUP = event.registerCreativeModeTab(new ResourceLocation(MODID, "item_group"), builder -> builder
-				.icon(() -> new ItemStack(SCBlocks.SKULL_CHARGER.asItem()))
-				.title(Component.translatable("itemGroup.skullcraft")).displayItems(
-						(parameters, output) -> SCItems.ItemEntry.REGISTERED_ITEMS.forEach(output::accept)
-				));
 	}
 }

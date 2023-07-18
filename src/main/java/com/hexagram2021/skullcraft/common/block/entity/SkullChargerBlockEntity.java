@@ -295,7 +295,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 
 						long time = level.getGameTime();
 						if(time - lastSoundTime >= MIN_SOUND_GAP) {
-							level.playSound(null, blockPos, SCSounds.SKULL_CHARGER.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+							level.playSound(null, blockPos, SCSounds.SKULL_CHARGER, SoundSource.BLOCKS, 1.0F, 1.0F);
 							lastSoundTime = time;
 						}
 					}

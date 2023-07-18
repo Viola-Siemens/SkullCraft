@@ -38,10 +38,10 @@ public class DeathLootMixin {
 			}
 		} else if((entity instanceof LivingEntity) &&
 				((LivingEntity) entity).getMainHandItem().getItem() == SCItems.KOPIS.get() &&
-				(entity.level.random.nextInt(5) == 0 ||
+				(entity.level().random.nextInt(5) == 0 ||
 						(ImmutableList.copyOf(entity.getArmorSlots()).stream().anyMatch(
 								itemStack -> itemStack.getItem() == SCItems.CubeSkulls.TECHNOBLADE_HEAD.get()
-						) && entity.level.random.nextBoolean()))
+						) && entity.level().random.nextBoolean()))
 		) {
 			dropSkullItem((Mob)(Object)this, true);
 		}

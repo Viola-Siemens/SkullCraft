@@ -79,5 +79,7 @@
   "tooltip.skullcraft.skull_charger1": "增加高度",
   "tooltip.skullcraft.skull_charger2": "增加长度",
 
-  "subtitles.block.skull_charger": "头颅充电站：使用"
+  "subtitles.block.skull_charger": "头颅充电站：使用",
+  "subtitles.entity.illager.ambient": "灾厄村民：咕哝",
+  "subtitles.entity.technoblade.ambient": "TECHNOBLADE NEVER DIES!"
 }

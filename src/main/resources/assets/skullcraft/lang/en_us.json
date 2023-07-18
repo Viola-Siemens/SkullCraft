@@ -79,5 +79,7 @@
   "tooltip.skullcraft.skull_charger1": "Increase height",
   "tooltip.skullcraft.skull_charger2": "Increase length",
 
-  "subtitles.block.skull_charger": "Skull Charger used"
+  "subtitles.block.skull_charger": "Skull Charger used",
+  "subtitles.entity.illager.ambient": "Illager murmurs",
+  "subtitles.entity.technoblade.ambient": "TECHNOBLADE NEVER DIES!"
 }

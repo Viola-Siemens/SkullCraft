@@ -1,11 +1,9 @@
 package com.hexagram2021.skullcraft.client.screen;
 
 import com.hexagram2021.skullcraft.common.crafting.SkullChargerMenu;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -36,32 +34,29 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	}
 
 	@Override
-	public void render(@NotNull PoseStack transform, int x, int y, float partialTicks) {
+	public void render(@NotNull GuiGraphics transform, int x, int y, float partialTicks) {
 		super.render(transform, x, y, partialTicks);
 		this.renderTooltip(transform, x, y);
 	}
 
 	@Override
-	protected void renderBg(@NotNull PoseStack transform, float partialTicks, int x, int y) {
+	protected void renderBg(@NotNull GuiGraphics transform, float partialTicks, int x, int y) {
 		this.renderBackground(transform);
-		RenderSystem.setShader(GameRenderer::getPositionTexShader);
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		RenderSystem.setShaderTexture(0, BG_LOCATION);
 		int i = this.leftPos;
 		int j = this.topPos;
-		this.blit(transform, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		transform.blit(BG_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
 		int recipeX = this.leftPos + RECIPES_X;
 		int recipeY = this.topPos + RECIPES_Y;
 		this.renderButtons(transform, x, y, recipeX, recipeY);
 		int energyLevel = this.menu.getEnergy();
 		if(energyLevel > 0) {
 			int k = Mth.clamp((energyLevel + 1) / 2, 1, 50);
-			this.blit(transform, i + 58, j + 62, 176, 15, k, 8);
+			transform.blit(BG_LOCATION, i + 58, j + 62, 176, 15, k, 8);
 		}
 	}
 
 	@Override
-	protected void renderTooltip(@NotNull PoseStack transform, int x, int y) {
+	protected void renderTooltip(@NotNull GuiGraphics transform, int x, int y) {
 		super.renderTooltip(transform, x, y);
 		if (this.displayRecipes) {
 			int recipeX = this.leftPos + RECIPES_X;
@@ -71,13 +66,13 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 				int curX = recipeX + i * RECIPES_IMAGE_SIZE_WIDTH;
 				int curY = recipeY + 2;
 				if (x >= curX && x < curX + RECIPES_IMAGE_SIZE_WIDTH && y >= curY && y < curY + RECIPES_IMAGE_SIZE_WIDTH) {
-					this.renderTooltip(transform, Component.translatable("tooltip.skullcraft.skull_charger" + i), x, y);
+					transform.renderTooltip(this.font, Component.translatable("tooltip.skullcraft.skull_charger" + i), x, y);
 				}
 			}
 		}
 	}
 
-	private void renderButtons(PoseStack transform, int x, int y, int recipeX, int recipeY) {
+	private void renderButtons(GuiGraphics transform, int x, int y, int recipeX, int recipeY) {
 		if(this.menu.hasInputItem()) {
 			for(int i = 0; i < 3; ++i) {
 				int curX = recipeX + i * RECIPES_IMAGE_SIZE_WIDTH;
@@ -89,7 +84,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
 				}
 
-				this.blit(transform, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
+				transform.blit(BG_LOCATION, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
 			}
 		}
 	}

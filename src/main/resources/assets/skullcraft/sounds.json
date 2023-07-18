@@ -5,5 +5,216 @@
       "skullcraft:charge"
     ],
     "subtitle": "subtitles.block.skull_charger"
+  },
+  "block.note_block.imitate.villager": {
+    "sounds": [
+      {
+        "name": "entity.villager.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.villager.ambient"
+  },
+  "block.note_block.imitate.illager": {
+    "sounds": [
+      {
+        "name": "entity.pillager.ambient",
+        "type": "event"
+      },
+      {
+        "name": "entity.vindicator.ambient",
+        "type": "event"
+      },
+      {
+        "name": "entity.evoker.ambient",
+        "type": "event"
+      },
+      {
+        "name": "entity.illusioner.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.illager.ambient"
+  },
+  "block.note_block.imitate.witch": {
+    "sounds": [
+      {
+        "name": "entity.witch.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.witch.ambient"
+  },
+  "block.note_block.imitate.iron_golem": {
+    "sounds": [
+      {
+        "name": "entity.iron_golem.repair",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.iron_golem.repair"
+  },
+  "block.note_block.imitate.zombie_villager": {
+    "sounds": [
+      {
+        "name": "entity.zombie_villager.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.zombie_villager.ambient"
+  },
+  "block.note_block.imitate.slime": {
+    "sounds": [
+      {
+        "name": "entity.slime.jump",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.slime.squish"
+  },
+  "block.note_block.imitate.magma_cube": {
+    "sounds": [
+      {
+        "name": "entity.magma_cube.jump",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.magma_cube.squish"
+  },
+  "block.note_block.imitate.blaze": {
+    "sounds": [
+      {
+        "name": "entity.blaze.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.blaze.ambient"
+  },
+  "block.note_block.imitate.spider": {
+    "sounds": [
+      {
+        "name": "entity.spider.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.spider.ambient"
+  },
+  "block.note_block.imitate.pig": {
+    "sounds": [
+      {
+        "name": "entity.pig.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.pig.ambient"
+  },
+  "block.note_block.imitate.enderman": {
+    "sounds": [
+      {
+        "name": "entity.enderman.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.enderman.ambient"
+  },
+  "block.note_block.imitate.snow_golem": {
+    "sounds": [
+      {
+        "name": "entity.snow_golem.shoot",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.snowball.throw"
+  },
+  "block.note_block.imitate.technoblade": {
+    "sounds": [
+      "skullcraft:technoblade"
+    ],
+    "subtitle": "subtitles.entity.technoblade.ambient"
+  },
+  "block.note_block.imitate.sheep": {
+    "sounds": [
+      {
+        "name": "entity.sheep.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.sheep.ambient"
+  },
+  "block.note_block.imitate.bat": {
+    "sounds": [
+      {
+        "name": "entity.bat.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.bat.ambient"
+  },
+  "block.note_block.imitate.shulker": {
+    "sounds": [
+      {
+        "name": "entity.shulker.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.shulker.ambient"
+  },
+  "block.note_block.imitate.allay": {
+    "sounds": [
+      {
+        "name": "entity.allay.ambient_with_item",
+        "type": "event"
+      },
+      {
+        "name": "entity.allay.ambient_without_item",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.allay.ambient_with_item"
+  },
+  "block.note_block.imitate.vex": {
+    "sounds": [
+      {
+        "name": "entity.vex.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.vex.ambient"
+  },
+  "block.note_block.imitate.cow": {
+    "sounds": [
+      {
+        "name": "entity.cow.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.cow.ambient"
+  },
+  "block.note_block.imitate.piglin_brute": {
+    "sounds": [
+      {
+        "name": "entity.piglin_brute.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.piglin_brute.ambient"
+  },
+  "block.note_block.imitate.zombified_piglin": {
+    "sounds": [
+      {
+        "name": "entity.zombified_piglin.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.zombified_piglin.ambient"
+  },
+  "block.note_block.imitate.warden": {
+    "sounds": [
+      {
+        "name": "entity.warden.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.warden.ambient"
   }
 }

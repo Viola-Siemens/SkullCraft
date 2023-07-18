@@ -30,10 +30,10 @@ public class PlayerHeadDeathLootMixin {
 					}
 				}
 			} else if(killer instanceof LivingEntity && ((LivingEntity) killer).getMainHandItem().getItem() == SCItems.KOPIS.get() &&
-					(killer.level.random.nextInt(5) == 0 ||
+					(killer.level().random.nextInt(5) == 0 ||
 							(Lists.newArrayList(killer.getArmorSlots()).stream().anyMatch(
 									itemStack -> itemStack.getItem() == SCItems.CubeSkulls.TECHNOBLADE_HEAD.get()
-							) && entity.level.random.nextBoolean()))
+							) && entity.level().random.nextBoolean()))
 			) {
 				dropPlayerHead((Entity) (Object) this);
 			}
