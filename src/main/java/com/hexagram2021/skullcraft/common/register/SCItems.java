@@ -16,7 +16,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -36,7 +35,7 @@ public class SCItems {
 	public static final ItemEntry<BlockItem> SKULL_CHARGER = new ItemEntry<>(
 			"skull_charger", DEFAULT_ITEM_PROPERTIES, (props) -> new BlockItem(SCBlocks.SKULL_CHARGER.get(), props) {
 				@Override
-				public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
+				public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
 					components.add(Component.translatable("desc.skullcraft.skull_charger").withStyle(ChatFormatting.GRAY));
 				}
 			}
@@ -58,14 +57,14 @@ public class SCItems {
 		@Override
 		public int getEnchantmentValue() { return 10; }
 
-		@Override @NotNull
+		@Override
 		public Ingredient getRepairIngredient() { return Ingredient.of(Items.OBSIDIAN); }
 	};
 
 	public static final ItemEntry<SwordItem> KOPIS = new ItemEntry<>(
 			"kopis", DEFAULT_ITEM_PROPERTIES, (props) -> new SwordItem(KOPIS_TIER, 3, -3.6F, props) {
 		@Override
-		public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
+		public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
 			components.add(Component.translatable("desc.skullcraft.kopis").withStyle(ChatFormatting.GRAY));
 		}
 	}
@@ -156,7 +155,7 @@ public class SCItems {
 						SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(), props, Direction.DOWN
 				) {
 					@Override
-					public void appendHoverText(@NotNull ItemStack itemStack, @Nullable Level level, @NotNull List<Component> components, @NotNull TooltipFlag flag) {
+					public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
 						components.add(Component.translatable("desc.skullcraft.technoblade_head").withStyle(ChatFormatting.GRAY));
 					}
 				}
@@ -301,7 +300,7 @@ public class SCItems {
 			return this.properties.get();
 		}
 
-		@Override @NotNull
+		@Override
 		public Item asItem() {
 			return this.item.get();
 		}

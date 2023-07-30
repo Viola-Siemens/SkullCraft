@@ -1,12 +1,12 @@
 package com.hexagram2021.skullcraft.common.block.WardenSkull;
 
-import com.hexagram2021.skullcraft.common.block.entity.WardenSkullBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class WardenSkullBlock extends AbstractSkullBlock {
@@ -27,13 +26,13 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
 	}
 
-	@Override @NotNull
-	public VoxelShape getShape(@NotNull BlockState blockState, @NotNull BlockGetter level, @NotNull BlockPos blockPos, @NotNull CollisionContext context) {
+	@Override
+	public VoxelShape getShape(BlockState blockState, BlockGetter level, BlockPos blockPos, CollisionContext context) {
 		return SHAPE;
 	}
 
-	@Override @NotNull
-	public VoxelShape getOcclusionShape(@NotNull BlockState blockState, @NotNull BlockGetter level, @NotNull BlockPos blockPos) {
+	@Override
+	public VoxelShape getOcclusionShape(BlockState blockState, BlockGetter level, BlockPos blockPos) {
 		return Shapes.empty();
 	}
 
@@ -42,12 +41,12 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 		return this.defaultBlockState().setValue(ROTATION, Mth.floor(((double)context.getRotation() * 16.0D / 360.0D) + 0.5D) & 15);
 	}
 
-	@Override @NotNull
+	@Override
 	public BlockState rotate(BlockState blockState, Rotation rotation) {
 		return blockState.setValue(ROTATION, rotation.rotate(blockState.getValue(ROTATION), 16));
 	}
 
-	@Override @NotNull
+	@Override
 	public BlockState mirror(BlockState blockState, Mirror mirror) {
 		return blockState.setValue(ROTATION, mirror.mirror(blockState.getValue(ROTATION), 16));
 	}
@@ -58,8 +57,8 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-		return new WardenSkullBlockEntity(blockPos, blockState);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new SkullBlockEntity(blockPos, blockState);
 	}
 
 	public enum Types implements SkullBlock.Type {

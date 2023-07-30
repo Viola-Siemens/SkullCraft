@@ -12,7 +12,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
@@ -34,13 +33,13 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	}
 
 	@Override
-	public void render(@NotNull GuiGraphics transform, int x, int y, float partialTicks) {
+	public void render(GuiGraphics transform, int x, int y, float partialTicks) {
 		super.render(transform, x, y, partialTicks);
 		this.renderTooltip(transform, x, y);
 	}
 
 	@Override
-	protected void renderBg(@NotNull GuiGraphics transform, float partialTicks, int x, int y) {
+	protected void renderBg(GuiGraphics transform, float partialTicks, int x, int y) {
 		this.renderBackground(transform);
 		int i = this.leftPos;
 		int j = this.topPos;
@@ -56,7 +55,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	}
 
 	@Override
-	protected void renderTooltip(@NotNull GuiGraphics transform, int x, int y) {
+	protected void renderTooltip(GuiGraphics transform, int x, int y) {
 		super.renderTooltip(transform, x, y);
 		if (this.displayRecipes) {
 			int recipeX = this.leftPos + RECIPES_X;

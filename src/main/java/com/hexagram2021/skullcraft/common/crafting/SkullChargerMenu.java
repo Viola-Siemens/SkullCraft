@@ -11,7 +11,6 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.AbstractSkullBlock;
-import org.jetbrains.annotations.NotNull;
 
 public class SkullChargerMenu extends AbstractContainerMenu {
 	public static final int INPUT_SLOT = 0;
@@ -44,7 +43,7 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 
 		this.inputSlot = this.addSlot(new Slot(container, INPUT_SLOT, 143, 33) {
 			@Override
-			public boolean mayPlace(@NotNull ItemStack itemStack) {
+			public boolean mayPlace(ItemStack itemStack) {
 				return (itemStack.getItem() instanceof BlockItem blockItem) && blockItem.getBlock() instanceof AbstractSkullBlock;
 			}
 
@@ -61,7 +60,7 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		});
 		this.addSlot(new Slot(container, FUEL_SLOT, 20, 51) {
 			@Override
-			public boolean mayPlace(@NotNull ItemStack itemStack) {
+			public boolean mayPlace(ItemStack itemStack) {
 				return itemStack.is(Items.SOUL_SOIL);
 			}
 
@@ -84,11 +83,11 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public boolean stillValid(@NotNull Player player) {
+	public boolean stillValid(Player player) {
 		return this.skullCharger.stillValid(player);
 	}
 
-	@Override @NotNull
+	@Override
 	public MenuType<?> getType() {
 		return SCContainerTypes.SKULL_CHARGER_MENU.get();
 	}
@@ -106,7 +105,7 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 	}
 
 	@Override
-	public boolean clickMenuButton(@NotNull Player player, int index) {
+	public boolean clickMenuButton(Player player, int index) {
 		if(this.hasInputItem() && index >= 0 && index <= 2) {
 			this.setAddXYZ(index);
 			this.broadcastChanges();
@@ -115,8 +114,8 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		return false;
 	}
 
-	@Override @NotNull
-	public ItemStack quickMoveStack(@NotNull Player player, int index) {
+	@Override
+	public ItemStack quickMoveStack(Player player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.slots.get(index);
 		if (slot.hasItem()) {

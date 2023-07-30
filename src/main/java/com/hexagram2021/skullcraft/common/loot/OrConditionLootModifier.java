@@ -8,8 +8,8 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 import java.util.function.Predicate;
 
 public abstract class OrConditionLootModifier implements IGlobalLootModifier {
@@ -29,8 +29,7 @@ public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 		this.combinedConditions = LootItemConditions.orConditions(conditionsIn);
 	}
 
-	@Nonnull
-	@Override
+	@Override @NotNull
 	public final ObjectArrayList<ItemStack> apply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		return this.combinedConditions.test(context) ? this.doApply(generatedLoot, context) : generatedLoot;
 	}
@@ -42,6 +41,5 @@ public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 	 * @param context the LootContext, identical to what is passed to loot tables
 	 * @return modified loot drops
 	 */
-	@Nonnull
 	protected abstract ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context);
 }

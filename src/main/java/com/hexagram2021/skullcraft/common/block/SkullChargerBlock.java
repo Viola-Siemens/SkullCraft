@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -30,9 +29,9 @@ public class SkullChargerBlock extends BaseEntityBlock {
 		super(props);
 	}
 
-	@Override @NotNull
-	public InteractionResult use(@NotNull BlockState blockState, Level level, @NotNull BlockPos blockPos, @NotNull Player player,
-								 @NotNull InteractionHand interactionHand, @NotNull BlockHitResult blockHitResult) {
+	@Override
+	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player,
+								 InteractionHand interactionHand, BlockHitResult blockHitResult) {
 		if (level.isClientSide) {
 			return InteractionResult.SUCCESS;
 		}
@@ -41,24 +40,24 @@ public class SkullChargerBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public boolean isPathfindable(@NotNull BlockState state, @NotNull BlockGetter getter, @NotNull BlockPos blockPos, @NotNull PathComputationType type) {
+	public boolean isPathfindable(BlockState state, BlockGetter getter, BlockPos blockPos, PathComputationType type) {
 		return false;
 	}
 
 	@Nullable
 	@Override
-	public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
 		return new SkullChargerBlockEntity(blockPos, blockState);
 	}
 
-	@Override @NotNull
-	public RenderShape getRenderShape(@NotNull BlockState blockState) {
+	@Override
+	public RenderShape getRenderShape(BlockState blockState) {
 		return RenderShape.MODEL;
 	}
 
 	@Nullable
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState state, @NotNull BlockEntityType<T> type) {
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
 		return createSkullChargerTicker(level, type, SCBlockEntities.SKULL_CHARGER.get());
 	}
 
@@ -68,7 +67,7 @@ public class SkullChargerBlock extends BaseEntityBlock {
 	}
 
 	@Override
-	public void onRemove(BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos, BlockState newBlockState, boolean b) {
+	public void onRemove(BlockState blockState, Level level, BlockPos blockPos, BlockState newBlockState, boolean b) {
 		if (!blockState.is(newBlockState.getBlock())) {
 			BlockEntity blockentity = level.getBlockEntity(blockPos);
 			if (blockentity instanceof SkullChargerBlockEntity skullChargerBlockEntity) {

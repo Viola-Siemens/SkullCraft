@@ -2,7 +2,6 @@ package com.hexagram2021.skullcraft.mixin;
 
 import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.common.block.Scaleable;
-import com.hexagram2021.skullcraft.common.block.entity.AbstractSkullCraftSkullBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -27,14 +26,6 @@ public class AbstractSkullBlockMixin {
 		if((Block)(Object)this instanceof AbstractSkullBlock) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
 			if (blockEntity instanceof SkullBlockEntity skullBlockEntity) {	//Vanilla
-				if (itemStack.hasTag()) {
-					CompoundTag nbt = itemStack.getTag();
-					if (nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
-						CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
-						((Scaleable)skullBlockEntity).setScaleXYZ(scaleTag.getInt("x"), scaleTag.getInt("y"), scaleTag.getInt("z"));
-					}
-				}
-			} else if(blockEntity instanceof AbstractSkullCraftSkullBlockEntity<?> skullBlockEntity) {	//SC
 				if (itemStack.hasTag()) {
 					CompoundTag nbt = itemStack.getTag();
 					if (nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {

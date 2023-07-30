@@ -21,8 +21,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import javax.annotation.Nonnull;
-
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SkullNBTOps {
@@ -40,7 +38,6 @@ public class SkullNBTOps {
 			super(conditionsIn);
 		}
 
-		@Nonnull
 		@Override
 		public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 			if(context.hasParam(LootContextParams.BLOCK_ENTITY)) {

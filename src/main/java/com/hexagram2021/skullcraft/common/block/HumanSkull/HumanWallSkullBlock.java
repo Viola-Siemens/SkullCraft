@@ -2,20 +2,19 @@ package com.hexagram2021.skullcraft.common.block.HumanSkull;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.hexagram2021.skullcraft.common.block.entity.HumanSkullBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
 
@@ -34,13 +33,13 @@ public class HumanWallSkullBlock extends AbstractSkullBlock {
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
 	}
 
-	@Override @NotNull
+	@Override
 	public String getDescriptionId() {
 		return this.asItem().getDescriptionId();
 	}
 
-	@Override @NotNull
-	public VoxelShape getShape(BlockState blockState, @NotNull BlockGetter level, @NotNull BlockPos blockPos, @NotNull CollisionContext context) {
+	@Override
+	public VoxelShape getShape(BlockState blockState, BlockGetter level, BlockPos blockPos, CollisionContext context) {
 		return AABBS.get(blockState.getValue(FACING));
 	}
 
@@ -64,12 +63,12 @@ public class HumanWallSkullBlock extends AbstractSkullBlock {
 		return null;
 	}
 
-	@Override @NotNull
+	@Override
 	public BlockState rotate(BlockState blockState, Rotation rotation) {
 		return blockState.setValue(FACING, rotation.rotate(blockState.getValue(FACING)));
 	}
 
-	@Override @NotNull
+	@Override
 	public BlockState mirror(BlockState blockState, Mirror mirror) {
 		return blockState.rotate(mirror.getRotation(blockState.getValue(FACING)));
 	}
@@ -80,7 +79,7 @@ public class HumanWallSkullBlock extends AbstractSkullBlock {
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState) {
-		return new HumanSkullBlockEntity(blockPos, blockState);
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
+		return new SkullBlockEntity(blockPos, blockState);
 	}
 }

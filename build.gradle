@@ -7,7 +7,7 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '[6.0,6.2)', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7.32'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
@@ -22,6 +22,10 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '7.0.0'
 group = 'com.hexagram2021.skullcraft'
+
+base {
+    archivesName = 'skullcraft'
+}
 archivesBaseName = 'skullcraft'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

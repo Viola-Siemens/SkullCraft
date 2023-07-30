@@ -10,7 +10,6 @@ import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import org.jetbrains.annotations.NotNull;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
@@ -131,7 +130,7 @@ public class CubeSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(@NotNull PoseStack transform, @NotNull VertexConsumer consumer,
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
 							   int x, int y, float r, float g, float b, float a) {
 		this.root.render(transform, consumer, x, y, r, g, b, a);
 	}

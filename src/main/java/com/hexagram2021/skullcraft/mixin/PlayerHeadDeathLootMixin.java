@@ -10,7 +10,6 @@ import net.minecraft.world.entity.monster.Creeper;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class PlayerHeadDeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
-	public void dropCustomHead(@NotNull DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
+	public void dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity)(Object)this;
 		if(entity instanceof Player) {
 			Entity killer = damageSource.getEntity();

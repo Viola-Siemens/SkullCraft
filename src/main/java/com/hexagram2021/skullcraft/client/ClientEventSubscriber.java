@@ -1,22 +1,30 @@
 package com.hexagram2021.skullcraft.client;
 
+import com.google.common.collect.ImmutableMap;
 import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.client.model.*;
-import com.hexagram2021.skullcraft.client.renderer.*;
 import com.hexagram2021.skullcraft.client.screen.SkullChargerScreen;
-import com.hexagram2021.skullcraft.common.register.SCBlockEntities;
+import com.hexagram2021.skullcraft.common.block.CowSkull.CowSkullBlock;
+import com.hexagram2021.skullcraft.common.block.CubeSkull.CubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.HumanSkull.HumanSkullBlock;
+import com.hexagram2021.skullcraft.common.block.PiglinSkull.PiglinSkullBlock;
+import com.hexagram2021.skullcraft.common.block.SmallCubeSkull.SmallCubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.WardenSkull.WardenSkullBlock;
 import com.hexagram2021.skullcraft.common.register.SCContainerTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AbstractSkullBlock;
+import net.minecraft.world.level.block.SkullBlock;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -98,23 +106,33 @@ public class ClientEventSubscriber {
 	}
 
 	@SubscribeEvent
-	public static void onRegisterRenderer(EntityRenderersEvent.RegisterRenderers event) {
-		event.registerBlockEntityRenderer(SCBlockEntities.HUMAN_SKULL.get(), HumanSkullBlockRenderer::new);
-		event.registerBlockEntityRenderer(SCBlockEntities.CUBE_SKULL.get(), CubeSkullBlockRenderer::new);
-		event.registerBlockEntityRenderer(SCBlockEntities.SMALL_CUBE_SKULL.get(), SmallCubeSkullBlockRenderer::new);
-		event.registerBlockEntityRenderer(SCBlockEntities.COW_SKULL.get(), CowSkullBlockRenderer::new);
-		event.registerBlockEntityRenderer(SCBlockEntities.PIGLIN_SKULL.get(), PiglinSkullBlockRenderer::new);
-		event.registerBlockEntityRenderer(SCBlockEntities.WARDEN_SKULL.get(), WardenSkullBlockRenderer::new);
-	}
-
-	@SubscribeEvent
-	public static void onCreateSkullModels(EntityRenderersEvent.CreateSkullModels skullModelEvent) {
-		CowSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
-		CubeSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
-		HumanSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
-		PiglinSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
-		SmallCubeSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
-		WardenSkullBlockRenderer.createSkullRenderers(skullModelEvent.getEntityModelSet()).forEach(skullModelEvent::registerSkullModel);
+	public static void onCreateSkullModel(EntityRenderersEvent.CreateSkullModels event) {
+		event.registerSkullModel(HumanSkullBlock.Types.VILLAGER, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.VILLAGER_HEAD)));
+		event.registerSkullModel(HumanSkullBlock.Types.ILLAGER, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.ILLAGER_HEAD)));
+		event.registerSkullModel(HumanSkullBlock.Types.WITCH, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.WITCH_HEAD)));
+		event.registerSkullModel(HumanSkullBlock.Types.IRON_GOLEM, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.IRON_GOLEM_HEAD)));
+		event.registerSkullModel(HumanSkullBlock.Types.ZOMBIE_VILLAGER, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.ZOMBIE_VILLAGER_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.SLIME, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SLIME_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.LAVASLIME, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.LAVASLIME_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.BLAZE, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.BLAZE_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.SPIDER, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SPIDER_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.CAVE_SPIDER, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.CAVE_SPIDER_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.PIG, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.PIG_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.ENDERMAN, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.ENDERMAN_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.SNOW_GOLEM, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SNOW_GOLEM_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.TECHNOBLADE, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.TECHNOBLADE_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.SHEEP, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.SHEEP_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.BAT, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.BAT_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.SHULKER, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.SHULKER_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.ALLAY, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.ALLAY_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.VEX, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.VEX_HEAD)));
+		event.registerSkullModel(CowSkullBlock.Types.COW, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.COW_HEAD)));
+		event.registerSkullModel(CowSkullBlock.Types.RED_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.RED_MOOSHROOM_HEAD)));
+		event.registerSkullModel(CowSkullBlock.Types.BROWN_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.BROWN_MOOSHROOM_HEAD)));
+		event.registerSkullModel(PiglinSkullBlock.Types.PIGLIN_BRUTE, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.PIGLIN_BRUTE_HEAD)));
+		event.registerSkullModel(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD)));
+		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
+		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
 	}
 
 	public static void modConstruction() {
@@ -124,6 +142,35 @@ public class ClientEventSubscriber {
 	@SubscribeEvent
 	public static void setup(final FMLClientSetupEvent event) {
 		registerContainersAndScreens();
+		event.enqueueWork(() -> {
+			ImmutableMap.Builder<SkullBlock.Type, ResourceLocation> builder = ImmutableMap.builder();
+			builder.put(HumanSkullBlock.Types.VILLAGER, new ResourceLocation("textures/entity/villager/villager.png"));
+			builder.put(HumanSkullBlock.Types.ILLAGER, new ResourceLocation("textures/entity/illager/pillager.png"));
+			builder.put(HumanSkullBlock.Types.WITCH, new ResourceLocation("textures/entity/witch.png"));
+			builder.put(HumanSkullBlock.Types.IRON_GOLEM, new ResourceLocation("textures/entity/iron_golem/iron_golem.png"));
+			builder.put(HumanSkullBlock.Types.ZOMBIE_VILLAGER, new ResourceLocation("textures/entity/zombie_villager/zombie_villager.png"));
+			builder.put(CubeSkullBlock.Types.SLIME, new ResourceLocation("textures/entity/slime/slime.png"));
+			builder.put(CubeSkullBlock.Types.LAVASLIME, new ResourceLocation("textures/entity/slime/magmacube.png"));
+			builder.put(CubeSkullBlock.Types.BLAZE, new ResourceLocation("textures/entity/blaze.png"));
+			builder.put(CubeSkullBlock.Types.SPIDER, new ResourceLocation("textures/entity/spider/spider.png"));
+			builder.put(CubeSkullBlock.Types.CAVE_SPIDER, new ResourceLocation("textures/entity/spider/cave_spider.png"));
+			builder.put(CubeSkullBlock.Types.PIG, new ResourceLocation("textures/entity/pig/pig.png"));
+			builder.put(CubeSkullBlock.Types.ENDERMAN, new ResourceLocation("textures/entity/enderman/enderman.png"));
+			builder.put(CubeSkullBlock.Types.SNOW_GOLEM, new ResourceLocation("textures/entity/snow_golem.png"));
+			builder.put(CubeSkullBlock.Types.TECHNOBLADE, new ResourceLocation(MODID, "textures/entity/technoblade.png"));
+			builder.put(SmallCubeSkullBlock.Types.SHEEP, new ResourceLocation(MODID, "textures/entity/sheep.png"));
+			builder.put(SmallCubeSkullBlock.Types.BAT, new ResourceLocation("textures/entity/bat.png"));
+			builder.put(SmallCubeSkullBlock.Types.SHULKER, new ResourceLocation("textures/entity/shulker/shulker.png"));
+			builder.put(SmallCubeSkullBlock.Types.ALLAY, new ResourceLocation("textures/entity/allay/allay.png"));
+			builder.put(SmallCubeSkullBlock.Types.VEX, new ResourceLocation("textures/entity/illager/vex.png"));
+			builder.put(CowSkullBlock.Types.COW, new ResourceLocation("textures/entity/cow/cow.png"));
+			builder.put(CowSkullBlock.Types.RED_MOOSHROOM, new ResourceLocation("textures/entity/cow/red_mooshroom.png"));
+			builder.put(CowSkullBlock.Types.BROWN_MOOSHROOM, new ResourceLocation("textures/entity/cow/brown_mooshroom.png"));
+			builder.put(PiglinSkullBlock.Types.PIGLIN_BRUTE, new ResourceLocation("textures/entity/piglin/piglin_brute.png"));
+			builder.put(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new ResourceLocation("textures/entity/piglin/zombified_piglin.png"));
+			builder.put(WardenSkullBlock.Types.WARDEN, new ResourceLocation("textures/entity/warden/warden.png"));
+			SkullBlockRenderer.SKIN_BY_TYPE.putAll(builder.build());
+		});
 	}
 
 	private static void registerContainersAndScreens() {

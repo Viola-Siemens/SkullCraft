@@ -88,7 +88,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		}
 	};
 
-	@Override @NotNull
+	@Override
 	protected Component getDefaultName() {
 		return SkullChargerBlock.CONTAINER_TITLE;
 	}
@@ -122,7 +122,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public void load(@NotNull CompoundTag nbt) {
+	public void load(CompoundTag nbt) {
 		super.load(nbt);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
 		ContainerHelper.loadAllItems(nbt, this.items);
@@ -130,14 +130,14 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public void saveAdditional(@NotNull CompoundTag nbt) {
+	public void saveAdditional(CompoundTag nbt) {
 		super.saveAdditional(nbt);
 		nbt.putInt("Energy", this.energy);
 		ContainerHelper.saveAllItems(nbt, this.items);
 	}
 
 	@Override
-	public int[] getSlotsForFace(@NotNull Direction direction) {
+	public int[] getSlotsForFace(Direction direction) {
 		if(direction == Direction.DOWN) {
 			return SLOTS_FOR_DOWN;
 		}
@@ -153,37 +153,37 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public void fillStackedContents(@NotNull StackedContents contents) {
+	public void fillStackedContents(StackedContents contents) {
 		for(ItemStack itemstack : this.items) {
 			contents.accountStack(itemstack);
 		}
 	}
 
 	@Override
-	public boolean stillValid(@NotNull Player player) {
+	public boolean stillValid(Player player) {
 		if (this.level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		}
 		return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
 	}
 
-	@Override @NotNull
+	@Override
 	public ItemStack getItem(int index) {
 		return this.items.get(index);
 	}
 
-	@Override @NotNull
+	@Override
 	public ItemStack removeItem(int index, int count) {
 		return ContainerHelper.removeItem(this.items, index, count);
 	}
 
-	@Override @NotNull
+	@Override
 	public ItemStack removeItemNoUpdate(int index) {
 		return ContainerHelper.takeItem(this.items, index);
 	}
 
 	@Override
-	public void setItem(int index, @NotNull ItemStack itemStack) {
+	public void setItem(int index, ItemStack itemStack) {
 		this.items.set(index, itemStack);
 		if (itemStack.getCount() > this.getMaxStackSize()) {
 			itemStack.setCount(this.getMaxStackSize());
@@ -200,12 +200,12 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public boolean canPlaceItemThroughFace(int index, @NotNull ItemStack itemStack, Direction direction) {
+	public boolean canPlaceItemThroughFace(int index, ItemStack itemStack, @Nullable Direction direction) {
 		return this.canPlaceItem(index, itemStack);
 	}
 
 	@Override
-	public boolean canTakeItemThroughFace(int index, @NotNull ItemStack itemStack, @NotNull Direction direction) {
+	public boolean canTakeItemThroughFace(int index, ItemStack itemStack, Direction direction) {
 		return true;
 	}
 
@@ -213,7 +213,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 			SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
 	@Override @NotNull
-	public <T> LazyOptional<T> getCapability(@NotNull Capability<T> capability, @Nullable Direction facing) {
+	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
 		if (!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER) {
 			if (facing == Direction.UP) {
 				return handlers[0].cast();
@@ -240,8 +240,8 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 	}
 
-	@Override @NotNull
-	protected AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory) {
+	@Override
+	protected AbstractContainerMenu createMenu(int id, Inventory inventory) {
 		return new SkullChargerMenu(id, inventory, this, this.dataAccess);
 	}
 
