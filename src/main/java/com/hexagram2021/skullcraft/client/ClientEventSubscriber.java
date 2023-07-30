@@ -132,7 +132,6 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(PiglinSkullBlock.Types.PIGLIN_BRUTE, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.PIGLIN_BRUTE_HEAD)));
 		event.registerSkullModel(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD)));
 		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
-		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
 	}
 
 	public static void modConstruction() {
