@@ -55,11 +55,6 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 		builder.add(ROTATION);
 	}
 
-	@Override
-	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState) {
-		return new SkullBlockEntity(blockPos, blockState);
-	}
-
 	public enum Types implements SkullBlock.Type {
 		SHEEP,
 		BAT,
