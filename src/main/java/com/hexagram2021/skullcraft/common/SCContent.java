@@ -3,6 +3,7 @@ package com.hexagram2021.skullcraft.common;
 import com.google.common.collect.ImmutableSet;
 import com.hexagram2021.skullcraft.common.loot.SkullNBTOps;
 import com.hexagram2021.skullcraft.common.register.*;
+import com.hexagram2021.skullcraft.common.world.Villages;
 import com.hexagram2021.skullcraft.mixin.BlockEntityTypeAccess;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.world.level.block.Block;
@@ -25,10 +26,12 @@ public class SCContent {
 		SkullNBTOps.init(bus);
 		SCContainerTypes.init(bus);
 		SCBlockEntities.init(bus);
+		Villages.Registers.init(bus);
 		SCCreativeModeTabs.init(bus);
 	}
 
 	public static void init() {
+		Villages.init();
 		BlockEntityTypeAccess skullBuilderAccess = (BlockEntityTypeAccess) BlockEntityType.SKULL;
 		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(skullBuilderAccess.sc_getValidBlocks());
 		skullValidBlocks.addAll(ImmutableSet.of(
