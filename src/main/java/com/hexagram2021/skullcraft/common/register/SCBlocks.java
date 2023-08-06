@@ -4,6 +4,8 @@ import com.hexagram2021.skullcraft.common.block.CowSkull.CowSkullBlock;
 import com.hexagram2021.skullcraft.common.block.CowSkull.CowWallSkullBlock;
 import com.hexagram2021.skullcraft.common.block.CubeSkull.CubeSkullBlock;
 import com.hexagram2021.skullcraft.common.block.CubeSkull.CubeWallSkullBlock;
+import com.hexagram2021.skullcraft.common.block.HorseSkull.HorseSkullBlock;
+import com.hexagram2021.skullcraft.common.block.HorseSkull.HorseWallSkullBlock;
 import com.hexagram2021.skullcraft.common.block.HumanSkull.HumanSkullBlock;
 import com.hexagram2021.skullcraft.common.block.HumanSkull.HumanWallSkullBlock;
 import com.hexagram2021.skullcraft.common.block.PiglinSkull.PiglinSkullBlock;
@@ -283,6 +285,102 @@ public class SCBlocks {
 		}
 	}
 
+	public static class HorseSkulls {
+		public static final BlockEntry<HorseSkullBlock> BLACK_HORSE_HEAD = new BlockEntry<>(
+				"black_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.BLACK_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> BROWN_HORSE_HEAD = new BlockEntry<>(
+				"brown_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.BROWN_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> CHESTNUT_HORSE_HEAD = new BlockEntry<>(
+				"chestnut_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.CHESTNUT_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> CREAMY_HORSE_HEAD = new BlockEntry<>(
+				"creamy_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.CREAMY_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> DARKBROWN_HORSE_HEAD = new BlockEntry<>(
+				"darkbrown_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.DARKBROWN_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> GRAY_HORSE_HEAD = new BlockEntry<>(
+				"gray_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.GRAY_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> WHITE_HORSE_HEAD = new BlockEntry<>(
+				"white_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.WHITE_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> DONKEY_HEAD = new BlockEntry<>(
+				"donkey_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_DONKEY),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.DONKEY)
+		);
+		public static final BlockEntry<HorseSkullBlock> MULE_HEAD = new BlockEntry<>(
+				"mule_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_MULE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.MULE)
+		);
+		public static final BlockEntry<HorseSkullBlock> SKELETON_HORSE_HEAD = new BlockEntry<>(
+				"skeleton_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SKELETON_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.SKELETON_HORSE)
+		);
+		public static final BlockEntry<HorseSkullBlock> ZOMBIE_HORSE_HEAD = new BlockEntry<>(
+				"zombie_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ZOMBIE_HORSE),
+				(props) -> new HorseSkullBlock(props, HorseSkullBlock.Types.ZOMBIE_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> BLACK_HORSE_WALL_HEAD = new BlockEntry<>(
+				"black_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.BLACK_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> BROWN_HORSE_WALL_HEAD = new BlockEntry<>(
+				"brown_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.BROWN_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> CHESTNUT_HORSE_WALL_HEAD = new BlockEntry<>(
+				"chestnut_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.CHESTNUT_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> CREAMY_HORSE_WALL_HEAD = new BlockEntry<>(
+				"creamy_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.CREAMY_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> DARKBROWN_HORSE_WALL_HEAD = new BlockEntry<>(
+				"darkbrown_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.DARKBROWN_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> GRAY_HORSE_WALL_HEAD = new BlockEntry<>(
+				"gray_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.GRAY_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> WHITE_HORSE_WALL_HEAD = new BlockEntry<>(
+				"white_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.WHITE_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> DONKEY_WALL_HEAD = new BlockEntry<>(
+				"donkey_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_DONKEY),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.DONKEY)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> MULE_WALL_HEAD = new BlockEntry<>(
+				"mule_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_MULE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.MULE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> SKELETON_HORSE_WALL_HEAD = new BlockEntry<>(
+				"skeleton_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SKELETON_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.SKELETON_HORSE)
+		);
+		public static final BlockEntry<HorseWallSkullBlock> ZOMBIE_HORSE_WALL_HEAD = new BlockEntry<>(
+				"zombie_horse_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ZOMBIE_HORSE),
+				(props) -> new HorseWallSkullBlock(props, HorseSkullBlock.Types.ZOMBIE_HORSE)
+		);
+
+		private HorseSkulls() {}
+
+		private static void init() {
+		}
+	}
+
 	public static class WardenSkulls {
 		public static final BlockEntry<WardenSkullBlock> WARDEN_HEAD = new BlockEntry<>(
 				"warden_head", BOSS_SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WARDEN),
@@ -309,6 +407,7 @@ public class SCBlocks {
 		SmallCubeSkulls.init();
 		CowSkulls.init();
 		PiglinSkulls.init();
+		HorseSkulls.init();
 		WardenSkulls.init();
 	}
 

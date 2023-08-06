@@ -59,6 +59,17 @@ public class SCContent {
 				SCBlocks.CowSkulls.BROWN_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.BROWN_MOOSHROOM_WALL_HEAD.get(),
 				SCBlocks.PiglinSkulls.PIGLIN_BRUTE_HEAD.get(), SCBlocks.PiglinSkulls.PIGLIN_BRUTE_WALL_HEAD.get(),
 				SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get(), SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.BLACK_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BLACK_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.BROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BROWN_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.CHESTNUT_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CHESTNUT_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.CREAMY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CREAMY_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.DARKBROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.DARKBROWN_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.GRAY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.GRAY_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.WHITE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.WHITE_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.DONKEY_HEAD.get(), SCBlocks.HorseSkulls.DONKEY_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.MULE_HEAD.get(), SCBlocks.HorseSkulls.MULE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.SKELETON_HORSE_HEAD.get(), SCBlocks.HorseSkulls.SKELETON_HORSE_WALL_HEAD.get(),
+				SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(),
 				SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get()
 		));
 		skullBuilderAccess.sc_setValidBlocks(skullValidBlocks);

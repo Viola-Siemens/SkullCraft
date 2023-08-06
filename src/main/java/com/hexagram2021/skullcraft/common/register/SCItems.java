@@ -243,6 +243,69 @@ public class SCItems {
 		}
 	}
 
+	public static class HorseSkulls {
+		public static final ItemEntry<StandingAndWallBlockItem> BLACK_HORSE_HEAD = new ItemEntry<>(
+				"black_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.BLACK_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BLACK_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> BROWN_HORSE_HEAD = new ItemEntry<>(
+				"brown_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.BROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BROWN_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> CHESTNUT_HORSE_HEAD = new ItemEntry<>(
+				"chestnut_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.CHESTNUT_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CHESTNUT_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> CREAMY_HORSE_HEAD = new ItemEntry<>(
+				"creamy_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.CREAMY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CREAMY_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> DARKBROWN_HORSE_HEAD = new ItemEntry<>(
+				"darkbrown_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.DARKBROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.DARKBROWN_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> GRAY_HORSE_HEAD = new ItemEntry<>(
+				"gray_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.GRAY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.GRAY_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WHITE_HORSE_HEAD = new ItemEntry<>(
+				"white_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.WHITE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.WHITE_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> DONKEY_HEAD = new ItemEntry<>(
+				"donkey_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.DONKEY_HEAD.get(), SCBlocks.HorseSkulls.DONKEY_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> MULE_HEAD = new ItemEntry<>(
+				"mule_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.MULE_HEAD.get(), SCBlocks.HorseSkulls.MULE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> SKELETON_HORSE_HEAD = new ItemEntry<>(
+				"skeleton_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.SKELETON_HORSE_HEAD.get(), SCBlocks.HorseSkulls.SKELETON_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ZOMBIE_HORSE_HEAD = new ItemEntry<>(
+				"zombie_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+
+		private HorseSkulls() {}
+
+		private static void init() {
+		}
+	}
+
 	public static class WardenSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> WARDEN_HEAD = new ItemEntry<>(
 				"warden_head", RARE_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
@@ -271,6 +334,7 @@ public class SCItems {
 		SmallCubeSkulls.init();
 		CowSkulls.init();
 		PiglinSkulls.init();
+		HorseSkulls.init();
 		WardenSkulls.init();
 	}
 

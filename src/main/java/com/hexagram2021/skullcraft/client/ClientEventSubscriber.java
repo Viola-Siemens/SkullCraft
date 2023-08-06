@@ -6,6 +6,7 @@ import com.hexagram2021.skullcraft.client.model.*;
 import com.hexagram2021.skullcraft.client.screen.SkullChargerScreen;
 import com.hexagram2021.skullcraft.common.block.CowSkull.CowSkullBlock;
 import com.hexagram2021.skullcraft.common.block.CubeSkull.CubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.HorseSkull.HorseSkullBlock;
 import com.hexagram2021.skullcraft.common.block.HumanSkull.HumanSkullBlock;
 import com.hexagram2021.skullcraft.common.block.PiglinSkull.PiglinSkullBlock;
 import com.hexagram2021.skullcraft.common.block.SmallCubeSkull.SmallCubeSkullBlock;
@@ -102,6 +103,18 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(PiglinSkullModel.PIGLIN_BRUTE_HEAD, PiglinSkullModel::createPiglinHeadLayer);
 		event.registerLayerDefinition(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD, PiglinSkullModel::createPiglinHeadLayer);
 
+		event.registerLayerDefinition(HorseSkullModel.BLACK_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.BROWN_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.CHESTNUT_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.CREAMY_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.DARKBROWN_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.GRAY_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.WHITE_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.DONKEY_HEAD, HorseSkullModel::createChestedHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.MULE_HEAD, HorseSkullModel::createChestedHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.SKELETON_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+		event.registerLayerDefinition(HorseSkullModel.ZOMBIE_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
+
 		event.registerLayerDefinition(WardenSkullModel.WARDEN_HEAD, WardenSkullModel::createWardenHeadLayer);
 	}
 
@@ -131,6 +144,17 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(CowSkullBlock.Types.BROWN_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.BROWN_MOOSHROOM_HEAD)));
 		event.registerSkullModel(PiglinSkullBlock.Types.PIGLIN_BRUTE, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.PIGLIN_BRUTE_HEAD)));
 		event.registerSkullModel(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new PiglinSkullModel(event.getEntityModelSet().bakeLayer(PiglinSkullModel.ZOMBIFIED_PIGLIN_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.BLACK_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.BLACK_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.BROWN_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.BROWN_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.CHESTNUT_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.CHESTNUT_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.CREAMY_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.CREAMY_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.DARKBROWN_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.DARKBROWN_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.GRAY_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.GRAY_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.WHITE_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.WHITE_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.DONKEY, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.DONKEY_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.MULE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.MULE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.SKELETON_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.SKELETON_HORSE_HEAD)));
+		event.registerSkullModel(HorseSkullBlock.Types.ZOMBIE_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.ZOMBIE_HORSE_HEAD)));
 		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
 	}
 
@@ -168,6 +192,17 @@ public class ClientEventSubscriber {
 			builder.put(PiglinSkullBlock.Types.PIGLIN_BRUTE, new ResourceLocation("textures/entity/piglin/piglin_brute.png"));
 			builder.put(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, new ResourceLocation("textures/entity/piglin/zombified_piglin.png"));
 			builder.put(WardenSkullBlock.Types.WARDEN, new ResourceLocation("textures/entity/warden/warden.png"));
+			builder.put(HorseSkullBlock.Types.BLACK_HORSE, new ResourceLocation("textures/entity/horse/horse_black.png"));
+			builder.put(HorseSkullBlock.Types.BROWN_HORSE, new ResourceLocation("textures/entity/horse/horse_brown.png"));
+			builder.put(HorseSkullBlock.Types.CHESTNUT_HORSE, new ResourceLocation("textures/entity/horse/horse_chestnut.png"));
+			builder.put(HorseSkullBlock.Types.CREAMY_HORSE, new ResourceLocation("textures/entity/horse/horse_creamy.png"));
+			builder.put(HorseSkullBlock.Types.DARKBROWN_HORSE, new ResourceLocation("textures/entity/horse/horse_darkbrown.png"));
+			builder.put(HorseSkullBlock.Types.GRAY_HORSE, new ResourceLocation("textures/entity/horse/horse_gray.png"));
+			builder.put(HorseSkullBlock.Types.WHITE_HORSE, new ResourceLocation("textures/entity/horse/horse_white.png"));
+			builder.put(HorseSkullBlock.Types.DONKEY, new ResourceLocation("textures/entity/horse/donkey.png"));
+			builder.put(HorseSkullBlock.Types.MULE, new ResourceLocation("textures/entity/horse/mule.png"));
+			builder.put(HorseSkullBlock.Types.SKELETON_HORSE, new ResourceLocation("textures/entity/horse/horse_skeleton.png"));
+			builder.put(HorseSkullBlock.Types.ZOMBIE_HORSE, new ResourceLocation("textures/entity/horse/horse_zombie.png"));
 			SkullBlockRenderer.SKIN_BY_TYPE.putAll(builder.build());
 		});
 	}

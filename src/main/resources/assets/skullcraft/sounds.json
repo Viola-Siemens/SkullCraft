@@ -208,6 +208,51 @@
     ],
     "subtitle": "subtitles.entity.zombified_piglin.ambient"
   },
+  "block.note_block.imitate.horse": {
+    "sounds": [
+      {
+        "name": "entity.horse.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.horse.ambient"
+  },
+  "block.note_block.imitate.donkey": {
+    "sounds": [
+      {
+        "name": "entity.donkey.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.donkey.ambient"
+  },
+  "block.note_block.imitate.mule": {
+    "sounds": [
+      {
+        "name": "entity.mule.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.mule.ambient"
+  },
+  "block.note_block.imitate.skeleton_horse": {
+    "sounds": [
+      {
+        "name": "entity.skeleton_horse.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.skeleton_horse.ambient"
+  },
+  "block.note_block.imitate.zombie_horse": {
+    "sounds": [
+      {
+        "name": "entity.zombie_horse.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.zombie_horse.ambient"
+  },
   "block.note_block.imitate.warden": {
     "sounds": [
       {

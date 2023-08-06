@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ambient.Bat;
 import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.allay.Allay;
+import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
@@ -95,6 +96,24 @@ public class DeathLootMixin {
 			skullItem = SCItems.PiglinSkulls.PIGLIN_BRUTE_HEAD.get();
 		} else if(current instanceof ZombifiedPiglin) {
 			skullItem = SCItems.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get();
+		} else if(current instanceof Horse horse) {
+			skullItem = switch(horse.getVariant()) {
+				case WHITE -> SCItems.HorseSkulls.WHITE_HORSE_HEAD.get();
+				case CREAMY -> SCItems.HorseSkulls.CREAMY_HORSE_HEAD.get();
+				case CHESTNUT -> SCItems.HorseSkulls.CHESTNUT_HORSE_HEAD.get();
+				case BROWN -> SCItems.HorseSkulls.BROWN_HORSE_HEAD.get();
+				case BLACK -> SCItems.HorseSkulls.BLACK_HORSE_HEAD.get();
+				case GRAY -> SCItems.HorseSkulls.GRAY_HORSE_HEAD.get();
+				case DARK_BROWN -> SCItems.HorseSkulls.DARKBROWN_HORSE_HEAD.get();
+			};
+		} else if(current instanceof Donkey) {
+			skullItem = SCItems.HorseSkulls.DONKEY_HEAD.get();
+		} else if(current instanceof Mule) {
+			skullItem = SCItems.HorseSkulls.MULE_HEAD.get();
+		} else if(current instanceof SkeletonHorse) {
+			skullItem = SCItems.HorseSkulls.SKELETON_HORSE_HEAD.get();
+		} else if(current instanceof ZombieHorse) {
+			skullItem = SCItems.HorseSkulls.ZOMBIE_HORSE_HEAD.get();
 		} else if(current instanceof Warden) {
 			skullItem = SCItems.WardenSkulls.WARDEN_HEAD.get();
 		} else if(includeVanillaSkulls) {

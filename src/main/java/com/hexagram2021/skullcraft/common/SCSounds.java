@@ -36,6 +36,11 @@ public class SCSounds {
 	public static final SoundEvent NOTE_BLOCK_IMITATE_COW = registerSound("block.note_block.imitate.cow");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_PIGLIN_BRUTE = registerSound("block.note_block.imitate.piglin_brute");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN = registerSound("block.note_block.imitate.zombified_piglin");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_HORSE = registerSound("block.note_block.imitate.horse");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_DONKEY = registerSound("block.note_block.imitate.donkey");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_MULE = registerSound("block.note_block.imitate.mule");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_SKELETON_HORSE = registerSound("block.note_block.imitate.skeleton_horse");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_ZOMBIE_HORSE = registerSound("block.note_block.imitate.zombie_horse");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_WARDEN = registerSound("block.note_block.imitate.warden");
 
 	private static SoundEvent registerSound(String name) {
