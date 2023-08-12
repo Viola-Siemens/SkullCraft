@@ -1,6 +1,7 @@
 package com.hexagram2021.skullcraft;
 
 import com.hexagram2021.skullcraft.client.ClientEventSubscriber;
+import com.hexagram2021.skullcraft.client.config.SCClientConfig;
 import com.hexagram2021.skullcraft.common.SCContent;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.api.distmarker.Dist;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.ModLoadingStage;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLLoader;
@@ -53,6 +55,7 @@ public class SkullCraft {
 		Consumer<Runnable> runLater = job -> queue.enqueueWork(
 				ModLoadingContext.get().getActiveContainer(), job
 		);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SCClientConfig.getConfig());
 		SCContent.modConstruction(bus, runLater);
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, bootstrapErrorToXCPInDev(() -> ClientEventSubscriber::modConstruction));

@@ -5,7 +5,10 @@
   "refmap": "skullcraft.refmap.json",
   "minVersion": "0.8",
   "client": [
-    "CustomHeadLayerMixin"
+    "CustomHeadLayerMixin",
+    "HumanoidModelMixin",
+    "IllagerModelMixin",
+    "VillagerModelMixin"
   ],
   "mixins": [
     "AbstractSkullBlockMixin",

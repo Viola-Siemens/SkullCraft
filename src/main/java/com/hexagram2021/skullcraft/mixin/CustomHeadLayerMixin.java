@@ -1,7 +1,10 @@
 package com.hexagram2021.skullcraft.mixin;
 
 import com.hexagram2021.skullcraft.SkullCraft;
+import com.hexagram2021.skullcraft.client.config.SCClientConfig;
+import com.hexagram2021.skullcraft.client.model.HattedModel;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
@@ -32,8 +35,14 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 	@SuppressWarnings("unchecked")
 	@Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V", shift = At.Shift.BEFORE))
 	public void handleSkullCraftScale(PoseStack transform, MultiBufferSource source, int uv2, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-		((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel().getHead().skipDraw = true;
-		if (this.blockItemTag != null && this.blockItemTag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
+		HeadedModel model = ((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel();
+		if(SCClientConfig.HIDE_ORIGINAL_HEAD.get()) {
+			model.getHead().skipDraw = true;
+		}
+		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
+			hattedModel.getHat().skipDraw = true;
+		}
+		if (SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && this.blockItemTag != null && this.blockItemTag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 			final CompoundTag scaleNBT = this.blockItemTag.getCompound(SkullCraft.SCALE_TAG);
 			final int scaleX = scaleNBT.contains("x") ? Mth.clamp(scaleNBT.getInt("x"), 50, 5000) : 100;
 			final int scaleY = scaleNBT.contains("y") ? Mth.clamp(scaleNBT.getInt("y"), 50, 5000) : 100;
@@ -49,6 +58,12 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 	@SuppressWarnings("unchecked")
 	@Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V", at = @At(value = "HEAD"))
 	public void resetSkipDraw(PoseStack transform, MultiBufferSource source, int uv2, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
-		((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel().getHead().skipDraw = false;
+		HeadedModel model = ((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel();
+		if(SCClientConfig.HIDE_ORIGINAL_HEAD.get()) {
+			model.getHead().skipDraw = false;
+		}
+		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
+			hattedModel.getHat().skipDraw = false;
+		}
 	}
 }
