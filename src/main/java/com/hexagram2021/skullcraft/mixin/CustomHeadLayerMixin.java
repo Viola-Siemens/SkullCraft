@@ -41,6 +41,9 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 		}
 		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
 			hattedModel.getHat().skipDraw = true;
+			if(hattedModel.getHatRim() != null) {
+				hattedModel.getHatRim().skipDraw = true;
+			}
 		}
 		if (SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && this.blockItemTag != null && this.blockItemTag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 			final CompoundTag scaleNBT = this.blockItemTag.getCompound(SkullCraft.SCALE_TAG);
@@ -64,6 +67,9 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 		}
 		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
 			hattedModel.getHat().skipDraw = false;
+			if(hattedModel.getHatRim() != null) {
+				hattedModel.getHatRim().skipDraw = false;
+			}
 		}
 	}
 }

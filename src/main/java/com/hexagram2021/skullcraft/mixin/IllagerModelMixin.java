@@ -7,6 +7,8 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
+import javax.annotation.Nullable;
+
 @Mixin(IllagerModel.class)
 public class IllagerModelMixin implements HattedModel {
 	@Shadow @Final
@@ -15,5 +17,10 @@ public class IllagerModelMixin implements HattedModel {
 	@Override
 	public ModelPart getHat() {
 		return this.hat;
+	}
+
+	@Override @Nullable
+	public ModelPart getHatRim() {
+		return null;
 	}
 }

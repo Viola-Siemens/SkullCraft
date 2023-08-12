@@ -41,7 +41,7 @@ public class HorseSkullModel extends SkullModelBase {
 		PartDefinition headParts = partdefinition.addOrReplaceChild(
 				"head_parts",
 				CubeListBuilder.create().texOffs(0, 35).addBox(-2.05F, -6.0F, -4.0F, 4.0F, 4.0F, 7.0F),
-				PartPose.offsetAndRotation(0.0F, 2.0F, 0.0F, ((float)Math.PI / 6F), 0.0F, 0.0F)
+				PartPose.offsetAndRotation(0.0F, 3.0F, 0.0F, ((float)Math.PI / 6F), 0.0F, 0.0F)
 		);
 		headParts.addOrReplaceChild(
 				"head",
