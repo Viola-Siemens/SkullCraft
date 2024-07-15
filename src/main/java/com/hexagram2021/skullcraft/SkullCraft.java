@@ -19,7 +19,6 @@ import net.minecraftforge.fml.loading.FMLLoader;
 import org.slf4j.Logger;
 
 import java.util.Optional;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
@@ -52,11 +51,8 @@ public class SkullCraft {
 		bus.addListener(this::setup);
 
 		DeferredWorkQueue queue = DeferredWorkQueue.lookup(Optional.of(ModLoadingStage.CONSTRUCT)).orElseThrow();
-		Consumer<Runnable> runLater = job -> queue.enqueueWork(
-				ModLoadingContext.get().getActiveContainer(), job
-		);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SCClientConfig.getConfig());
-		SCContent.modConstruction(bus, runLater);
+		SCContent.modConstruction(bus);
 
 		DistExecutor.safeRunWhenOn(Dist.CLIENT, bootstrapErrorToXCPInDev(() -> ClientEventSubscriber::modConstruction));
 

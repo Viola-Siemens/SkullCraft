@@ -30,7 +30,7 @@ public class AbstractSkullBlockMixin {
 					CompoundTag nbt = itemStack.getTag();
 					if (nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 						CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
-						((Scaleable)skullBlockEntity).setScaleXYZ(scaleTag.getInt("x"), scaleTag.getInt("y"), scaleTag.getInt("z"));
+						((Scaleable)skullBlockEntity).skullcraft$setScaleXYZ(scaleTag.getInt("x"), scaleTag.getInt("y"), scaleTag.getInt("z"));
 					}
 				}
 			}

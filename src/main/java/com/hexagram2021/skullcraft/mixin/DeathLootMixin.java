@@ -21,6 +21,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -28,11 +29,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Mob.class)
 public class DeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
-	public void dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
+	public void skullcraft$dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
 		Entity entity = damageSource.getEntity();
 		if (entity instanceof Creeper creeper) {
 			if (creeper.canDropMobsSkull()) {
-				if (dropSkullItem((Mob)(Object)this, false)) {
+				if (skullcraft$dropSkullItem((Mob)(Object)this, false)) {
 					creeper.increaseDroppedSkulls();
 				}
 			}
@@ -43,11 +44,12 @@ public class DeathLootMixin {
 								itemStack -> itemStack.getItem() == SCItems.CubeSkulls.TECHNOBLADE_HEAD.get()
 						) && entity.level().random.nextBoolean()))
 		) {
-			dropSkullItem((Mob)(Object)this, true);
+			skullcraft$dropSkullItem((Mob)(Object)this, true);
 		}
 	}
 
-	private static boolean dropSkullItem(Mob current, boolean includeVanillaSkulls) {
+	@Unique
+	private static boolean skullcraft$dropSkullItem(Mob current, boolean includeVanillaSkulls) {
 		Item skullItem = null;
 		if(current instanceof AbstractVillager) {
 			skullItem = SCItems.HumanSkulls.VILLAGER_HEAD.get();

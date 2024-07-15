@@ -8,8 +8,8 @@ import javax.annotation.Nullable;
 
 @OnlyIn(Dist.CLIENT)
 public interface HattedModel {
-	ModelPart getHat();
+	ModelPart skullcraft$getHat();
 
 	@Nullable
-	ModelPart getHatRim();
+	ModelPart skullcraft$getHatRim();
 }

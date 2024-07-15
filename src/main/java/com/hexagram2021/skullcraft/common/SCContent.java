@@ -14,13 +14,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegisterEvent;
 
 import java.util.Set;
-import java.util.function.Consumer;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SCContent {
-	public static void modConstruction(IEventBus bus, Consumer<Runnable> runLater) {
+	public static void modConstruction(IEventBus bus) {
 		SCBlocks.init(bus);
 		SCItems.init(bus);
 		SkullNBTOps.init(bus);
@@ -33,7 +32,7 @@ public class SCContent {
 	public static void init() {
 		Villages.init();
 		BlockEntityTypeAccess skullBuilderAccess = (BlockEntityTypeAccess) BlockEntityType.SKULL;
-		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(skullBuilderAccess.sc_getValidBlocks());
+		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(skullBuilderAccess.skullcraft$getValidBlocks());
 		skullValidBlocks.addAll(ImmutableSet.of(
 				SCBlocks.HumanSkulls.VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.VILLAGER_WALL_HEAD.get(),
 				SCBlocks.HumanSkulls.ILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ILLAGER_WALL_HEAD.get(),
@@ -72,7 +71,7 @@ public class SCContent {
 				SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(),
 				SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get()
 		));
-		skullBuilderAccess.sc_setValidBlocks(skullValidBlocks);
+		skullBuilderAccess.skullcraft$setValidBlocks(skullValidBlocks);
 	}
 
 	@SubscribeEvent

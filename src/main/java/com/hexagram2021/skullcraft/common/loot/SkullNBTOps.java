@@ -44,9 +44,9 @@ public class SkullNBTOps {
 				BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
 				if(blockEntity instanceof SkullBlockEntity) {
 					Scaleable skullBlockEntity = (Scaleable)blockEntity;
-					int scaleX = skullBlockEntity.getScaleX();
-					int scaleY = skullBlockEntity.getScaleY();
-					int scaleZ = skullBlockEntity.getScaleZ();
+					int scaleX = skullBlockEntity.skullcraft$getScaleX();
+					int scaleY = skullBlockEntity.skullcraft$getScaleY();
+					int scaleZ = skullBlockEntity.skullcraft$getScaleZ();
 					if(scaleX != 100 || scaleY != 100 || scaleZ != 100) {
 						CompoundTag scaleTag = new CompoundTag();
 						scaleTag.putInt("x", scaleX);

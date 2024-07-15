@@ -6,21 +6,25 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SkullBlockEntity.class)
 public class SkullBlockEntityMixin implements Scaleable {
-	private int scaleX;
-	private int scaleY;
-	private int scaleZ;
+	@Unique
+	private int skullcraft$scaleX;
+	@Unique
+	private int skullcraft$scaleY;
+	@Unique
+	private int skullcraft$scaleZ;
 
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
 	public void initScaleXYZ(CallbackInfo ci) {
-		this.scaleX = 100;
-		this.scaleY = 100;
-		this.scaleZ = 100;
+		this.skullcraft$scaleX = 100;
+		this.skullcraft$scaleY = 100;
+		this.skullcraft$scaleZ = 100;
 	}
 
 	@Inject(method = "load", at = @At(
@@ -32,11 +36,11 @@ public class SkullBlockEntityMixin implements Scaleable {
 	public void loadScaleXYZ(CompoundTag nbt, CallbackInfo ci) {
 		if(nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 			CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
-			this.scaleX = scaleTag.getInt("x");
-			this.scaleY = scaleTag.getInt("y");
-			this.scaleZ = scaleTag.getInt("z");
+			this.skullcraft$scaleX = scaleTag.getInt("x");
+			this.skullcraft$scaleY = scaleTag.getInt("y");
+			this.skullcraft$scaleZ = scaleTag.getInt("z");
 		} else {
-			this.scaleX = this.scaleY = this.scaleZ = 100;
+			this.skullcraft$scaleX = this.skullcraft$scaleY = this.skullcraft$scaleZ = 100;
 		}
 	}
 
@@ -47,32 +51,32 @@ public class SkullBlockEntityMixin implements Scaleable {
 			ordinal = 0
 	))
 	public void saveScaleXYZ(CompoundTag nbt, CallbackInfo ci) {
-		if(this.scaleX != 100 || this.scaleY != 100 || this.scaleZ != 100) {
+		if(this.skullcraft$scaleX != 100 || this.skullcraft$scaleY != 100 || this.skullcraft$scaleZ != 100) {
 			CompoundTag scaleTag = new CompoundTag();
-			scaleTag.putInt("x", this.scaleX);
-			scaleTag.putInt("y", this.scaleY);
-			scaleTag.putInt("z", this.scaleZ);
+			scaleTag.putInt("x", this.skullcraft$scaleX);
+			scaleTag.putInt("y", this.skullcraft$scaleY);
+			scaleTag.putInt("z", this.skullcraft$scaleZ);
 			nbt.put(SkullCraft.SCALE_TAG, scaleTag);
 		}
 	}
 
 	@Override
-	public void setScaleXYZ(int scaleX, int scaleY, int scaleZ) {
-		this.scaleX = scaleX;
-		this.scaleY = scaleY;
-		this.scaleZ = scaleZ;
+	public void skullcraft$setScaleXYZ(int scaleX, int scaleY, int scaleZ) {
+		this.skullcraft$scaleX = scaleX;
+		this.skullcraft$scaleY = scaleY;
+		this.skullcraft$scaleZ = scaleZ;
 	}
 
 	@Override
-	public int getScaleX() {
-		return this.scaleX;
+	public int skullcraft$getScaleX() {
+		return this.skullcraft$scaleX;
 	}
 	@Override
-	public int getScaleY() {
-		return this.scaleY;
+	public int skullcraft$getScaleY() {
+		return this.skullcraft$scaleY;
 	}
 	@Override
-	public int getScaleZ() {
-		return this.scaleZ;
+	public int skullcraft$getScaleZ() {
+		return this.skullcraft$scaleZ;
 	}
 }

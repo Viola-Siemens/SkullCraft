@@ -12,15 +12,16 @@ public class VillagerModelMixin implements HattedModel {
 	@Shadow @Final
 	private ModelPart hat;
 
-	@Shadow @Final private ModelPart hatRim;
+	@Shadow @Final
+	private ModelPart hatRim;
 
 	@Override
-	public ModelPart getHat() {
+	public ModelPart skullcraft$getHat() {
 		return this.hat;
 	}
 
 	@Override
-	public ModelPart getHatRim() {
+	public ModelPart skullcraft$getHatRim() {
 		return this.hatRim;
 	}
 }

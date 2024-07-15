@@ -40,17 +40,16 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 
 	@Override
 	protected void renderBg(GuiGraphics transform, float partialTicks, int x, int y) {
-		this.renderBackground(transform);
-		int i = this.leftPos;
-		int j = this.topPos;
-		transform.blit(BG_LOCATION, i, j, 0, 0, this.imageWidth, this.imageHeight);
+		int left = this.leftPos;
+		int top = this.topPos;
+		transform.blit(BG_LOCATION, left, top, 0, 0, this.imageWidth, this.imageHeight);
 		int recipeX = this.leftPos + RECIPES_X;
 		int recipeY = this.topPos + RECIPES_Y;
 		this.renderButtons(transform, x, y, recipeX, recipeY);
 		int energyLevel = this.menu.getEnergy();
 		if(energyLevel > 0) {
 			int k = Mth.clamp((energyLevel + 1) / 2, 1, 50);
-			transform.blit(BG_LOCATION, i + 58, j + 62, 176, 15, k, 8);
+			transform.blit(BG_LOCATION, left + 58, top + 62, 176, 15, k, 8);
 		}
 	}
 

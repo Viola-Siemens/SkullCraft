@@ -11,6 +11,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -18,13 +19,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class PlayerHeadDeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
-	public void dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
+	public void skullcraft$dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity)(Object)this;
 		if(entity instanceof Player) {
 			Entity killer = damageSource.getEntity();
 			if(killer instanceof Creeper creeper) {
 				if(creeper.canDropMobsSkull()) {
-					if(dropPlayerHead((Entity) (Object) this)) {
+					if(skullcraft$dropPlayerHead((Entity) (Object) this)) {
 						creeper.increaseDroppedSkulls();
 					}
 				}
@@ -34,12 +35,13 @@ public class PlayerHeadDeathLootMixin {
 									itemStack -> itemStack.getItem() == SCItems.CubeSkulls.TECHNOBLADE_HEAD.get()
 							) && entity.level().random.nextBoolean()))
 			) {
-				dropPlayerHead((Entity) (Object) this);
+				skullcraft$dropPlayerHead((Entity) (Object) this);
 			}
 		}
 	}
 
-	private static boolean dropPlayerHead(Entity player) {
+	@Unique
+	private static boolean skullcraft$dropPlayerHead(Entity player) {
 		ItemStack itemstack = new ItemStack(Items.PLAYER_HEAD);
 		CompoundTag nbt = itemstack.getOrCreateTag();
 		nbt.putString("SkullOwner", player.getDisplayName().getString());

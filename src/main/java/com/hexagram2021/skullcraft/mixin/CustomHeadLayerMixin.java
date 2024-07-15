@@ -4,49 +4,45 @@ import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.client.config.SCClientConfig;
 import com.hexagram2021.skullcraft.client.model.HattedModel;
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.HeadedModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.layers.CustomHeadLayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import javax.annotation.Nullable;
 
 @Mixin(CustomHeadLayer.class)
 public class CustomHeadLayerMixin<T extends LivingEntity> {
-	@Nullable
-	private CompoundTag blockItemTag = null;
-
-	@Redirect(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;getTag()Lnet/minecraft/nbt/CompoundTag;"))
-	@Nullable
-	public CompoundTag getBlockItemTag(ItemStack instance) {
-		return this.blockItemTag = instance.getTag();
-	}
-
 	@SuppressWarnings("unchecked")
 	@Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/world/entity/LivingEntity;FFFFFF)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V", shift = At.Shift.BEFORE))
 	public void handleSkullCraftScale(PoseStack transform, MultiBufferSource source, int uv2, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo ci) {
+		ItemStack itemStack = entity.getItemBySlot(EquipmentSlot.HEAD);
+		CompoundTag blockItemTag = null;
+		if(itemStack.hasTag()) {
+			blockItemTag = itemStack.getTag();
+		}
+
 		HeadedModel model = ((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel();
 		if(SCClientConfig.HIDE_ORIGINAL_HEAD.get()) {
 			model.getHead().skipDraw = true;
 		}
 		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
-			hattedModel.getHat().skipDraw = true;
-			if(hattedModel.getHatRim() != null) {
-				hattedModel.getHatRim().skipDraw = true;
+			hattedModel.skullcraft$getHat().skipDraw = true;
+			ModelPart hat = hattedModel.skullcraft$getHatRim();
+			if(hat != null) {
+				hat.skipDraw = true;
 			}
 		}
-		if (SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && this.blockItemTag != null && this.blockItemTag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
-			final CompoundTag scaleNBT = this.blockItemTag.getCompound(SkullCraft.SCALE_TAG);
+		if (SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && blockItemTag != null && blockItemTag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
+			final CompoundTag scaleNBT = blockItemTag.getCompound(SkullCraft.SCALE_TAG);
 			final int scaleX = scaleNBT.contains("x") ? Mth.clamp(scaleNBT.getInt("x"), 50, 5000) : 100;
 			final int scaleY = scaleNBT.contains("y") ? Mth.clamp(scaleNBT.getInt("y"), 50, 5000) : 100;
 			final int scaleZ = scaleNBT.contains("z") ? Mth.clamp(scaleNBT.getInt("z"), 50, 5000) : 100;
@@ -55,7 +51,6 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 			final double dz = (double)scaleZ / 100.0D;
 			transform.scale((float)dx, (float)dy, (float)dz);
 		}
-		this.blockItemTag = null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -66,9 +61,10 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 			model.getHead().skipDraw = false;
 		}
 		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
-			hattedModel.getHat().skipDraw = false;
-			if(hattedModel.getHatRim() != null) {
-				hattedModel.getHatRim().skipDraw = false;
+			hattedModel.skullcraft$getHat().skipDraw = false;
+			ModelPart hat = hattedModel.skullcraft$getHatRim();
+			if(hat != null) {
+				hat.skipDraw = false;
 			}
 		}
 	}

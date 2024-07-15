@@ -1,9 +1,9 @@
 package com.hexagram2021.skullcraft.common.block;
 
 public interface Scaleable {
-	void setScaleXYZ(int scaleX, int scaleY, int scaleZ);
+	void skullcraft$setScaleXYZ(int scaleX, int scaleY, int scaleZ);
 
-	int getScaleX();
-	int getScaleY();
-	int getScaleZ();
+	int skullcraft$getScaleX();
+	int skullcraft$getScaleY();
+	int skullcraft$getScaleZ();
 }

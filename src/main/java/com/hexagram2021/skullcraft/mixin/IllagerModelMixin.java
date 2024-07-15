@@ -15,12 +15,12 @@ public class IllagerModelMixin implements HattedModel {
 	private ModelPart hat;
 
 	@Override
-	public ModelPart getHat() {
+	public ModelPart skullcraft$getHat() {
 		return this.hat;
 	}
 
 	@Override @Nullable
-	public ModelPart getHatRim() {
+	public ModelPart skullcraft$getHatRim() {
 		return null;
 	}
 }

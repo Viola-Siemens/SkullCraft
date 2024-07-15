@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -312,7 +313,11 @@ public class SCItems {
 						SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get(), props, Direction.DOWN
 				) {
 					@Override
-					public void onArmorTick(ItemStack stack, Level level, Player player) {
+					public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
+						Inventory inv = player.getInventory();
+						if(slotIndex < inv.items.size() || slotIndex >= inv.items.size() + inv.armor.size()) {
+							return;
+						}
 						if(!player.hasEffect(MobEffects.DARKNESS) && level.random.nextInt(4) == 0) {
 							player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 80, 0, false, false, true));
 						}

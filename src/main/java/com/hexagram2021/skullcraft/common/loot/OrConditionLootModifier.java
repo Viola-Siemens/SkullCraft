@@ -10,6 +10,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public abstract class OrConditionLootModifier implements IGlobalLootModifier {
@@ -26,7 +27,7 @@ public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 	 */
 	protected OrConditionLootModifier(LootItemCondition[] conditionsIn) {
 		this.conditions = conditionsIn;
-		this.combinedConditions = LootItemConditions.orConditions(conditionsIn);
+		this.combinedConditions = LootItemConditions.orConditions(Arrays.asList(conditionsIn));
 	}
 
 	@Override @NotNull

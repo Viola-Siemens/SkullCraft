@@ -11,9 +11,9 @@ import java.util.Set;
 @Mixin(BlockEntityType.class)
 public interface BlockEntityTypeAccess {
 	@Accessor("validBlocks")
-	Set<Block> sc_getValidBlocks();
+	Set<Block> skullcraft$getValidBlocks();
 
 	@Accessor("validBlocks")
 	@Mutable
-	void sc_setValidBlocks(Set<Block> blocks);
+	void skullcraft$setValidBlocks(Set<Block> blocks);
 }
