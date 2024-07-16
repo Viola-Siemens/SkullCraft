@@ -15,6 +15,7 @@ import com.hexagram2021.skullcraft.common.block.SmallCubeSkull.SmallCubeSkullBlo
 import com.hexagram2021.skullcraft.common.block.SmallCubeSkull.SmallCubeWallSkullBlock;
 import com.hexagram2021.skullcraft.common.block.WardenSkull.WardenSkullBlock;
 import com.hexagram2021.skullcraft.common.block.WardenSkull.WardenWallSkullBlock;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
@@ -25,10 +26,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SCBlocks {
-	public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
+	public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(Registries.BLOCK, MODID);
 
 	private static final Supplier<BlockBehaviour.Properties> SKULL_CHARGER_PROPERTIES = () ->
 			BlockBehaviour.Properties.of().requiresCorrectToolForDrops().mapColor(MapColor.TERRACOTTA_GRAY).strength(3.5F).sound(SoundType.LODESTONE);
@@ -413,7 +413,7 @@ public class SCBlocks {
 
 	@SuppressWarnings("unused")
 	public static final class BlockEntry<T extends Block> implements Supplier<T>, ItemLike {
-		private final RegistryObject<T> block;
+		private final DeferredHolder<Block, T> block;
 		private final Supplier<BlockBehaviour.Properties> properties;
 
 		public BlockEntry(String name, Supplier<BlockBehaviour.Properties> properties, Function<BlockBehaviour.Properties, T> make) {

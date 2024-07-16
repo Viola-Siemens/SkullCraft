@@ -6,6 +6,7 @@ import com.hexagram2021.skullcraft.common.register.SCBlocks;
 import com.hexagram2021.skullcraft.common.register.SCItems;
 import com.hexagram2021.skullcraft.mixin.HeroGiftsTaskAccess;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -18,13 +19,12 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.village.VillagerTradesEvent;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.Collection;
 import java.util.List;
@@ -40,14 +40,14 @@ public class Villages {
 	}
 
 	public static class Registers {
-		public static final DeferredRegister<PoiType> POINTS_OF_INTEREST = DeferredRegister.create(ForgeRegistries.POI_TYPES, MODID);
-		public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, MODID);
+		public static final DeferredRegister<PoiType> POINTS_OF_INTEREST = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MODID);
+		public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(Registries.VILLAGER_PROFESSION, MODID);
 
-		public static final RegistryObject<PoiType> POI_SKULL_CHARGER = POINTS_OF_INTEREST.register(
+		public static final DeferredHolder<PoiType, PoiType> POI_SKULL_CHARGER = POINTS_OF_INTEREST.register(
 				"skull_charger", () -> createPOI(assembleStates(SCBlocks.SKULL_CHARGER.get()))
 		);
 
-		public static final RegistryObject<VillagerProfession> PROF_ONMYOUJI = PROFESSIONS.register(
+		public static final DeferredHolder<VillagerProfession, VillagerProfession> PROF_ONMYOUJI = PROFESSIONS.register(
 				"onmyouji", () -> createProf(ONMYOUJI, POI_SKULL_CHARGER::getKey, SCSounds.SKULL_CHARGER)
 		);
 
@@ -83,8 +83,8 @@ public class Villages {
 		public static void registerTrades(VillagerTradesEvent event) {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
-			ResourceLocation currentVillagerProfession = ForgeRegistries.VILLAGER_PROFESSIONS.getKey(event.getType());
-			if(ONMYOUJI.equals(currentVillagerProfession)) {
+			String currentVillagerProfession = event.getType().name();
+			if(ONMYOUJI.toString().equals(currentVillagerProfession)) {
 				trades.get(1).add(buy(SCItems.SmallCubeSkulls.SHEEP_HEAD, 12, 2));
 				trades.get(1).add(buy(SCItems.CowSkulls.COW_HEAD, 12, 2));
 				trades.get(1).add(buy(SCItems.CubeSkulls.PIG_HEAD, 12, 2));

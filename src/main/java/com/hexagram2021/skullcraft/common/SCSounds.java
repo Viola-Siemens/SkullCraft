@@ -3,7 +3,7 @@ package com.hexagram2021.skullcraft.common;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraftforge.registries.RegisterEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.HashMap;
 import java.util.Map;

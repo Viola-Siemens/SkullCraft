@@ -3,20 +3,19 @@ package com.hexagram2021.skullcraft.common.register;
 import com.google.common.collect.Lists;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -27,7 +26,7 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @SuppressWarnings("unused")
 public class SCItems {
-	public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+	public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, MODID);
 
 	public static final Supplier<Item.Properties> DEFAULT_ITEM_PROPERTIES = Item.Properties::new;
 	public static final Supplier<Item.Properties> UNCOMMON_ITEM_PROPERTIES = () -> new Item.Properties().rarity(Rarity.UNCOMMON);
@@ -313,11 +312,7 @@ public class SCItems {
 						SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get(), props, Direction.DOWN
 				) {
 					@Override
-					public void onInventoryTick(ItemStack stack, Level level, Player player, int slotIndex, int selectedIndex) {
-						Inventory inv = player.getInventory();
-						if(slotIndex < inv.items.size() || slotIndex >= inv.items.size() + inv.armor.size()) {
-							return;
-						}
+					public void onArmorTick(ItemStack stack, Level level, Player player) {
 						if(!player.hasEffect(MobEffects.DARKNESS) && level.random.nextInt(4) == 0) {
 							player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 80, 0, false, false, true));
 						}
@@ -346,7 +341,7 @@ public class SCItems {
 	public static final class ItemEntry<T extends Item> implements Supplier<T>, ItemLike {
 		public static final List<ItemEntry<? extends Item>> REGISTERED_ITEMS = Lists.newArrayList();
 
-		private final RegistryObject<T> item;
+		private final DeferredHolder<Item, T> item;
 		private final Supplier<Item.Properties> properties;
 
 		public ItemEntry(String name, Supplier<Item.Properties> properties, Function<Item.Properties, T> make) {

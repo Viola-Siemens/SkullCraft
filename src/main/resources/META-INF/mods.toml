@@ -1,30 +1,33 @@
 modLoader="javafml"
-loaderVersion="[48,)"
-license="MIT"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
 issueTrackerURL="https://github.com/Viola-Siemens/SkullCraft/issues"
 
 [[mods]]
-modId="skullcraft"
-version="${file.jarVersion}"
-displayName="Skull Craft"
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
 logoFile="logo.png"
-credits="Liu Dongyu"
-authors="Hexagram"
-description='''
-With this mod, you can make your head bigger, wider or longer.
+credits="Hexagram"
+authors="${mod_authors}"
+description='''${mod_description}'''
 
-And also you can get a mob skull easier.
-'''
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
 
-[[dependencies.skullcraft]]
-    modId="forge"
-    mandatory=true
-    versionRange="[48,)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.skullcraft]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.20.2,1.21)"
-    ordering="NONE"
-    side="BOTH"
+[[mixins]]
+config="${mod_id}.mixins.json"
+
+[[dependencies.${mod_id}]]
+modId="neoforge"
+mandatory=true
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="minecraft"
+mandatory=true
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"

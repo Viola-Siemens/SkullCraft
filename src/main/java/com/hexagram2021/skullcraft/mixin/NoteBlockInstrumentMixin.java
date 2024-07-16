@@ -20,9 +20,7 @@ public class NoteBlockInstrumentMixin {
 		throw new UnsupportedOperationException("Replaced by Mixin");
 	}
 
-	@Shadow
-	@Mutable
-	@Final
+	@Shadow @Mutable @Final
 	private static NoteBlockInstrument[] $VALUES;
 
 	@Unique

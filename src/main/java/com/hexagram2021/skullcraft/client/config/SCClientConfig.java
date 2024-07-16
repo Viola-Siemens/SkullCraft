@@ -1,14 +1,14 @@
 package com.hexagram2021.skullcraft.client.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class SCClientConfig {
-	private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-	private static final ForgeConfigSpec SPEC;
+	private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+	private static final ModConfigSpec SPEC;
 
-	public static final ForgeConfigSpec.BooleanValue ENABLE_CUSTOM_SKULL_SIZE;
-	public static final ForgeConfigSpec.BooleanValue HIDE_ORIGINAL_HEAD;
-	public static final ForgeConfigSpec.BooleanValue HIDE_ORIGINAL_HAT;
+	public static final ModConfigSpec.BooleanValue ENABLE_CUSTOM_SKULL_SIZE;
+	public static final ModConfigSpec.BooleanValue HIDE_ORIGINAL_HEAD;
+	public static final ModConfigSpec.BooleanValue HIDE_ORIGINAL_HAT;
 
 	static {
 		BUILDER.push("skull_craft-client-config");
@@ -22,7 +22,7 @@ public class SCClientConfig {
 
 	private SCClientConfig() {}
 
-	public static ForgeConfigSpec getConfig() {
+	public static ModConfigSpec getConfig() {
 		return SPEC;
 	}
 }

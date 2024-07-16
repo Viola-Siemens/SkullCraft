@@ -1,21 +1,16 @@
 package com.hexagram2021.skullcraft;
 
-import com.hexagram2021.skullcraft.client.ClientEventSubscriber;
 import com.hexagram2021.skullcraft.client.config.SCClientConfig;
 import com.hexagram2021.skullcraft.common.SCContent;
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DeferredWorkQueue;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.ModLoadingStage;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLLoader;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.DeferredWorkQueue;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModLoadingStage;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLLoader;
 import org.slf4j.Logger;
 
 import java.util.Optional;
@@ -45,18 +40,13 @@ public class SkullCraft {
 		};
 	}
 
-	public SkullCraft() {
-		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+	public SkullCraft(IEventBus modEventBus) {
 
-		bus.addListener(this::setup);
+		modEventBus.addListener(this::setup);
 
 		DeferredWorkQueue queue = DeferredWorkQueue.lookup(Optional.of(ModLoadingStage.CONSTRUCT)).orElseThrow();
 		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SCClientConfig.getConfig());
-		SCContent.modConstruction(bus);
-
-		DistExecutor.safeRunWhenOn(Dist.CLIENT, bootstrapErrorToXCPInDev(() -> ClientEventSubscriber::modConstruction));
-
-		MinecraftForge.EVENT_BUS.register(this);
+		SCContent.modConstruction(modEventBus);
 	}
 
 	private void setup(final FMLCommonSetupEvent event) {

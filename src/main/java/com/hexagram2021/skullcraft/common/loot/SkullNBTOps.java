@@ -15,17 +15,17 @@ import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.IGlobalLootModifier;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SkullNBTOps {
-	private static final DeferredRegister<Codec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
-	private static final RegistryObject<Codec<SkullNBTOpsModifier>> SKULL_NBT_OPS = REGISTER.register(
+	private static final DeferredRegister<Codec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
+	private static final DeferredHolder<Codec<? extends IGlobalLootModifier>, Codec<SkullNBTOpsModifier>> SKULL_NBT_OPS = REGISTER.register(
 			"skull_nbt_ops", () -> RecordCodecBuilder.create(inst -> OrConditionLootModifier.codecStart(inst).apply(inst, SkullNBTOpsModifier::new))
 	);
 
@@ -67,7 +67,7 @@ public class SkullNBTOps {
 		}
 
 		@Override
-		public Codec<? extends IGlobalLootModifier> codec() {
+		public Codec<SkullNBTOpsModifier> codec() {
 			return SkullNBTOps.SKULL_NBT_OPS.get();
 		}
 	}

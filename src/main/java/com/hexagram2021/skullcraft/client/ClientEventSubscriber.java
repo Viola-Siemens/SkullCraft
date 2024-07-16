@@ -26,12 +26,12 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.SkullBlock;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
@@ -156,10 +156,6 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(HorseSkullBlock.Types.SKELETON_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.SKELETON_HORSE_HEAD)));
 		event.registerSkullModel(HorseSkullBlock.Types.ZOMBIE_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.ZOMBIE_HORSE_HEAD)));
 		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
-	}
-
-	public static void modConstruction() {
-
 	}
 
 	@SubscribeEvent
