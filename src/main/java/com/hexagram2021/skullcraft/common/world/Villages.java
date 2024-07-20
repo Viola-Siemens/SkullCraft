@@ -97,8 +97,13 @@ public class Villages {
 				trades.get(4).add(random3Buy(Items.PIGLIN_HEAD, SCItems.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD, SCItems.CubeSkulls.ENDERMAN_HEAD, 9, 30));
 				trades.get(4).add(random2Buy(SCItems.CubeSkulls.BLAZE_HEAD, SCItems.SmallCubeSkulls.SHULKER_HEAD, 5, 30));
 				trades.get(4).add(random2Buy(SCItems.CubeSkulls.SPIDER_HEAD, SCItems.SmallCubeSkulls.BAT_HEAD, 6, 30));
-				trades.get(5).add(buy(SCItems.CubeSkulls.SPIDER_HEAD, 12, 30));
+				trades.get(4).add(random7Buy(
+						SCItems.HorseSkulls.BLACK_HORSE_HEAD, SCItems.HorseSkulls.BROWN_HORSE_HEAD, SCItems.HorseSkulls.CHESTNUT_HORSE_HEAD, SCItems.HorseSkulls.CREAMY_HORSE_HEAD,
+						SCItems.HorseSkulls.DARKBROWN_HORSE_HEAD, SCItems.HorseSkulls.GRAY_HORSE_HEAD, SCItems.HorseSkulls.WHITE_HORSE_HEAD, 4, 30
+				));
+				trades.get(5).add(buy(SCItems.CubeSkulls.CAVE_SPIDER_HEAD, 5, 30));
 				trades.get(5).add(buy(SCItems.WardenSkulls.WARDEN_HEAD, 1, 30));
+				trades.get(5).add(random3Buy(SCItems.SmallCubeSkulls.VEX_HEAD, SCItems.SmallCubeSkulls.SHULKER_HEAD, SCItems.HorseSkulls.DONKEY_HEAD, 6, 30));
 				trades.get(5).add(commonSell(Items.OBSIDIAN, 5, 1, 30));
 			}
 		}
@@ -114,6 +119,18 @@ public class Villages {
 				case 0 -> item1;
 				case 1 -> item2;
 				default -> item3;
+			}, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
+		}
+		private static VillagerTrades.ItemListing random7Buy(ItemLike item1, ItemLike item2, ItemLike item3, ItemLike item4,
+															 ItemLike item5, ItemLike item6, ItemLike item7, int count, int xp) {
+			return (trader, random) -> new MerchantOffer(new ItemStack(switch (random.nextInt(7)) {
+				case 0 -> item1;
+				case 1 -> item2;
+				case 2 -> item3;
+				case 3 -> item4;
+				case 4 -> item5;
+				case 5 -> item6;
+				default -> item7;
 			}, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
 		}
 		private static VillagerTrades.ItemListing sell(ItemLike item, int price, int xp) {
