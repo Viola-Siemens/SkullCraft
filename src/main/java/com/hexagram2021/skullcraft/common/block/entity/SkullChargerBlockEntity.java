@@ -28,12 +28,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.common.capabilities.Capabilities;
-import net.neoforged.neoforge.common.capabilities.Capability;
-import net.neoforged.neoforge.common.util.LazyOptional;
-import net.neoforged.neoforge.items.IItemHandler;
-import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
-import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -207,37 +201,6 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	@Override
 	public boolean canTakeItemThroughFace(int index, ItemStack itemStack, Direction direction) {
 		return true;
-	}
-
-	LazyOptional<? extends IItemHandler>[] handlers =
-			SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
-	@Override @NotNull
-	public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing) {
-		if (!this.remove && facing != null && capability == Capabilities.ITEM_HANDLER) {
-			if (facing == Direction.UP) {
-				return handlers[0].cast();
-			} else if (facing == Direction.DOWN) {
-				return handlers[1].cast();
-			} else {
-				return handlers[2].cast();
-			}
-		}
-		return super.getCapability(capability, facing);
-	}
-
-	@Override
-	public void invalidateCaps() {
-		super.invalidateCaps();
-		for (LazyOptional<? extends IItemHandler> handler : handlers) {
-			handler.invalidate();
-		}
-	}
-
-	@Override
-	public void reviveCaps() {
-		super.reviveCaps();
-		this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.hexagram2021.skullcraft.common.block.SmallCubeSkull;
+package com.hexagram2021.skullcraft.common.block.cow;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -16,16 +16,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
 
-public class SmallCubeWallSkullBlock extends WallSkullBlock {
+public class CowWallSkullBlock extends WallSkullBlock {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(
-			Direction.NORTH, Block.box(5.0D, 4.0D, 10.0D, 11.0D, 10.0D, 16.0D),
-			Direction.SOUTH, Block.box(5.0D, 4.0D, 0.0D, 11.0D, 10.0D, 6.0D),
-			Direction.EAST, Block.box(0.0D, 4.0D, 5.0D, 6.0D, 10.0D, 11.0D),
-			Direction.WEST, Block.box(10.0D, 4.0D, 5.0D, 16.0D, 10.0D, 11.0D)
+			Direction.NORTH, Block.box(4.0D, 4.0D, 10.0D, 12.0D, 12.0D, 16.0D),
+			Direction.SOUTH, Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 6.0D),
+			Direction.EAST, Block.box(0.0D, 4.0D, 4.0D, 6.0D, 12.0D, 12.0D),
+			Direction.WEST, Block.box(10.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D)
 	));
 
-	public SmallCubeWallSkullBlock(Properties props, SkullBlock.Type type) {
+	public CowWallSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 	}
 

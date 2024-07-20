@@ -4,16 +4,15 @@ import com.google.common.collect.ImmutableMap;
 import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.client.model.*;
 import com.hexagram2021.skullcraft.client.screen.SkullChargerScreen;
-import com.hexagram2021.skullcraft.common.block.CowSkull.CowSkullBlock;
-import com.hexagram2021.skullcraft.common.block.CubeSkull.CubeSkullBlock;
-import com.hexagram2021.skullcraft.common.block.HorseSkull.HorseSkullBlock;
-import com.hexagram2021.skullcraft.common.block.HumanSkull.HumanSkullBlock;
-import com.hexagram2021.skullcraft.common.block.PiglinSkull.PiglinSkullBlock;
-import com.hexagram2021.skullcraft.common.block.SmallCubeSkull.SmallCubeSkullBlock;
-import com.hexagram2021.skullcraft.common.block.WardenSkull.WardenSkullBlock;
+import com.hexagram2021.skullcraft.common.block.cow.CowSkullBlock;
+import com.hexagram2021.skullcraft.common.block.cube.CubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.horse.HorseSkullBlock;
+import com.hexagram2021.skullcraft.common.block.human.HumanSkullBlock;
+import com.hexagram2021.skullcraft.common.block.piglin.PiglinSkullBlock;
+import com.hexagram2021.skullcraft.common.block.small_cube.SmallCubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.warden.WardenSkullBlock;
 import com.hexagram2021.skullcraft.common.register.SCContainerTypes;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
@@ -31,6 +30,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
@@ -160,7 +160,6 @@ public class ClientEventSubscriber {
 
 	@SubscribeEvent
 	public static void setup(final FMLClientSetupEvent event) {
-		registerContainersAndScreens();
 		event.enqueueWork(() -> {
 			ImmutableMap.Builder<SkullBlock.Type, ResourceLocation> builder = ImmutableMap.builder();
 			builder.put(HumanSkullBlock.Types.VILLAGER, new ResourceLocation("textures/entity/villager/villager.png"));
@@ -203,7 +202,8 @@ public class ClientEventSubscriber {
 		});
 	}
 
-	private static void registerContainersAndScreens() {
-		MenuScreens.register(SCContainerTypes.SKULL_CHARGER_MENU.get(), SkullChargerScreen::new);
+	@SubscribeEvent
+	public static void registerMenus(RegisterMenuScreensEvent event) {
+		event.register(SCContainerTypes.SKULL_CHARGER_MENU.get(), SkullChargerScreen::new);
 	}
 }

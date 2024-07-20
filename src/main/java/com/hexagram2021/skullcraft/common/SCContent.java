@@ -11,6 +11,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.items.wrapper.InvWrapper;
+import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
 import java.util.Set;
@@ -77,5 +81,14 @@ public class SCContent {
 	@SubscribeEvent
 	public static void onRegister(RegisterEvent event) {
 		SCSounds.init(event);
+	}
+
+	@SubscribeEvent
+	public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+		event.registerBlockEntity(
+				Capabilities.ItemHandler.BLOCK,
+				SCBlockEntities.SKULL_CHARGER.get(),
+				(container, side) -> side == null ? new InvWrapper(container) : new SidedInvWrapper(container, side)
+		);
 	}
 }

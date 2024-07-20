@@ -1,5 +1,7 @@
-package com.hexagram2021.skullcraft.common.block.SmallCubeSkull;
+package com.hexagram2021.skullcraft.common.block.cube;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -14,13 +16,22 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
-public class SmallCubeSkullBlock extends AbstractSkullBlock {
+public class CubeSkullBlock extends AbstractSkullBlock {
+	public static final MapCodec<CubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, CubeSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
-	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
+	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
 
-	public SmallCubeSkullBlock(Properties props, SkullBlock.Type type) {
+	public CubeSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends CubeSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -55,10 +66,26 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		SHEEP,
-		BAT,
-		SHULKER,
-		ALLAY,
-		VEX
+		SLIME("skullcraft:slime"),
+		LAVASLIME("skullcraft:lavaslime"),
+		BLAZE("skullcraft:blaze"),
+		SPIDER("skullcraft:spider"),
+		CAVE_SPIDER("skullcraft:cave_spider"),
+		PIG("skullcraft:pig"),
+		ENDERMAN("skullcraft:enderman"),
+		SNOW_GOLEM("skullcraft:snow_golem"),
+		TECHNOBLADE("skullcraft:technoblade");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }

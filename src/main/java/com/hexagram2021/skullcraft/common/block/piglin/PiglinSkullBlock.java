@@ -1,5 +1,7 @@
-package com.hexagram2021.skullcraft.common.block.PiglinSkull;
+package com.hexagram2021.skullcraft.common.block.piglin;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -15,13 +17,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
 public class PiglinSkullBlock extends AbstractSkullBlock {
-
+	public static final MapCodec<PiglinSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, PiglinSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 	protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 4.0D, 13.0D, 8.0D, 12.0D);
 
-	public PiglinSkullBlock(Properties props, SkullBlock.Type type) {
+	public PiglinSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends PiglinSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -56,7 +66,19 @@ public class PiglinSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		PIGLIN_BRUTE,
-		ZOMBIFIED_PIGLIN
+		PIGLIN_BRUTE("skullcraft:piglin_brute"),
+		ZOMBIFIED_PIGLIN("skullcraft:zombified_piglin");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }
