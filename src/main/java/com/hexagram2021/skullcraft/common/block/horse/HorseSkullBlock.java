@@ -1,5 +1,7 @@
-package com.hexagram2021.skullcraft.common.block.HorseSkull;
+package com.hexagram2021.skullcraft.common.block.horse;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -15,12 +17,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
 public class HorseSkullBlock extends AbstractSkullBlock {
+	public static final MapCodec<HorseSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, HorseSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 10.0D, 12.0D);
 
-	public HorseSkullBlock(Properties props, SkullBlock.Type type) {
+	public HorseSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends HorseSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -55,16 +66,28 @@ public class HorseSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		BLACK_HORSE,
-		BROWN_HORSE,
-		CHESTNUT_HORSE,
-		CREAMY_HORSE,
-		DARKBROWN_HORSE,
-		GRAY_HORSE,
-		WHITE_HORSE,
-		DONKEY,
-		MULE,
-		SKELETON_HORSE,
-		ZOMBIE_HORSE
+		BLACK_HORSE("skullcraft:black_horse"),
+		BROWN_HORSE("skullcraft:brown_horse"),
+		CHESTNUT_HORSE("skullcraft:chestnut_horse"),
+		CREAMY_HORSE("skullcraft:creamy_horse"),
+		DARKBROWN_HORSE("skullcraft:darkbrown_horse"),
+		GRAY_HORSE("skullcraft:gray_horse"),
+		WHITE_HORSE("skullcraft:white_horse"),
+		DONKEY("skullcraft:donkey"),
+		MULE("skullcraft:mule"),
+		SKELETON_HORSE("skullcraft:skeleton_horse"),
+		ZOMBIE_HORSE("skullcraft:zombie_horse");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }

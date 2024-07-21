@@ -2,6 +2,7 @@ package com.hexagram2021.skullcraft.common.block;
 
 import com.hexagram2021.skullcraft.common.block.entity.SkullChargerBlockEntity;
 import com.hexagram2021.skullcraft.common.register.SCBlockEntities;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -24,9 +25,15 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("deprecation")
 public class SkullChargerBlock extends BaseEntityBlock {
+	public static final MapCodec<SkullChargerBlock> CODEC = simpleCodec(SkullChargerBlock::new);
 	public static final Component CONTAINER_TITLE = Component.translatable("container.skull_charger");
 	public SkullChargerBlock(Properties props) {
 		super(props);
+	}
+
+	@Override
+	public MapCodec<SkullChargerBlock> codec() {
+		return CODEC;
 	}
 
 	@Override

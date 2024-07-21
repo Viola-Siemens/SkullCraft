@@ -1,5 +1,7 @@
-package com.hexagram2021.skullcraft.common.block.CowSkull;
+package com.hexagram2021.skullcraft.common.block.cow;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -15,13 +17,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
 public class CowSkullBlock extends AbstractSkullBlock {
-
+	public static final MapCodec<CowSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, CowSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 5.0D, 12.0D, 8.0D, 11.0D);
 
-	public CowSkullBlock(Properties props, SkullBlock.Type type) {
+	public CowSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends CowSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -56,8 +66,20 @@ public class CowSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		COW,
-		RED_MOOSHROOM,
-		BROWN_MOOSHROOM
+		COW("skullcraft:cow"),
+		RED_MOOSHROOM("skullcraft:red_mooshroom"),
+		BROWN_MOOSHROOM("skullcraft:brown_mooshroom");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }

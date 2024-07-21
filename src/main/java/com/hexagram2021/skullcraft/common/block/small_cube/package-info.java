@@ -1,7 +1,7 @@
 @FieldsAreNonnullByDefault
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.hexagram2021.skullcraft.common.block.WardenSkull;
+package com.hexagram2021.skullcraft.common.block.small_cube;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

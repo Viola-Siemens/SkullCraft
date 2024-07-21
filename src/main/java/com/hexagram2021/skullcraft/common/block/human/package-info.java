@@ -1,7 +1,7 @@
 @FieldsAreNonnullByDefault
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.hexagram2021.skullcraft.common.block.PiglinSkull;
+package com.hexagram2021.skullcraft.common.block.human;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

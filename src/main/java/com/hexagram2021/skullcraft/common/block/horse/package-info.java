@@ -1,7 +1,7 @@
 @FieldsAreNonnullByDefault
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.hexagram2021.skullcraft.common.block.CowSkull;
+package com.hexagram2021.skullcraft.common.block.horse;
 
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;

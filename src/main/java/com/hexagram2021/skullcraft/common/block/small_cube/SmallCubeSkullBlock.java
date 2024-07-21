@@ -1,5 +1,7 @@
-package com.hexagram2021.skullcraft.common.block.WardenSkull;
+package com.hexagram2021.skullcraft.common.block.small_cube;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -14,14 +16,22 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
-public class WardenSkullBlock extends AbstractSkullBlock {
-
+public class SmallCubeSkullBlock extends AbstractSkullBlock {
+	public static final MapCodec<SmallCubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, SmallCubeSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
-	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 3.0D, 16.0D, 16.0D, 13.0D);
+	protected static final VoxelShape SHAPE = Block.box(5.0D, 0.0D, 5.0D, 11.0D, 6.0D, 11.0D);
 
-	public WardenSkullBlock(Properties props, SkullBlock.Type type) {
+	public SmallCubeSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends SmallCubeSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -56,6 +66,22 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		WARDEN
+		SHEEP("skullcraft:sheep"),
+		BAT("skullcraft:bat"),
+		SHULKER("skullcraft:shulker"),
+		ALLAY("skullcraft:allay"),
+		VEX("skullcraft:vex");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }

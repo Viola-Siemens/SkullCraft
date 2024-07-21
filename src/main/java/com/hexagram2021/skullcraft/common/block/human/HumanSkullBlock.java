@@ -1,11 +1,12 @@
-package com.hexagram2021.skullcraft.common.block.HumanSkull;
+package com.hexagram2021.skullcraft.common.block.human;
 
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -16,12 +17,21 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 @SuppressWarnings("deprecation")
 public class HumanSkullBlock extends AbstractSkullBlock {
+	public static final MapCodec<HumanSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
+					.apply(instance, HumanSkullBlock::new)
+	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
 	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 10.0D, 12.0D);
 
-	public HumanSkullBlock(BlockBehaviour.Properties props, SkullBlock.Type type) {
+	public HumanSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
+	}
+
+	@Override
+	public MapCodec<? extends HumanSkullBlock> codec() {
+		return CODEC;
 	}
 
 	@Override
@@ -56,10 +66,22 @@ public class HumanSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		VILLAGER,
-		ILLAGER,
-		WITCH,
-		IRON_GOLEM,
-		ZOMBIE_VILLAGER
+		VILLAGER("skullcraft:villager"),
+		ILLAGER("skullcraft:illager"),
+		WITCH("skullcraft:witch"),
+		IRON_GOLEM("skullcraft:iron_golem"),
+		ZOMBIE_VILLAGER("skullcraft:zombie_villager");
+
+		private final String name;
+
+		Types(String name) {
+			this.name = name;
+			TYPES.put(name, this);
+		}
+
+		@Override
+		public String getSerializedName() {
+			return this.name;
+		}
 	}
 }
