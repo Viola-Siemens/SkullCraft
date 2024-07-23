@@ -30,7 +30,7 @@ public class SkullCraft {
 
 	public static final Logger LOGGER = LogUtils.getLogger();
 
-	public static final String SCALE_TAG = "HeadScale";
+	public static final String SCALE_TAG = "head_scale";
 
 	public static <T> Supplier<T> bootstrapErrorToXCPInDev(Supplier<T> in) {
 		if(FMLLoader.isProduction()) {

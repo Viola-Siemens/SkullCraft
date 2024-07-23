@@ -22,6 +22,7 @@ public class SCContent {
 	public static void modConstruction(IEventBus bus) {
 		SCBlocks.init(bus);
 		SCItems.init(bus);
+		SCDataComponents.init(bus);
 		SkullNBTOps.init(bus);
 		SCContainerTypes.init(bus);
 		SCBlockEntities.init(bus);

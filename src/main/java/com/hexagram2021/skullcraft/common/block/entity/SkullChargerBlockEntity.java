@@ -1,15 +1,16 @@
 package com.hexagram2021.skullcraft.common.block.entity;
 
-import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.common.SCSounds;
 import com.hexagram2021.skullcraft.common.block.SkullChargerBlock;
+import com.hexagram2021.skullcraft.common.components.SkullScale;
 import com.hexagram2021.skullcraft.common.crafting.SkullChargerMenu;
 import com.hexagram2021.skullcraft.common.register.SCBlockEntities;
+import com.hexagram2021.skullcraft.common.register.SCDataComponents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -122,18 +123,18 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public void load(CompoundTag nbt) {
-		super.load(nbt);
+	public void loadAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+		super.loadAdditional(nbt, provider);
 		this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-		ContainerHelper.loadAllItems(nbt, this.items);
+		ContainerHelper.loadAllItems(nbt, this.items, provider);
 		this.energy = nbt.getInt("Energy");
 	}
 
 	@Override
-	public void saveAdditional(CompoundTag nbt) {
-		super.saveAdditional(nbt);
+	public void saveAdditional(CompoundTag nbt, HolderLookup.Provider provider) {
+		super.saveAdditional(nbt, provider);
 		nbt.putInt("Energy", this.energy);
-		ContainerHelper.saveAllItems(nbt, this.items);
+		ContainerHelper.saveAllItems(nbt, this.items, provider);
 	}
 
 	@Override
@@ -188,6 +189,16 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		if (itemStack.getCount() > this.getMaxStackSize()) {
 			itemStack.setCount(this.getMaxStackSize());
 		}
+	}
+
+	@Override
+	protected NonNullList<ItemStack> getItems() {
+		return this.items;
+	}
+
+	@Override
+	protected void setItems(NonNullList<ItemStack> items) {
+		this.items = items;
 	}
 
 	@Override
@@ -247,6 +258,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 
 	static long lastSoundTime = 0;
 
+	@SuppressWarnings("SequencedCollectionMethodCanBeUsed")
 	public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, SkullChargerBlockEntity blockEntity) {
 		ItemStack ingredient = blockEntity.items.get(SLOT_INPUT);
 		ItemStack fuel = blockEntity.items.get(SLOT_FUEL);
@@ -262,34 +274,18 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 
 		if(!ingredient.isEmpty()) {
 			if((ingredient.getItem() instanceof BlockItem blockItem) && blockItem.getBlock() instanceof AbstractSkullBlock) {
-				CompoundTag tag = ingredient.getOrCreateTag();
-				CompoundTag scaleTag;
-				if(!tag.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
-					scaleTag = new CompoundTag();
-					scaleTag.putInt("x", 100);
-					scaleTag.putInt("y", 100);
-					scaleTag.putInt("z", 100);
-					tag.put(SkullCraft.SCALE_TAG, scaleTag);
-				} else {
-					scaleTag = tag.getCompound(SkullCraft.SCALE_TAG);
+				SkullScale skullScale = ingredient.get(SCDataComponents.SKULL_SCALE.get());
+				if(skullScale == null) {
+					skullScale = SkullScale.DEFAULT;
+					ingredient.set(SCDataComponents.SKULL_SCALE.get(), skullScale);
 				}
 
 				if(blockEntity.addX != 0 || blockEntity.addY != 0 || blockEntity.addZ != 0) {
 					int energyCost = Mth.abs(blockEntity.addX / 5) + Mth.abs(blockEntity.addY / 5) + Mth.abs(blockEntity.addZ / 5);
 
-					if(blockEntity.energy >= energyCost) {
-						CompoundTag newScaleTag = scaleTag.copy();
-						newScaleTag.remove("x");
-						newScaleTag.remove("y");
-						newScaleTag.remove("z");
-						newScaleTag.putInt("x", Mth.clamp(scaleTag.getInt("x") + blockEntity.addX, 50, 5000));
-						newScaleTag.putInt("y", Mth.clamp(scaleTag.getInt("y") + blockEntity.addY, 50, 5000));
-						newScaleTag.putInt("z", Mth.clamp(scaleTag.getInt("z") + blockEntity.addZ, 50, 5000));
-
-						CompoundTag newTag = tag.copy();
-						newTag.remove(SkullCraft.SCALE_TAG);
-						newTag.put(SkullCraft.SCALE_TAG, newScaleTag);
-						ingredient.setTag(newTag);
+					if(energyCost > 0 && blockEntity.energy >= energyCost) {
+						SkullScale newSkullScale = skullScale.add(blockEntity.addX, blockEntity.addY, blockEntity.addZ);
+						ingredient.set(SCDataComponents.SKULL_SCALE.get(), newSkullScale);
 
 						blockEntity.energy -= energyCost;
 

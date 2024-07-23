@@ -14,6 +14,7 @@ import net.minecraft.world.entity.npc.VillagerProfession;
 import net.minecraft.world.entity.npc.VillagerTrades;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -109,13 +110,13 @@ public class Villages {
 		}
 
 		private static VillagerTrades.ItemListing buy(ItemLike item, int count, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(item, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
+			return (trader, random) -> new MerchantOffer(new ItemCost(item, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
 		}
 		private static VillagerTrades.ItemListing random2Buy(ItemLike item1, ItemLike item2, int count, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(random.nextBoolean() ? item1 : item2, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
+			return (trader, random) -> new MerchantOffer(new ItemCost(random.nextBoolean() ? item1 : item2, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
 		}
 		private static VillagerTrades.ItemListing random3Buy(ItemLike item1, ItemLike item2, ItemLike item3, int count, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(switch (random.nextInt(3)) {
+			return (trader, random) -> new MerchantOffer(new ItemCost(switch (random.nextInt(3)) {
 				case 0 -> item1;
 				case 1 -> item2;
 				default -> item3;
@@ -123,7 +124,7 @@ public class Villages {
 		}
 		private static VillagerTrades.ItemListing random7Buy(ItemLike item1, ItemLike item2, ItemLike item3, ItemLike item4,
 															 ItemLike item5, ItemLike item6, ItemLike item7, int count, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(switch (random.nextInt(7)) {
+			return (trader, random) -> new MerchantOffer(new ItemCost(switch (random.nextInt(7)) {
 				case 0 -> item1;
 				case 1 -> item2;
 				case 2 -> item3;
@@ -134,10 +135,10 @@ public class Villages {
 			}, count), new ItemStack(Items.EMERALD), 3, xp, 0.05F);
 		}
 		private static VillagerTrades.ItemListing sell(ItemLike item, int price, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, price), new ItemStack(item), 3, xp, 0.05F);
+			return (trader, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, price), new ItemStack(item), 3, xp, 0.05F);
 		}
 		private static VillagerTrades.ItemListing commonSell(ItemLike item, int price, int count, int xp) {
-			return (trader, random) -> new MerchantOffer(new ItemStack(Items.EMERALD, price), new ItemStack(item, count), 16, xp, 0.05F);
+			return (trader, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, price), new ItemStack(item, count), 16, xp, 0.05F);
 		}
 	}
 }

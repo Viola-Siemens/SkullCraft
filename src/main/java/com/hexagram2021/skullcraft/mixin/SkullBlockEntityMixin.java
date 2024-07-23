@@ -1,7 +1,8 @@
 package com.hexagram2021.skullcraft.mixin;
 
 import com.hexagram2021.skullcraft.SkullCraft;
-import com.hexagram2021.skullcraft.common.block.Scaleable;
+import com.hexagram2021.skullcraft.common.block.Scalable;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
@@ -12,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(SkullBlockEntity.class)
-public class SkullBlockEntityMixin implements Scaleable {
+public class SkullBlockEntityMixin implements Scalable {
 	@Unique
 	private int skullcraft$scaleX;
 	@Unique
@@ -27,13 +28,13 @@ public class SkullBlockEntityMixin implements Scaleable {
 		this.skullcraft$scaleZ = 100;
 	}
 
-	@Inject(method = "load", at = @At(
+	@Inject(method = "loadAdditional", at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/level/block/entity/BlockEntity;load(Lnet/minecraft/nbt/CompoundTag;)V",
+			target = "Lnet/minecraft/world/level/block/entity/BlockEntity;loadAdditional(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V",
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void loadScaleXYZ(CompoundTag nbt, CallbackInfo ci) {
+	public void loadScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
 		if(nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 			CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
 			this.skullcraft$scaleX = scaleTag.getInt("x");
@@ -46,11 +47,11 @@ public class SkullBlockEntityMixin implements Scaleable {
 
 	@Inject(method = "saveAdditional", at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/world/level/block/entity/BlockEntity;saveAdditional(Lnet/minecraft/nbt/CompoundTag;)V",
+			target = "Lnet/minecraft/world/level/block/entity/BlockEntity;saveAdditional(Lnet/minecraft/nbt/CompoundTag;Lnet/minecraft/core/HolderLookup$Provider;)V",
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void saveScaleXYZ(CompoundTag nbt, CallbackInfo ci) {
+	public void saveScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
 		if(this.skullcraft$scaleX != 100 || this.skullcraft$scaleY != 100 || this.skullcraft$scaleZ != 100) {
 			CompoundTag scaleTag = new CompoundTag();
 			scaleTag.putInt("x", this.skullcraft$scaleX);

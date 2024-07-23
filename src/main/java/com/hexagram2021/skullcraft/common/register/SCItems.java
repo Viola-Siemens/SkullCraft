@@ -5,6 +5,8 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,12 +15,12 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -36,7 +38,7 @@ public class SCItems {
 	public static final ItemEntry<BlockItem> SKULL_CHARGER = new ItemEntry<>(
 			"skull_charger", DEFAULT_ITEM_PROPERTIES, (props) -> new BlockItem(SCBlocks.SKULL_CHARGER.get(), props) {
 				@Override
-				public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
+				public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 					components.add(Component.translatable("desc.skullcraft.skull_charger").withStyle(ChatFormatting.GRAY));
 				}
 			}
@@ -53,7 +55,9 @@ public class SCItems {
 		public float getAttackDamageBonus() { return 6.0F; }
 
 		@Override
-		public int getLevel() { return 2; }
+		public TagKey<Block> getIncorrectBlocksForDrops() {
+			return BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
+		}
 
 		@Override
 		public int getEnchantmentValue() { return 10; }
@@ -63,9 +67,9 @@ public class SCItems {
 	};
 
 	public static final ItemEntry<SwordItem> KOPIS = new ItemEntry<>(
-			"kopis", DEFAULT_ITEM_PROPERTIES, (props) -> new SwordItem(KOPIS_TIER, 3, -3.6F, props) {
+			"kopis", DEFAULT_ITEM_PROPERTIES, (props) -> new SwordItem(KOPIS_TIER, props.attributes(SwordItem.createAttributes(KOPIS_TIER, 3, -3.6F))) {
 		@Override
-		public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
+		public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 			components.add(Component.translatable("desc.skullcraft.kopis").withStyle(ChatFormatting.GRAY));
 		}
 	}
@@ -156,7 +160,7 @@ public class SCItems {
 						SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(), props, Direction.DOWN
 				) {
 					@Override
-					public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> components, TooltipFlag flag) {
+					public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 						components.add(Component.translatable("desc.skullcraft.technoblade_head").withStyle(ChatFormatting.GRAY));
 					}
 				}
