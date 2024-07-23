@@ -6,6 +6,7 @@ import com.hexagram2021.skullcraft.common.register.SCBlocks;
 import com.hexagram2021.skullcraft.common.register.SCItems;
 import com.hexagram2021.skullcraft.mixin.HeroGiftsTaskAccess;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraftforge.event.village.VillagerTradesEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,9 +37,10 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class Villages {
 	public static final ResourceLocation ONMYOUJI = new ResourceLocation(MODID, "onmyouji");
+	public static final ResourceKey<LootTable> ONMYOUJI_GIFT = ResourceKey.create(Registries.LOOT_TABLE, new ResourceLocation(MODID, "gameplay/hero_of_the_village/onmyouji_gift"));
 
 	public static void init() {
-		HeroGiftsTaskAccess.getGifts().put(Registers.PROF_ONMYOUJI.get(), new ResourceLocation(MODID, "gameplay/hero_of_the_village/onmyouji_gift"));
+		HeroGiftsTaskAccess.skullcraft$getGifts().put(Registers.PROF_ONMYOUJI.get(), ONMYOUJI_GIFT);
 	}
 
 	public static class Registers {
