@@ -38,6 +38,7 @@ minecraft {
 
     enableIdeaPrepareRuns = true
     copyIdeResources = true
+    reobf = false
     generateRunFolders = true
 
     runs {
