@@ -9,14 +9,10 @@
           "type": "minecraft:item",
           "functions": [
             {
-              "function": "minecraft:copy_nbt",
+              "function": "minecraft:copy_components",
               "source": "block_entity",
-              "ops": [
-                {
-                  "source": "HeadScale",
-                  "target": "HeadScale",
-                  "op": "replace"
-                }
+              "include": [
+                "skullcraft:head_scale"
               ]
             }
           ],
