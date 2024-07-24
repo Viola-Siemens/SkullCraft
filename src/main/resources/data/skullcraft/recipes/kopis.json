@@ -13,6 +13,7 @@
     }
   },
   "result": {
-    "item": "skullcraft:kopis"
+    "id": "skullcraft:kopis",
+    "count": 1
   }
 }
