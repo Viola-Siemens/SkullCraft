@@ -16,6 +16,9 @@ With this mod, you can make your head bigger, wider or longer.
 And also you can get a mob skull easier.
 '''
 
+[[mixins]]
+    config="skullcraft.mixins.json"
+
 [[dependencies.skullcraft]]
     modId="forge"
     mandatory=true
