@@ -1,10 +1,9 @@
 package com.hexagram2021.skullcraft.mixin;
 
-import com.hexagram2021.skullcraft.SkullCraft;
-import com.hexagram2021.skullcraft.common.block.Scaleable;
+import com.hexagram2021.skullcraft.common.block.Scalable;
+import com.hexagram2021.skullcraft.common.components.SkullScale;
+import com.hexagram2021.skullcraft.common.register.SCDataComponents;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -25,13 +24,10 @@ public class AbstractSkullBlockMixin {
 	public void setSkullScaleXYZ(Level level, BlockPos blockPos, BlockState blockState, LivingEntity entity, ItemStack itemStack, CallbackInfo ci) {
 		if((Block)(Object)this instanceof AbstractSkullBlock) {
 			BlockEntity blockEntity = level.getBlockEntity(blockPos);
-			if (blockEntity instanceof SkullBlockEntity skullBlockEntity) {	//Vanilla
-				if (itemStack.hasTag()) {
-					CompoundTag nbt = itemStack.getTag();
-					if (nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
-						CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
-						((Scaleable)skullBlockEntity).skullcraft$setScaleXYZ(scaleTag.getInt("x"), scaleTag.getInt("y"), scaleTag.getInt("z"));
-					}
+			if (blockEntity instanceof SkullBlockEntity skullBlockEntity) {
+				SkullScale skullScale = itemStack.get(SCDataComponents.SKULL_SCALE.get());
+				if (skullScale != null) {
+					((Scalable)skullBlockEntity).skullcraft$setScaleXYZ(skullScale.x(), skullScale.y(), skullScale.z());
 				}
 			}
 		}

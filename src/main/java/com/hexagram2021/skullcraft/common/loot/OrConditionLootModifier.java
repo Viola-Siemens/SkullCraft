@@ -3,10 +3,10 @@ package com.hexagram2021.skullcraft.common.loot;
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.Util;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraft.world.level.storage.loot.predicates.LootItemConditions;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,7 +27,7 @@ public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 	 */
 	protected OrConditionLootModifier(LootItemCondition[] conditionsIn) {
 		this.conditions = conditionsIn;
-		this.combinedConditions = LootItemConditions.orConditions(Arrays.asList(conditionsIn));
+		this.combinedConditions = Util.anyOf(Arrays.asList(conditionsIn));
 	}
 
 	@Override @NotNull

@@ -17,6 +17,7 @@
     }
   },
   "result": {
-    "item": "skullcraft:kopis_blade"
+    "id": "skullcraft:kopis_blade",
+    "count": 1
   }
 }

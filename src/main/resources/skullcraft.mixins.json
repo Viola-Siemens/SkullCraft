@@ -12,9 +12,7 @@
   ],
   "mixins": [
     "AbstractSkullBlockMixin",
-    "BlockEntityTypeAccess",
     "DeathLootMixin",
-    "HeroGiftsTaskAccess",
     "NoteBlockInstrumentMixin",
     "PlayerHeadDeathLootMixin",
     "SkullBlockEntityMixin"

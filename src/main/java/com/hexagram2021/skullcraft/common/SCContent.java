@@ -4,13 +4,12 @@ import com.google.common.collect.ImmutableSet;
 import com.hexagram2021.skullcraft.common.loot.SkullNBTOps;
 import com.hexagram2021.skullcraft.common.register.*;
 import com.hexagram2021.skullcraft.common.world.Villages;
-import com.hexagram2021.skullcraft.mixin.BlockEntityTypeAccess;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
@@ -21,11 +20,12 @@ import java.util.Set;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
 public class SCContent {
 	public static void modConstruction(IEventBus bus) {
 		SCBlocks.init(bus);
 		SCItems.init(bus);
+		SCDataComponents.init(bus);
 		SkullNBTOps.init(bus);
 		SCContainerTypes.init(bus);
 		SCBlockEntities.init(bus);
@@ -35,8 +35,7 @@ public class SCContent {
 
 	public static void init() {
 		Villages.init();
-		BlockEntityTypeAccess skullBuilderAccess = (BlockEntityTypeAccess) BlockEntityType.SKULL;
-		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(skullBuilderAccess.skullcraft$getValidBlocks());
+		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(BlockEntityType.SKULL.validBlocks);
 		skullValidBlocks.addAll(ImmutableSet.of(
 				SCBlocks.HumanSkulls.VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.VILLAGER_WALL_HEAD.get(),
 				SCBlocks.HumanSkulls.ILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ILLAGER_WALL_HEAD.get(),
@@ -75,7 +74,7 @@ public class SCContent {
 				SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(),
 				SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get()
 		));
-		skullBuilderAccess.skullcraft$setValidBlocks(skullValidBlocks);
+		BlockEntityType.SKULL.validBlocks = skullValidBlocks;
 	}
 
 	@SubscribeEvent

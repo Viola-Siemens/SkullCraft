@@ -20,6 +20,7 @@
     }
   },
   "result": {
-    "item": "skullcraft:kopis_hilt"
+    "id": "skullcraft:kopis_hilt",
+    "count": 1
   }
 }

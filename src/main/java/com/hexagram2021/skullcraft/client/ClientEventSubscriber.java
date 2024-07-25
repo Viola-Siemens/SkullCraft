@@ -1,7 +1,6 @@
 package com.hexagram2021.skullcraft.client;
 
 import com.google.common.collect.ImmutableMap;
-import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.client.model.*;
 import com.hexagram2021.skullcraft.client.screen.SkullChargerScreen;
 import com.hexagram2021.skullcraft.common.block.cow.CowSkullBlock;
@@ -11,15 +10,14 @@ import com.hexagram2021.skullcraft.common.block.human.HumanSkullBlock;
 import com.hexagram2021.skullcraft.common.block.piglin.PiglinSkullBlock;
 import com.hexagram2021.skullcraft.common.block.small_cube.SmallCubeSkullBlock;
 import com.hexagram2021.skullcraft.common.block.warden.WardenSkullBlock;
+import com.hexagram2021.skullcraft.common.components.SkullScale;
 import com.hexagram2021.skullcraft.common.register.SCContainerTypes;
+import com.hexagram2021.skullcraft.common.register.SCDataComponents;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -27,7 +25,7 @@ import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.SkullBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
@@ -35,35 +33,32 @@ import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-@Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.MOD)
 public class ClientEventSubscriber {
-	@Mod.EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
+	@EventBusSubscriber(modid = MODID, value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME)
 	public static class ClientForgeEventSubscriber {
 		@SubscribeEvent
 		public static void onToolTipShow(ItemTooltipEvent event) {
 			ItemStack itemStack = event.getItemStack();
 			Item item = itemStack.getItem();
 			if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
-				if(itemStack.hasTag() && itemStack.getTag().contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
-					CompoundTag scaleNBT = itemStack.getTag().getCompound(SkullCraft.SCALE_TAG);
-					final int scaleX = scaleNBT.contains("x") ? Mth.clamp(scaleNBT.getInt("x"), 50, 5000) : 100;
-					final int scaleY = scaleNBT.contains("y") ? Mth.clamp(scaleNBT.getInt("y"), 50, 5000) : 100;
-					final int scaleZ = scaleNBT.contains("z") ? Mth.clamp(scaleNBT.getInt("z"), 50, 5000) : 100;
-					MutableComponent componentX = scaleX == 100 ?
+				SkullScale skullScale = itemStack.get(SCDataComponents.SKULL_SCALE.get());
+				if(skullScale != null) {
+					MutableComponent componentX = skullScale.x() == 100 ?
 							Component.translatable("tooltip.skullcraft.nox").withStyle(ChatFormatting.GRAY) :
-							scaleX > 100 ?
-									Component.translatable("tooltip.skullcraft.x", scaleX - 100).withStyle(ChatFormatting.GOLD) :
-									Component.translatable("tooltip.skullcraft.negx", 100 - scaleX).withStyle(ChatFormatting.RED);
-					MutableComponent componentY = scaleY == 100 ?
+							skullScale.x() > 100 ?
+									Component.translatable("tooltip.skullcraft.x", skullScale.x() - 100).withStyle(ChatFormatting.GOLD) :
+									Component.translatable("tooltip.skullcraft.negx", 100 - skullScale.x()).withStyle(ChatFormatting.RED);
+					MutableComponent componentY = skullScale.y() == 100 ?
 							Component.translatable("tooltip.skullcraft.noy").withStyle(ChatFormatting.GRAY) :
-							scaleY > 100 ?
-									Component.translatable("tooltip.skullcraft.y", scaleY - 100).withStyle(ChatFormatting.GOLD) :
-									Component.translatable("tooltip.skullcraft.negy", 100 - scaleY).withStyle(ChatFormatting.RED);
-					MutableComponent componentZ = scaleZ == 100 ?
+							skullScale.y() > 100 ?
+									Component.translatable("tooltip.skullcraft.y", skullScale.y() - 100).withStyle(ChatFormatting.GOLD) :
+									Component.translatable("tooltip.skullcraft.negy", 100 - skullScale.y()).withStyle(ChatFormatting.RED);
+					MutableComponent componentZ = skullScale.z() == 100 ?
 							Component.translatable("tooltip.skullcraft.noz").withStyle(ChatFormatting.GRAY) :
-							scaleZ > 100 ?
-									Component.translatable("tooltip.skullcraft.z", scaleZ - 100).withStyle(ChatFormatting.GOLD) :
-									Component.translatable("tooltip.skullcraft.negz", 100 - scaleZ).withStyle(ChatFormatting.RED);
+							skullScale.z() > 100 ?
+									Component.translatable("tooltip.skullcraft.z", skullScale.z() - 100).withStyle(ChatFormatting.GOLD) :
+									Component.translatable("tooltip.skullcraft.negz", 100 - skullScale.z()).withStyle(ChatFormatting.RED);
 					event.getToolTip().add(componentX);
 					event.getToolTip().add(componentY);
 					event.getToolTip().add(componentZ);

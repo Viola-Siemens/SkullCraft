@@ -20,6 +20,7 @@
     }
   },
   "result": {
-    "item": "skullcraft:skull_charger"
+    "id": "skullcraft:skull_charger",
+    "count": 1
   }
 }

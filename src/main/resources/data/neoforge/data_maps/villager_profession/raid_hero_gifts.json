@@ -1,0 +1,7 @@
+{
+  "values": {
+    "skullcraft:onmyouji": {
+      "loot_table": "skullcraft:gameplay/hero_of_the_village/onmyouji_gift"
+    }
+  }
+}

@@ -1,11 +1,11 @@
 package com.hexagram2021.skullcraft.common.loot;
 
-import com.hexagram2021.skullcraft.SkullCraft;
-import com.hexagram2021.skullcraft.common.block.Scaleable;
-import com.mojang.serialization.Codec;
+import com.hexagram2021.skullcraft.common.block.Scalable;
+import com.hexagram2021.skullcraft.common.components.SkullScale;
+import com.hexagram2021.skullcraft.common.register.SCDataComponents;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -24,9 +24,9 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SkullNBTOps {
-	private static final DeferredRegister<Codec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
-	private static final DeferredHolder<Codec<? extends IGlobalLootModifier>, Codec<SkullNBTOpsModifier>> SKULL_NBT_OPS = REGISTER.register(
-			"skull_nbt_ops", () -> RecordCodecBuilder.create(inst -> OrConditionLootModifier.codecStart(inst).apply(inst, SkullNBTOpsModifier::new))
+	private static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
+	private static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<SkullNBTOpsModifier>> SKULL_NBT_OPS = REGISTER.register(
+			"skull_nbt_ops", () -> RecordCodecBuilder.mapCodec(inst -> OrConditionLootModifier.codecStart(inst).apply(inst, SkullNBTOpsModifier::new))
 	);
 
 	public static void init(IEventBus bus) {
@@ -43,21 +43,16 @@ public class SkullNBTOps {
 			if(context.hasParam(LootContextParams.BLOCK_ENTITY)) {
 				BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
 				if(blockEntity instanceof SkullBlockEntity) {
-					Scaleable skullBlockEntity = (Scaleable)blockEntity;
+					Scalable skullBlockEntity = (Scalable)blockEntity;
 					int scaleX = skullBlockEntity.skullcraft$getScaleX();
 					int scaleY = skullBlockEntity.skullcraft$getScaleY();
 					int scaleZ = skullBlockEntity.skullcraft$getScaleZ();
 					if(scaleX != 100 || scaleY != 100 || scaleZ != 100) {
-						CompoundTag scaleTag = new CompoundTag();
-						scaleTag.putInt("x", scaleX);
-						scaleTag.putInt("y", scaleY);
-						scaleTag.putInt("z", scaleZ);
+						SkullScale skullScale = new SkullScale(scaleX, scaleY, scaleZ);
 						for(ItemStack itemStack: generatedLoot) {
 							Item item = itemStack.getItem();
 							if(item instanceof BlockItem && ((BlockItem)item).getBlock() instanceof AbstractSkullBlock) {
-								CompoundTag tag = itemStack.getOrCreateTag();
-								tag.put(SkullCraft.SCALE_TAG, scaleTag.copy());
-								itemStack.setTag(tag);
+								itemStack.set(SCDataComponents.SKULL_SCALE.get(), skullScale);
 							}
 						}
 					}
@@ -67,7 +62,7 @@ public class SkullNBTOps {
 		}
 
 		@Override
-		public Codec<SkullNBTOpsModifier> codec() {
+		public MapCodec<SkullNBTOpsModifier> codec() {
 			return SkullNBTOps.SKULL_NBT_OPS.get();
 		}
 	}
