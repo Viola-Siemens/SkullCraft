@@ -15,11 +15,11 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class HumanSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation VILLAGER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "villager_head"), "main");
-	public static final ModelLayerLocation ILLAGER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "illager_head"), "main");
-	public static final ModelLayerLocation WITCH_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "witch_head"), "main");
-	public static final ModelLayerLocation IRON_GOLEM_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "iron_golem_head"), "main");
-	public static final ModelLayerLocation ZOMBIE_VILLAGER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "zombie_villager_head"), "main");
+	public static final ModelLayerLocation VILLAGER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "villager_head"), "main");
+	public static final ModelLayerLocation ILLAGER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "illager_head"), "main");
+	public static final ModelLayerLocation WITCH_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "witch_head"), "main");
+	public static final ModelLayerLocation IRON_GOLEM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "iron_golem_head"), "main");
+	public static final ModelLayerLocation ZOMBIE_VILLAGER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zombie_villager_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;
@@ -83,8 +83,7 @@ public class HumanSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

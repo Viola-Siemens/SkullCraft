@@ -15,17 +15,17 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class HorseSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation BLACK_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "black_horse_head"), "main");
-	public static final ModelLayerLocation BROWN_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "brown_horse_head"), "main");
-	public static final ModelLayerLocation CHESTNUT_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "chestnut_horse_head"), "main");
-	public static final ModelLayerLocation CREAMY_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "creamy_horse_head"), "main");
-	public static final ModelLayerLocation DARKBROWN_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "darkbrown_horse_head"), "main");
-	public static final ModelLayerLocation GRAY_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "gray_horse_head"), "main");
-	public static final ModelLayerLocation WHITE_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "white_horse_head"), "main");
-	public static final ModelLayerLocation DONKEY_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "donkey_head"), "main");
-	public static final ModelLayerLocation MULE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "mule_head"), "main");
-	public static final ModelLayerLocation SKELETON_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "skeleton_horse_head"), "main");
-	public static final ModelLayerLocation ZOMBIE_HORSE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "zombie_horse_head"), "main");
+	public static final ModelLayerLocation BLACK_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "black_horse_head"), "main");
+	public static final ModelLayerLocation BROWN_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "brown_horse_head"), "main");
+	public static final ModelLayerLocation CHESTNUT_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "chestnut_horse_head"), "main");
+	public static final ModelLayerLocation CREAMY_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "creamy_horse_head"), "main");
+	public static final ModelLayerLocation DARKBROWN_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "darkbrown_horse_head"), "main");
+	public static final ModelLayerLocation GRAY_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "gray_horse_head"), "main");
+	public static final ModelLayerLocation WHITE_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "white_horse_head"), "main");
+	public static final ModelLayerLocation DONKEY_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "donkey_head"), "main");
+	public static final ModelLayerLocation MULE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "mule_head"), "main");
+	public static final ModelLayerLocation SKELETON_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "skeleton_horse_head"), "main");
+	public static final ModelLayerLocation ZOMBIE_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zombie_horse_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;
@@ -95,8 +95,7 @@ public class HorseSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

@@ -3,6 +3,7 @@ package com.hexagram2021.skullcraft.mixin;
 import com.google.common.collect.Lists;
 import com.hexagram2021.skullcraft.common.register.SCItems;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,7 +21,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class PlayerHeadDeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
-	public void skullcraft$dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
+	public void skullcraft$dropCustomHead(ServerLevel level, DamageSource damageSource, boolean recentHit, CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity)(Object)this;
 		if(entity instanceof Player player) {
 			Entity killer = damageSource.getEntity();

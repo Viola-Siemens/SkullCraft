@@ -18,9 +18,9 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class CowSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation COW_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "cow_head"), "main");
-	public static final ModelLayerLocation RED_MOOSHROOM_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "red_mooshroom_head"), "main");
-	public static final ModelLayerLocation BROWN_MOOSHROOM_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "brown_mooshroom_head"), "main");
+	public static final ModelLayerLocation COW_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "cow_head"), "main");
+	public static final ModelLayerLocation RED_MOOSHROOM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "red_mooshroom_head"), "main");
+	public static final ModelLayerLocation BROWN_MOOSHROOM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "brown_mooshroom_head"), "main");
 
 	private final ModelPart root;
 
@@ -53,8 +53,7 @@ public class CowSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

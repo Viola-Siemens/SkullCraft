@@ -44,7 +44,7 @@ public class SCSounds {
 	public static final SoundEvent NOTE_BLOCK_IMITATE_WARDEN = registerSound("block.note_block.imitate.warden");
 
 	private static SoundEvent registerSound(String name) {
-		ResourceLocation location = new ResourceLocation(MODID, name);
+		ResourceLocation location = ResourceLocation.fromNamespaceAndPath(MODID, name);
 		SoundEvent event = SoundEvent.createVariableRangeEvent(location);
 		registeredEvents.put(location, event);
 		return event;

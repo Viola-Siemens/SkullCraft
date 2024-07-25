@@ -33,7 +33,7 @@ import java.util.function.Supplier;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class Villages {
-	public static final ResourceLocation ONMYOUJI = new ResourceLocation(MODID, "onmyouji");
+	public static final ResourceLocation ONMYOUJI = ResourceLocation.fromNamespaceAndPath(MODID, "onmyouji");
 
 	public static void init() {
 	}

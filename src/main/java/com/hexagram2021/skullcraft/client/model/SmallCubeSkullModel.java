@@ -15,11 +15,11 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class SmallCubeSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation SHEEP_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "sheep_head"), "main");
-	public static final ModelLayerLocation BAT_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "bat_head"), "main");
-	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "shulker_head"), "main");
-	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "allay_head"), "main");
-	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "vex_head"), "main");
+	public static final ModelLayerLocation SHEEP_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "sheep_head"), "main");
+	public static final ModelLayerLocation BAT_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "bat_head"), "main");
+	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "shulker_head"), "main");
+	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "allay_head"), "main");
+	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "vex_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;
@@ -85,8 +85,7 @@ public class SmallCubeSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

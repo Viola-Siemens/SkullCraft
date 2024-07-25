@@ -18,7 +18,7 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class WardenSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "warden_head"), "main");
+	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "warden_head"), "main");
 
 	private final ModelPart root;
 
@@ -53,8 +53,7 @@ public class WardenSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

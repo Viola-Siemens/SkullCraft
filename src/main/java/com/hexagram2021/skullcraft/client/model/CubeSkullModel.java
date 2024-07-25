@@ -15,15 +15,15 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class CubeSkullModel extends SkullModelBase {
-	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "slime_head"), "main");
-	public static final ModelLayerLocation LAVASLIME_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "lavaslime_head"), "main");
-	public static final ModelLayerLocation BLAZE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "blaze_head"), "main");
-	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "spider_head"), "main");
-	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "cave_spider_head"), "main");
-	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "pig_head"), "main");
-	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "enderman_head"), "main");
-	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "snow_golem_head"), "main");
-	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(new ResourceLocation(MODID, "technoblade_head"), "main");
+	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "slime_head"), "main");
+	public static final ModelLayerLocation LAVASLIME_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "lavaslime_head"), "main");
+	public static final ModelLayerLocation BLAZE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "blaze_head"), "main");
+	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "spider_head"), "main");
+	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "cave_spider_head"), "main");
+	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "pig_head"), "main");
+	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "enderman_head"), "main");
+	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "snow_golem_head"), "main");
+	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "technoblade_head"), "main");
 
 	private final ModelPart root;
 
@@ -130,8 +130,7 @@ public class CubeSkullModel extends SkullModelBase {
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer,
-							   int x, int y, float r, float g, float b, float a) {
-		this.root.render(transform, consumer, x, y, r, g, b, a);
+	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
+		this.root.render(transform, consumer, x, y, rgba);
 	}
 }

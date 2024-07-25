@@ -17,7 +17,7 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
 public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu> {
-	private static final ResourceLocation BG_LOCATION = new ResourceLocation(MODID, "textures/gui/container/skull_charger.png");
+	private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "textures/gui/container/skull_charger.png");
 
 	private static final int RECIPES_IMAGE_SIZE_WIDTH = 16;
 	private static final int RECIPES_IMAGE_SIZE_HEIGHT = 18;
@@ -97,7 +97,8 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 			for(int i = 0; i < 3; ++i) {
 				double d0 = x - (double)(recipeX + i * RECIPES_IMAGE_SIZE_WIDTH);
 				double d1 = y - (double)(recipeY);
-				if (d0 >= 0.0D && d1 >= 0.0D && d0 < RECIPES_IMAGE_SIZE_WIDTH && d1 < RECIPES_IMAGE_SIZE_HEIGHT && this.menu.clickMenuButton(this.minecraft.player, i)) {
+				if (d0 >= 0.0D && d1 >= 0.0D && d0 < RECIPES_IMAGE_SIZE_WIDTH && d1 < RECIPES_IMAGE_SIZE_HEIGHT &&
+						this.menu.clickMenuButton(this.minecraft.player, i)) {
 					Minecraft.getInstance().getSoundManager().play(uiSound);
 					this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, i);
 					return true;

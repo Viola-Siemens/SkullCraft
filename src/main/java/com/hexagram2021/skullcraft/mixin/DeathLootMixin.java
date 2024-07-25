@@ -2,6 +2,7 @@ package com.hexagram2021.skullcraft.mixin;
 
 import com.google.common.collect.ImmutableList;
 import com.hexagram2021.skullcraft.common.register.SCItems;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -29,7 +30,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Mob.class)
 public class DeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
-	public void skullcraft$dropCustomHead(DamageSource damageSource, int x, boolean flag, CallbackInfo ci) {
+	public void skullcraft$dropCustomHead(ServerLevel level, DamageSource damageSource, boolean recentHit, CallbackInfo ci) {
 		Entity entity = damageSource.getEntity();
 		if (entity instanceof Creeper creeper) {
 			if (creeper.canDropMobsSkull()) {

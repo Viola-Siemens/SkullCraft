@@ -27,7 +27,7 @@ public class CustomHeadLayerMixin<T extends LivingEntity> {
 
 		HeadedModel model = ((CustomHeadLayer<T, ? extends HeadedModel>)(Object)this).getParentModel();
 		if(SCClientConfig.HIDE_ORIGINAL_HEAD.get()) {
-			model.getHead().skipDraw = true;
+			model.getHead().skipDraw = true;	//TODO buggy: other mobs with same model will skip.
 		}
 		if(model instanceof HattedModel hattedModel && SCClientConfig.HIDE_ORIGINAL_HAT.get()) {
 			hattedModel.skullcraft$getHat().skipDraw = true;
