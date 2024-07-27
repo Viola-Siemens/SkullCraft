@@ -21,7 +21,9 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 					.apply(instance, WardenSkullBlock::new)
 	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
-	protected static final VoxelShape SHAPE = Block.box(0.0D, 0.0D, 3.0D, 16.0D, 16.0D, 13.0D);
+	protected static final VoxelShape SHAPE_Z = Block.box(0.0D, 0.0D, 3.0D, 16.0D, 16.0D, 13.0D);
+	protected static final VoxelShape SHAPE_XZ = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 16.0D, 15.0D);
+	protected static final VoxelShape SHAPE_X = Block.box(3.0D, 0.0D, 0.0D, 13.0D, 16.0D, 16.0D);
 
 	public WardenSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
@@ -35,7 +37,12 @@ public class WardenSkullBlock extends AbstractSkullBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState blockState, BlockGetter level, BlockPos blockPos, CollisionContext context) {
-		return SHAPE;
+		int rot = blockState.getValue(ROTATION);
+		return switch (rot) {
+			case 0, 8 -> SHAPE_Z;
+			case 4, 12 -> SHAPE_X;
+			default -> SHAPE_XZ;
+		};
 	}
 
 	@Override

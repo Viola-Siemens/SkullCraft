@@ -181,6 +181,24 @@
     ],
     "subtitle": "subtitles.entity.vex.ambient"
   },
+  "block.note_block.imitate.wolf": {
+    "sounds": [
+      {
+        "name": "entity.wolf.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.wolf.ambient"
+  },
+  "block.note_block.imitate.angry_wolf": {
+    "sounds": [
+      {
+        "name": "entity.wolf.growl",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.wolf.growl"
+  },
   "block.note_block.imitate.cow": {
     "sounds": [
       {

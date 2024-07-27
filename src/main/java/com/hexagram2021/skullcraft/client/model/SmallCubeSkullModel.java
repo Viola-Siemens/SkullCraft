@@ -20,6 +20,8 @@ public class SmallCubeSkullModel extends SkullModelBase {
 	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "shulker_head"), "main");
 	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "allay_head"), "main");
 	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "vex_head"), "main");
+	public static final ModelLayerLocation WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "wolf_head"), "main");
+	public static final ModelLayerLocation ANGRY_WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "angry_wolf_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;
@@ -51,18 +53,20 @@ public class SmallCubeSkullModel extends SkullModelBase {
 	}
 
 	public static LayerDefinition createBatHeadLayer() {
-		MeshDefinition meshdefinition = createHeadModel(0, 0);
+		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
-		PartDefinition head = partdefinition.getChild("head");
+		PartDefinition head = partdefinition.addOrReplaceChild("head",
+				CubeListBuilder.create().texOffs(0, 7).addBox(-2.0F, -3.0F, -1.0F, 4.0F, 3.0F, 2.0F),
+				PartPose.ZERO);
 
 		head.addOrReplaceChild("right_ear",
-				CubeListBuilder.create().texOffs(24, 0).addBox(-4.0F, -6.0F, -2.0F, 3.0F, 4.0F, 1.0F),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
+				CubeListBuilder.create().texOffs(1, 15).addBox(-2.5F, -4.0F, 0.0F, 3.0F, 5.0F, 0.0F),
+				PartPose.offset(-1.5F, -2.0F, 0.0F));
 		head.addOrReplaceChild("left_ear",
-				CubeListBuilder.create().texOffs(24, 0).mirror().addBox(1.0F, -6.0F, -2.0F, 3.0F, 4.0F, 1.0F),
-				PartPose.offset(0.0F, 0.0F, 0.0F));
+				CubeListBuilder.create().texOffs(8, 15).addBox(-0.1F, -3.0F, 0.0F, 3.0F, 5.0F, 0.0F),
+				PartPose.offset(1.1F, -3.0F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 64, 64);
+		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
 	public static LayerDefinition createShulkerHeadLayer() {
@@ -73,9 +77,22 @@ public class SmallCubeSkullModel extends SkullModelBase {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 		partdefinition.addOrReplaceChild("head",
-				CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -5.0F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.5F)),
+				CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.5F)),
 				PartPose.ZERO);
 		return LayerDefinition.create(meshdefinition, 32, 32);
+	}
+
+	public static LayerDefinition createWolfHeadLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+		partdefinition.addOrReplaceChild("head",
+				CubeListBuilder.create()
+						.texOffs(0, 0).addBox(-3.0F, -6.0F, 0.0F, 6.0F, 6.0F, 4.0F)
+						.texOffs(16, 14).addBox(-3.0F, -8.0F, 2.0F, 2.0F, 2.0F, 1.0F)
+						.texOffs(16, 14).addBox(1.0F, -8.0F, 2.0F, 2.0F, 2.0F, 1.0F)
+						.texOffs(0, 10).addBox(-1.5F, -3.001F, -3.0F, 3.0F, 3.0F, 4.0F),
+				PartPose.ZERO);
+		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
 	@Override

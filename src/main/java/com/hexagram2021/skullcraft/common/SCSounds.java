@@ -33,6 +33,8 @@ public class SCSounds {
 	public static final SoundEvent NOTE_BLOCK_IMITATE_SHULKER = registerSound("block.note_block.imitate.shulker");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_ALLAY = registerSound("block.note_block.imitate.allay");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_VEX = registerSound("block.note_block.imitate.vex");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_WOLF = registerSound("block.note_block.imitate.wolf");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_ANGRY_WOLF = registerSound("block.note_block.imitate.angry_wolf");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_COW = registerSound("block.note_block.imitate.cow");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_PIGLIN_BRUTE = registerSound("block.note_block.imitate.piglin_brute");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN = registerSound("block.note_block.imitate.zombified_piglin");

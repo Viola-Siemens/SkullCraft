@@ -56,6 +56,8 @@ public class SCContent {
 				SCBlocks.SmallCubeSkulls.SHULKER_HEAD.get(), SCBlocks.SmallCubeSkulls.SHULKER_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.ALLAY_HEAD.get(), SCBlocks.SmallCubeSkulls.ALLAY_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(),
+				SCBlocks.SmallCubeSkulls.WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.WOLF_WALL_HEAD.get(),
+				SCBlocks.SmallCubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.ANGRY_WOLF_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.COW_HEAD.get(), SCBlocks.CowSkulls.COW_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.RED_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.RED_MOOSHROOM_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.BROWN_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.BROWN_MOOSHROOM_WALL_HEAD.get(),

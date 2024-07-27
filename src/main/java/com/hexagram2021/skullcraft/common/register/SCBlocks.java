@@ -202,6 +202,14 @@ public class SCBlocks {
 				"vex_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_VEX),
 				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.VEX, props)
 		);
+		public static final BlockEntry<SmallCubeSkullBlock> WOLF_HEAD = new BlockEntry<>(
+				"wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.WOLF, props)
+		);
+		public static final BlockEntry<SmallCubeSkullBlock> ANGRY_WOLF_HEAD = new BlockEntry<>(
+				"angry_wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.ANGRY_WOLF, props)
+		);
 		public static final BlockEntry<SmallCubeWallSkullBlock> SHEEP_WALL_HEAD = new BlockEntry<>(
 				"sheep_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SHEEP),
 				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.SHEEP, props)
@@ -221,6 +229,14 @@ public class SCBlocks {
 		public static final BlockEntry<SmallCubeWallSkullBlock> VEX_WALL_HEAD = new BlockEntry<>(
 				"vex_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_VEX),
 				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.VEX, props)
+		);
+		public static final BlockEntry<SmallCubeWallSkullBlock> WOLF_WALL_HEAD = new BlockEntry<>(
+				"wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.WOLF, props)
+		);
+		public static final BlockEntry<SmallCubeWallSkullBlock> ANGRY_WOLF_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.ANGRY_WOLF, props)
 		);
 
 		private SmallCubeSkulls() {}

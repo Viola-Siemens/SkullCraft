@@ -70,6 +70,8 @@ public class DeathLootMixin {
 			case Shulker ignored -> SCItems.SmallCubeSkulls.SHULKER_HEAD.get();
 			case Allay ignored -> SCItems.SmallCubeSkulls.ALLAY_HEAD.get();
 			case Vex ignored -> SCItems.SmallCubeSkulls.VEX_HEAD.get();
+			case Wolf wolf -> wolf.isAngry() ?
+					SCItems.SmallCubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.SmallCubeSkulls.WOLF_HEAD.get();
 			case MushroomCow mushroomCow -> switch (mushroomCow.getVariant()) {
 				case RED -> SCItems.CowSkulls.RED_MOOSHROOM_HEAD.get();
 				case BROWN -> SCItems.CowSkulls.BROWN_MOOSHROOM_HEAD.get();

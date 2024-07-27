@@ -90,6 +90,8 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(SmallCubeSkullModel.SHULKER_HEAD, SmallCubeSkullModel::createShulkerHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.ALLAY_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.VEX_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
+		event.registerLayerDefinition(SmallCubeSkullModel.WOLF_HEAD, SmallCubeSkullModel::createWolfHeadLayer);
+		event.registerLayerDefinition(SmallCubeSkullModel.ANGRY_WOLF_HEAD, SmallCubeSkullModel::createWolfHeadLayer);
 
 		event.registerLayerDefinition(CowSkullModel.COW_HEAD, CowSkullModel::createCowHeadLayer);
 		event.registerLayerDefinition(CowSkullModel.RED_MOOSHROOM_HEAD, CowSkullModel::createCowHeadLayer);
@@ -134,6 +136,8 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(SmallCubeSkullBlock.Types.SHULKER, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.SHULKER_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.ALLAY, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.ALLAY_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.VEX, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.VEX_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.WOLF, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.WOLF_HEAD)));
+		event.registerSkullModel(SmallCubeSkullBlock.Types.ANGRY_WOLF, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.ANGRY_WOLF_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.COW, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.COW_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.RED_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.RED_MOOSHROOM_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.BROWN_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.BROWN_MOOSHROOM_HEAD)));
@@ -176,6 +180,8 @@ public class ClientEventSubscriber {
 			builder.put(SmallCubeSkullBlock.Types.SHULKER, ResourceLocation.withDefaultNamespace("textures/entity/shulker/shulker.png"));
 			builder.put(SmallCubeSkullBlock.Types.ALLAY, ResourceLocation.withDefaultNamespace("textures/entity/allay/allay.png"));
 			builder.put(SmallCubeSkullBlock.Types.VEX, ResourceLocation.withDefaultNamespace("textures/entity/illager/vex.png"));
+			builder.put(SmallCubeSkullBlock.Types.WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf.png"));
+			builder.put(SmallCubeSkullBlock.Types.ANGRY_WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf_angry.png"));
 			builder.put(CowSkullBlock.Types.COW, ResourceLocation.withDefaultNamespace("textures/entity/cow/cow.png"));
 			builder.put(CowSkullBlock.Types.RED_MOOSHROOM, ResourceLocation.withDefaultNamespace("textures/entity/cow/red_mooshroom.png"));
 			builder.put(CowSkullBlock.Types.BROWN_MOOSHROOM, ResourceLocation.withDefaultNamespace("textures/entity/cow/brown_mooshroom.png"));

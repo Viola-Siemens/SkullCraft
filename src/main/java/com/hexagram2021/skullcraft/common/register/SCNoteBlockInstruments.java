@@ -22,6 +22,8 @@ public class SCNoteBlockInstruments {
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_SHULKER;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ALLAY;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_VEX;
+	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_WOLF;
+	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ANGRY_WOLF;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_COW;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_PIGLIN_BRUTE;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN;

@@ -199,6 +199,16 @@ public class SCItems {
 						SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_HEAD = new ItemEntry<>(
+				"wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_HEAD = new ItemEntry<>(
+				"angry_wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
 
 
 		private SmallCubeSkulls() {}
