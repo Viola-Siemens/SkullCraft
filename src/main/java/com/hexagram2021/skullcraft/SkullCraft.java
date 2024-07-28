@@ -32,7 +32,6 @@ public class SkullCraft {
 	}
 
 	public SkullCraft(IEventBus modEventBus, ModContainer modContainer) {
-
 		modEventBus.addListener(this::setup);
 
 		modContainer.registerConfig(ModConfig.Type.CLIENT, SCClientConfig.getConfig());
