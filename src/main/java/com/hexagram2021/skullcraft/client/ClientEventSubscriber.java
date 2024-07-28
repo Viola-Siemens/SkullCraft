@@ -5,6 +5,7 @@ import com.hexagram2021.skullcraft.client.model.*;
 import com.hexagram2021.skullcraft.client.screen.SkullChargerScreen;
 import com.hexagram2021.skullcraft.common.block.cow.CowSkullBlock;
 import com.hexagram2021.skullcraft.common.block.cube.CubeSkullBlock;
+import com.hexagram2021.skullcraft.common.block.hoglin.HoglinSkullBlock;
 import com.hexagram2021.skullcraft.common.block.horse.HorseSkullBlock;
 import com.hexagram2021.skullcraft.common.block.human.HumanSkullBlock;
 import com.hexagram2021.skullcraft.common.block.piglin.PiglinSkullBlock;
@@ -81,6 +82,8 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(CubeSkullModel.SPIDER_HEAD, CubeSkullModel::createSpiderHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.CAVE_SPIDER_HEAD, CubeSkullModel::createSpiderHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.PIG_HEAD, CubeSkullModel::createPigHeadLayer);
+		event.registerLayerDefinition(CubeSkullModel.WOLF_HEAD, CubeSkullModel::createWolfHeadLayer);
+		event.registerLayerDefinition(CubeSkullModel.ANGRY_WOLF_HEAD, CubeSkullModel::createWolfHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.ENDERMAN_HEAD, CubeSkullModel::createEndermanHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.SNOW_GOLEM_HEAD, CubeSkullModel::createSnowGolemHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.TECHNOBLADE_HEAD, CubeSkullModel::createTechnobladeHeadLayer);
@@ -90,8 +93,6 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(SmallCubeSkullModel.SHULKER_HEAD, SmallCubeSkullModel::createShulkerHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.ALLAY_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
 		event.registerLayerDefinition(SmallCubeSkullModel.VEX_HEAD, SmallCubeSkullModel::createAllayHeadLayer);
-		event.registerLayerDefinition(SmallCubeSkullModel.WOLF_HEAD, SmallCubeSkullModel::createWolfHeadLayer);
-		event.registerLayerDefinition(SmallCubeSkullModel.ANGRY_WOLF_HEAD, SmallCubeSkullModel::createWolfHeadLayer);
 
 		event.registerLayerDefinition(CowSkullModel.COW_HEAD, CowSkullModel::createCowHeadLayer);
 		event.registerLayerDefinition(CowSkullModel.RED_MOOSHROOM_HEAD, CowSkullModel::createCowHeadLayer);
@@ -113,6 +114,9 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(HorseSkullModel.ZOMBIE_HORSE_HEAD, HorseSkullModel::createHorseHeadLayer);
 
 		event.registerLayerDefinition(WardenSkullModel.WARDEN_HEAD, WardenSkullModel::createWardenHeadLayer);
+
+		event.registerLayerDefinition(HoglinSkullModel.HOGLIN_HEAD, HoglinSkullModel::createHeadLayer);
+		event.registerLayerDefinition(HoglinSkullModel.ZOGLIN_HEAD, HoglinSkullModel::createHeadLayer);
 	}
 
 	@SubscribeEvent
@@ -128,6 +132,8 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(CubeSkullBlock.Types.SPIDER, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SPIDER_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.CAVE_SPIDER, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.CAVE_SPIDER_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.PIG, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.PIG_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.WOLF, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.WOLF_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.ANGRY_WOLF, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.ANGRY_WOLF_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.ENDERMAN, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.ENDERMAN_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.SNOW_GOLEM, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SNOW_GOLEM_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.TECHNOBLADE, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.TECHNOBLADE_HEAD)));
@@ -136,8 +142,6 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(SmallCubeSkullBlock.Types.SHULKER, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.SHULKER_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.ALLAY, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.ALLAY_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.VEX, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.VEX_HEAD)));
-		event.registerSkullModel(SmallCubeSkullBlock.Types.WOLF, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.WOLF_HEAD)));
-		event.registerSkullModel(SmallCubeSkullBlock.Types.ANGRY_WOLF, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.ANGRY_WOLF_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.COW, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.COW_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.RED_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.RED_MOOSHROOM_HEAD)));
 		event.registerSkullModel(CowSkullBlock.Types.BROWN_MOOSHROOM, new CowSkullModel(event.getEntityModelSet().bakeLayer(CowSkullModel.BROWN_MOOSHROOM_HEAD)));
@@ -155,6 +159,8 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(HorseSkullBlock.Types.SKELETON_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.SKELETON_HORSE_HEAD)));
 		event.registerSkullModel(HorseSkullBlock.Types.ZOMBIE_HORSE, new HorseSkullModel(event.getEntityModelSet().bakeLayer(HorseSkullModel.ZOMBIE_HORSE_HEAD)));
 		event.registerSkullModel(WardenSkullBlock.Types.WARDEN, new WardenSkullModel(event.getEntityModelSet().bakeLayer(WardenSkullModel.WARDEN_HEAD)));
+		event.registerSkullModel(HoglinSkullBlock.Types.HOGLIN, new HoglinSkullModel(event.getEntityModelSet().bakeLayer(HoglinSkullModel.HOGLIN_HEAD)));
+		event.registerSkullModel(HoglinSkullBlock.Types.ZOGLIN, new HoglinSkullModel(event.getEntityModelSet().bakeLayer(HoglinSkullModel.ZOGLIN_HEAD)));
 	}
 
 	@SubscribeEvent
@@ -172,6 +178,8 @@ public class ClientEventSubscriber {
 			builder.put(CubeSkullBlock.Types.SPIDER, ResourceLocation.withDefaultNamespace("textures/entity/spider/spider.png"));
 			builder.put(CubeSkullBlock.Types.CAVE_SPIDER, ResourceLocation.withDefaultNamespace("textures/entity/spider/cave_spider.png"));
 			builder.put(CubeSkullBlock.Types.PIG, ResourceLocation.withDefaultNamespace("textures/entity/pig/pig.png"));
+			builder.put(CubeSkullBlock.Types.WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf.png"));
+			builder.put(CubeSkullBlock.Types.ANGRY_WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf_angry.png"));
 			builder.put(CubeSkullBlock.Types.ENDERMAN, ResourceLocation.withDefaultNamespace("textures/entity/enderman/enderman.png"));
 			builder.put(CubeSkullBlock.Types.SNOW_GOLEM, ResourceLocation.withDefaultNamespace("textures/entity/snow_golem.png"));
 			builder.put(CubeSkullBlock.Types.TECHNOBLADE, ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/technoblade.png"));
@@ -180,14 +188,11 @@ public class ClientEventSubscriber {
 			builder.put(SmallCubeSkullBlock.Types.SHULKER, ResourceLocation.withDefaultNamespace("textures/entity/shulker/shulker.png"));
 			builder.put(SmallCubeSkullBlock.Types.ALLAY, ResourceLocation.withDefaultNamespace("textures/entity/allay/allay.png"));
 			builder.put(SmallCubeSkullBlock.Types.VEX, ResourceLocation.withDefaultNamespace("textures/entity/illager/vex.png"));
-			builder.put(SmallCubeSkullBlock.Types.WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf.png"));
-			builder.put(SmallCubeSkullBlock.Types.ANGRY_WOLF, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf_angry.png"));
 			builder.put(CowSkullBlock.Types.COW, ResourceLocation.withDefaultNamespace("textures/entity/cow/cow.png"));
 			builder.put(CowSkullBlock.Types.RED_MOOSHROOM, ResourceLocation.withDefaultNamespace("textures/entity/cow/red_mooshroom.png"));
 			builder.put(CowSkullBlock.Types.BROWN_MOOSHROOM, ResourceLocation.withDefaultNamespace("textures/entity/cow/brown_mooshroom.png"));
 			builder.put(PiglinSkullBlock.Types.PIGLIN_BRUTE, ResourceLocation.withDefaultNamespace("textures/entity/piglin/piglin_brute.png"));
 			builder.put(PiglinSkullBlock.Types.ZOMBIFIED_PIGLIN, ResourceLocation.withDefaultNamespace("textures/entity/piglin/zombified_piglin.png"));
-			builder.put(WardenSkullBlock.Types.WARDEN, ResourceLocation.withDefaultNamespace("textures/entity/warden/warden.png"));
 			builder.put(HorseSkullBlock.Types.BLACK_HORSE, ResourceLocation.withDefaultNamespace("textures/entity/horse/horse_black.png"));
 			builder.put(HorseSkullBlock.Types.BROWN_HORSE, ResourceLocation.withDefaultNamespace("textures/entity/horse/horse_brown.png"));
 			builder.put(HorseSkullBlock.Types.CHESTNUT_HORSE, ResourceLocation.withDefaultNamespace("textures/entity/horse/horse_chestnut.png"));
@@ -199,6 +204,9 @@ public class ClientEventSubscriber {
 			builder.put(HorseSkullBlock.Types.MULE, ResourceLocation.withDefaultNamespace("textures/entity/horse/mule.png"));
 			builder.put(HorseSkullBlock.Types.SKELETON_HORSE, ResourceLocation.withDefaultNamespace("textures/entity/horse/horse_skeleton.png"));
 			builder.put(HorseSkullBlock.Types.ZOMBIE_HORSE, ResourceLocation.withDefaultNamespace("textures/entity/horse/horse_zombie.png"));
+			builder.put(WardenSkullBlock.Types.WARDEN, ResourceLocation.withDefaultNamespace("textures/entity/warden/warden.png"));
+			builder.put(HoglinSkullBlock.Types.HOGLIN, ResourceLocation.withDefaultNamespace("textures/entity/hoglin/hoglin.png"));
+			builder.put(HoglinSkullBlock.Types.ZOGLIN, ResourceLocation.withDefaultNamespace("textures/entity/hoglin/zoglin.png"));
 			SkullBlockRenderer.SKIN_BY_TYPE.putAll(builder.build());
 		});
 	}

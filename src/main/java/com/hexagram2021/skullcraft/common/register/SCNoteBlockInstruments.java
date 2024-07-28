@@ -33,4 +33,6 @@ public class SCNoteBlockInstruments {
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_SKELETON_HORSE;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ZOMBIE_HORSE;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_WARDEN;
+	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_HOGLIN;
+	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ZOGLIN;
 }

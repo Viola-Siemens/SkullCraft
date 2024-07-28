@@ -45,7 +45,6 @@ public class WardenSkullModel extends SkullModelBase {
 		return LayerDefinition.create(meshdefinition, 128, 128);
 	}
 
-
 	@Override
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.root.yRot = yRot * ((float)Math.PI / 180F);

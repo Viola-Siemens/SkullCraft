@@ -14,6 +14,7 @@ import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.monster.warden.Warden;
@@ -63,6 +64,8 @@ public class DeathLootMixin {
 			case CaveSpider ignored -> SCItems.CubeSkulls.CAVE_SPIDER_HEAD.get();
 			case Spider ignored -> SCItems.CubeSkulls.SPIDER_HEAD.get();
 			case Pig ignored -> SCItems.CubeSkulls.PIG_HEAD.get();
+			case Wolf wolf -> wolf.isAngry() ?
+					SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get();
 			case EnderMan ignored -> SCItems.CubeSkulls.ENDERMAN_HEAD.get();
 			case SnowGolem ignored -> SCItems.CubeSkulls.SNOW_GOLEM_HEAD.get();
 			case Sheep ignored -> SCItems.SmallCubeSkulls.SHEEP_HEAD.get();
@@ -70,8 +73,6 @@ public class DeathLootMixin {
 			case Shulker ignored -> SCItems.SmallCubeSkulls.SHULKER_HEAD.get();
 			case Allay ignored -> SCItems.SmallCubeSkulls.ALLAY_HEAD.get();
 			case Vex ignored -> SCItems.SmallCubeSkulls.VEX_HEAD.get();
-			case Wolf wolf -> wolf.isAngry() ?
-					SCItems.SmallCubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.SmallCubeSkulls.WOLF_HEAD.get();
 			case MushroomCow mushroomCow -> switch (mushroomCow.getVariant()) {
 				case RED -> SCItems.CowSkulls.RED_MOOSHROOM_HEAD.get();
 				case BROWN -> SCItems.CowSkulls.BROWN_MOOSHROOM_HEAD.get();
@@ -93,6 +94,8 @@ public class DeathLootMixin {
 			case SkeletonHorse ignored -> SCItems.HorseSkulls.SKELETON_HORSE_HEAD.get();
 			case ZombieHorse ignored -> SCItems.HorseSkulls.ZOMBIE_HORSE_HEAD.get();
 			case Warden ignored -> SCItems.WardenSkulls.WARDEN_HEAD.get();
+			case Zoglin ignored -> SCItems.HoglinSkulls.ZOGLIN_HEAD.get();
+			case Hoglin ignored -> SCItems.HoglinSkulls.HOGLIN_HEAD.get();
 			default -> includeVanillaSkulls ? switch (current) {
 				case Zombie ignored -> Items.ZOMBIE_HEAD;
 				case AbstractSkeleton ignored -> Items.SKELETON_SKULL;

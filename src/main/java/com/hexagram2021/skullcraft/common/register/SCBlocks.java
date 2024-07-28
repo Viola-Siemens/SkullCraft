@@ -1,20 +1,14 @@
 package com.hexagram2021.skullcraft.common.register;
 
-import com.hexagram2021.skullcraft.common.block.cow.CowSkullBlock;
-import com.hexagram2021.skullcraft.common.block.cow.CowWallSkullBlock;
-import com.hexagram2021.skullcraft.common.block.cube.CubeSkullBlock;
-import com.hexagram2021.skullcraft.common.block.cube.CubeWallSkullBlock;
-import com.hexagram2021.skullcraft.common.block.horse.HorseSkullBlock;
-import com.hexagram2021.skullcraft.common.block.horse.HorseWallSkullBlock;
-import com.hexagram2021.skullcraft.common.block.human.HumanSkullBlock;
-import com.hexagram2021.skullcraft.common.block.human.HumanWallSkullBlock;
-import com.hexagram2021.skullcraft.common.block.piglin.PiglinSkullBlock;
-import com.hexagram2021.skullcraft.common.block.piglin.PiglinWallSkullBlock;
+import com.hexagram2021.skullcraft.common.block.cow.*;
+import com.hexagram2021.skullcraft.common.block.cube.*;
+import com.hexagram2021.skullcraft.common.block.hoglin.*;
+import com.hexagram2021.skullcraft.common.block.horse.*;
+import com.hexagram2021.skullcraft.common.block.human.*;
+import com.hexagram2021.skullcraft.common.block.piglin.*;
 import com.hexagram2021.skullcraft.common.block.SkullChargerBlock;
-import com.hexagram2021.skullcraft.common.block.small_cube.SmallCubeSkullBlock;
-import com.hexagram2021.skullcraft.common.block.small_cube.SmallCubeWallSkullBlock;
-import com.hexagram2021.skullcraft.common.block.warden.WardenSkullBlock;
-import com.hexagram2021.skullcraft.common.block.warden.WardenWallSkullBlock;
+import com.hexagram2021.skullcraft.common.block.small_cube.*;
+import com.hexagram2021.skullcraft.common.block.warden.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -124,6 +118,14 @@ public class SCBlocks {
 				"pig_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_PIG),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.PIG, props)
 		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_HEAD = new BlockEntry<>(
+				"wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_HEAD = new BlockEntry<>(
+				"angry_wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF, props)
+		);
 		public static final BlockEntry<CubeSkullBlock> ENDERMAN_HEAD = new BlockEntry<>(
 				"enderman_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ENDERMAN),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ENDERMAN, props)
@@ -160,6 +162,14 @@ public class SCBlocks {
 		public static final BlockEntry<CubeWallSkullBlock> PIG_WALL_HEAD = new BlockEntry<>(
 				"pig_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_PIG),
 				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.PIG, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_WALL_HEAD = new BlockEntry<>(
+				"wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF, props)
 		);
 		public static final BlockEntry<CubeWallSkullBlock> ENDERMAN_WALL_HEAD = new BlockEntry<>(
 				"enderman_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ENDERMAN),
@@ -202,14 +212,6 @@ public class SCBlocks {
 				"vex_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_VEX),
 				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.VEX, props)
 		);
-		public static final BlockEntry<SmallCubeSkullBlock> WOLF_HEAD = new BlockEntry<>(
-				"wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
-				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.WOLF, props)
-		);
-		public static final BlockEntry<SmallCubeSkullBlock> ANGRY_WOLF_HEAD = new BlockEntry<>(
-				"angry_wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
-				(props) -> new SmallCubeSkullBlock(SmallCubeSkullBlock.Types.ANGRY_WOLF, props)
-		);
 		public static final BlockEntry<SmallCubeWallSkullBlock> SHEEP_WALL_HEAD = new BlockEntry<>(
 				"sheep_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SHEEP),
 				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.SHEEP, props)
@@ -229,14 +231,6 @@ public class SCBlocks {
 		public static final BlockEntry<SmallCubeWallSkullBlock> VEX_WALL_HEAD = new BlockEntry<>(
 				"vex_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_VEX),
 				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.VEX, props)
-		);
-		public static final BlockEntry<SmallCubeWallSkullBlock> WOLF_WALL_HEAD = new BlockEntry<>(
-				"wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
-				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.WOLF, props)
-		);
-		public static final BlockEntry<SmallCubeWallSkullBlock> ANGRY_WOLF_WALL_HEAD = new BlockEntry<>(
-				"angry_wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
-				(props) -> new SmallCubeWallSkullBlock(SmallCubeSkullBlock.Types.ANGRY_WOLF, props)
 		);
 
 		private SmallCubeSkulls() {}
@@ -413,6 +407,30 @@ public class SCBlocks {
 		}
 	}
 
+	public static class HoglinSkulls {
+		public static final BlockEntry<HoglinSkullBlock> HOGLIN_HEAD = new BlockEntry<>(
+				"hoglin_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HOGLIN),
+				(props) -> new HoglinSkullBlock(HoglinSkullBlock.Types.HOGLIN, props)
+		);
+		public static final BlockEntry<HoglinSkullBlock> ZOGLIN_HEAD = new BlockEntry<>(
+				"zoglin_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ZOGLIN),
+				(props) -> new HoglinSkullBlock(HoglinSkullBlock.Types.ZOGLIN, props)
+		);
+		public static final BlockEntry<HoglinWallSkullBlock> HOGLIN_WALL_HEAD = new BlockEntry<>(
+				"hoglin_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HOGLIN),
+				(props) -> new HoglinWallSkullBlock(HoglinSkullBlock.Types.HOGLIN, props)
+		);
+		public static final BlockEntry<HoglinWallSkullBlock> ZOGLIN_WALL_HEAD = new BlockEntry<>(
+				"zoglin_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ZOGLIN),
+				(props) -> new HoglinWallSkullBlock(HoglinSkullBlock.Types.ZOGLIN, props)
+		);
+
+		private HoglinSkulls() {}
+
+		private static void init() {
+		}
+	}
+
 	private SCBlocks() {}
 
 	public static void init(IEventBus bus) {
@@ -425,6 +443,7 @@ public class SCBlocks {
 		PiglinSkulls.init();
 		HorseSkulls.init();
 		WardenSkulls.init();
+		HoglinSkulls.init();
 	}
 
 	@SuppressWarnings("unused")

@@ -279,5 +279,23 @@
       }
     ],
     "subtitle": "subtitles.entity.warden.ambient"
+  },
+  "block.note_block.imitate.hoglin": {
+    "sounds": [
+      {
+        "name": "entity.hoglin.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.hoglin.ambient"
+  },
+  "block.note_block.imitate.zoglin": {
+    "sounds": [
+      {
+        "name": "entity.zoglin.ambient",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.zoglin.ambient"
   }
 }

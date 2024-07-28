@@ -44,6 +44,8 @@ public class SCSounds {
 	public static final SoundEvent NOTE_BLOCK_IMITATE_SKELETON_HORSE = registerSound("block.note_block.imitate.skeleton_horse");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_ZOMBIE_HORSE = registerSound("block.note_block.imitate.zombie_horse");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_WARDEN = registerSound("block.note_block.imitate.warden");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_HOGLIN = registerSound("block.note_block.imitate.hoglin");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_ZOGLIN = registerSound("block.note_block.imitate.zoglin");
 
 	private static SoundEvent registerSound(String name) {
 		ResourceLocation location = ResourceLocation.fromNamespaceAndPath(MODID, name);

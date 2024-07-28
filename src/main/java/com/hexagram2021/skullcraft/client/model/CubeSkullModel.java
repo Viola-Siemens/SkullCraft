@@ -21,6 +21,8 @@ public class CubeSkullModel extends SkullModelBase {
 	public static final ModelLayerLocation SPIDER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "spider_head"), "main");
 	public static final ModelLayerLocation CAVE_SPIDER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "cave_spider_head"), "main");
 	public static final ModelLayerLocation PIG_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "pig_head"), "main");
+	public static final ModelLayerLocation WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "wolf_head"), "main");
+	public static final ModelLayerLocation ANGRY_WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "angry_wolf_head"), "main");
 	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "enderman_head"), "main");
 	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "snow_golem_head"), "main");
 	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "technoblade_head"), "main");
@@ -88,6 +90,19 @@ public class CubeSkullModel extends SkullModelBase {
 
 		head.addOrReplaceChild("nose",
 				CubeListBuilder.create().texOffs(16, 16).addBox(-2.0F, -4.0F, -5.0F, 4.0F, 3.0F, 1.0F, CubeDeformation.NONE),
+				PartPose.ZERO);
+		return LayerDefinition.create(meshdefinition, 64, 32);
+	}
+
+	public static LayerDefinition createWolfHeadLayer() {
+		MeshDefinition meshdefinition = new MeshDefinition();
+		PartDefinition partdefinition = meshdefinition.getRoot();
+		partdefinition.addOrReplaceChild("head",
+				CubeListBuilder.create()
+						.texOffs(0, 0).addBox(-3.0F, -7.0F, 0.0F, 6.0F, 6.0F, 4.0F, new CubeDeformation(1.0F))
+						.texOffs(16, 14).addBox(-3.5F, -10.5F, 3.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.5F))
+						.texOffs(16, 14).addBox(1.5F, -10.5F, 3.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.5F))
+						.texOffs(0, 10).addBox(-1.5F, -3.752F, -5.5F, 3.0F, 3.0F, 4.0F, new CubeDeformation(0.5F)),
 				PartPose.ZERO);
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}

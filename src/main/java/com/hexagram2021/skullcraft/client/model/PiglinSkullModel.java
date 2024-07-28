@@ -54,7 +54,6 @@ public class PiglinSkullModel extends SkullModelBase {
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
-
 	@Override
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.root.yRot = yRot * ((float)Math.PI / 180F);

@@ -48,6 +48,8 @@ public class SCContent {
 				SCBlocks.CubeSkulls.SPIDER_HEAD.get(), SCBlocks.CubeSkulls.SPIDER_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.CAVE_SPIDER_HEAD.get(), SCBlocks.CubeSkulls.CAVE_SPIDER_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.PIG_HEAD.get(), SCBlocks.CubeSkulls.PIG_WALL_HEAD.get(),
+				SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(),
+				SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.SNOW_GOLEM_HEAD.get(), SCBlocks.CubeSkulls.SNOW_GOLEM_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(),
@@ -56,8 +58,6 @@ public class SCContent {
 				SCBlocks.SmallCubeSkulls.SHULKER_HEAD.get(), SCBlocks.SmallCubeSkulls.SHULKER_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.ALLAY_HEAD.get(), SCBlocks.SmallCubeSkulls.ALLAY_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(),
-				SCBlocks.SmallCubeSkulls.WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.WOLF_WALL_HEAD.get(),
-				SCBlocks.SmallCubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.ANGRY_WOLF_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.COW_HEAD.get(), SCBlocks.CowSkulls.COW_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.RED_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.RED_MOOSHROOM_WALL_HEAD.get(),
 				SCBlocks.CowSkulls.BROWN_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.BROWN_MOOSHROOM_WALL_HEAD.get(),
@@ -74,7 +74,9 @@ public class SCContent {
 				SCBlocks.HorseSkulls.MULE_HEAD.get(), SCBlocks.HorseSkulls.MULE_WALL_HEAD.get(),
 				SCBlocks.HorseSkulls.SKELETON_HORSE_HEAD.get(), SCBlocks.HorseSkulls.SKELETON_HORSE_WALL_HEAD.get(),
 				SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(),
-				SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get()
+				SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get(),
+				SCBlocks.HoglinSkulls.HOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.HOGLIN_WALL_HEAD.get(),
+				SCBlocks.HoglinSkulls.ZOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.ZOGLIN_WALL_HEAD.get()
 		));
 		BlockEntityType.SKULL.validBlocks = skullValidBlocks;
 	}

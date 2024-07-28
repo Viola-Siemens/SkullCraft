@@ -146,6 +146,16 @@ public class SCItems {
 						SCBlocks.CubeSkulls.PIG_HEAD.get(), SCBlocks.CubeSkulls.PIG_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_HEAD = new ItemEntry<>(
+				"wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+				SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
+		)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_HEAD = new ItemEntry<>(
+				"angry_wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+				SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
+		)
+		);
 		public static final ItemEntry<StandingAndWallBlockItem> ENDERMAN_HEAD = new ItemEntry<>(
 				"enderman_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
 						SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(), props, Direction.DOWN
@@ -197,16 +207,6 @@ public class SCItems {
 		public static final ItemEntry<StandingAndWallBlockItem> VEX_HEAD = new ItemEntry<>(
 				"vex_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
 						SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(), props, Direction.DOWN
-				)
-		);
-		public static final ItemEntry<StandingAndWallBlockItem> WOLF_HEAD = new ItemEntry<>(
-				"wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
-				)
-		);
-		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_HEAD = new ItemEntry<>(
-				"angry_wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.SmallCubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
 
@@ -349,6 +349,24 @@ public class SCItems {
 		}
 	}
 
+	public static class HoglinSkulls {
+		public static final ItemEntry<StandingAndWallBlockItem> HOGLIN_HEAD = new ItemEntry<>(
+				"hoglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HoglinSkulls.HOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.HOGLIN_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ZOGLIN_HEAD = new ItemEntry<>(
+				"zoglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.HoglinSkulls.ZOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.ZOGLIN_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+
+		private HoglinSkulls() {}
+
+		private static void init() {
+		}
+	}
+
 	public static void init(IEventBus bus) {
 		REGISTER.register(bus);
 		HumanSkulls.init();
@@ -358,6 +376,7 @@ public class SCItems {
 		PiglinSkulls.init();
 		HorseSkulls.init();
 		WardenSkulls.init();
+		HoglinSkulls.init();
 	}
 
 	public static final class ItemEntry<T extends Item> implements Supplier<T>, ItemLike {

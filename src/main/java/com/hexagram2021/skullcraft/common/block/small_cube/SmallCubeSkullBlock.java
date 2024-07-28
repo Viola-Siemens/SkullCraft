@@ -69,9 +69,7 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 		BAT("skullcraft:bat"),
 		SHULKER("skullcraft:shulker"),
 		ALLAY("skullcraft:allay"),
-		VEX("skullcraft:vex"),
-		WOLF("skullcraft:wolf"),
-		ANGRY_WOLF("skullcraft:angry_wolf");
+		VEX("skullcraft:vex");
 
 		private final String name;
 

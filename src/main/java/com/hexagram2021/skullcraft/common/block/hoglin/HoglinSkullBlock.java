@@ -1,4 +1,4 @@
-package com.hexagram2021.skullcraft.common.block.cube;
+package com.hexagram2021.skullcraft.common.block.hoglin;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -15,21 +15,21 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class CubeSkullBlock extends AbstractSkullBlock {
-	public static final MapCodec<CubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
+public class HoglinSkullBlock extends AbstractSkullBlock {
+	public static final MapCodec<HoglinSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
 			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
-					.apply(instance, CubeSkullBlock::new)
+					.apply(instance, HoglinSkullBlock::new)
 	);
 	public static final IntegerProperty ROTATION = BlockStateProperties.ROTATION_16;
-	protected static final VoxelShape SHAPE = Block.box(4.0D, 0.0D, 4.0D, 12.0D, 8.0D, 12.0D);
+	protected static final VoxelShape SHAPE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 15.0D, 15.0D);
 
-	public CubeSkullBlock(SkullBlock.Type type, Properties props) {
+	public HoglinSkullBlock(SkullBlock.Type type, Properties props) {
 		super(type, props);
 		this.registerDefaultState(this.stateDefinition.any().setValue(ROTATION, 0));
 	}
 
 	@Override
-	public MapCodec<? extends CubeSkullBlock> codec() {
+	public MapCodec<? extends HoglinSkullBlock> codec() {
 		return CODEC;
 	}
 
@@ -65,17 +65,8 @@ public class CubeSkullBlock extends AbstractSkullBlock {
 	}
 
 	public enum Types implements SkullBlock.Type {
-		SLIME("skullcraft:slime"),
-		LAVASLIME("skullcraft:lavaslime"),
-		BLAZE("skullcraft:blaze"),
-		SPIDER("skullcraft:spider"),
-		CAVE_SPIDER("skullcraft:cave_spider"),
-		PIG("skullcraft:pig"),
-		WOLF("skullcraft:wolf"),
-		ANGRY_WOLF("skullcraft:angry_wolf"),
-		ENDERMAN("skullcraft:enderman"),
-		SNOW_GOLEM("skullcraft:snow_golem"),
-		TECHNOBLADE("skullcraft:technoblade");
+		HOGLIN("skullcraft:hoglin"),
+		ZOGLIN("skullcraft:zoglin");
 
 		private final String name;
 

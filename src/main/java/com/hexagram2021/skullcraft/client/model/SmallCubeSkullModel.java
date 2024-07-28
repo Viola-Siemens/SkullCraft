@@ -20,8 +20,6 @@ public class SmallCubeSkullModel extends SkullModelBase {
 	public static final ModelLayerLocation SHULKER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "shulker_head"), "main");
 	public static final ModelLayerLocation ALLAY_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "allay_head"), "main");
 	public static final ModelLayerLocation VEX_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "vex_head"), "main");
-	public static final ModelLayerLocation WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "wolf_head"), "main");
-	public static final ModelLayerLocation ANGRY_WOLF_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "angry_wolf_head"), "main");
 
 	private final ModelPart root;
 	protected final ModelPart head;
@@ -80,19 +78,6 @@ public class SmallCubeSkullModel extends SkullModelBase {
 				CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -5.5F, -2.5F, 5.0F, 5.0F, 5.0F, new CubeDeformation(0.5F)),
 				PartPose.ZERO);
 		return LayerDefinition.create(meshdefinition, 32, 32);
-	}
-
-	public static LayerDefinition createWolfHeadLayer() {
-		MeshDefinition meshdefinition = new MeshDefinition();
-		PartDefinition partdefinition = meshdefinition.getRoot();
-		partdefinition.addOrReplaceChild("head",
-				CubeListBuilder.create()
-						.texOffs(0, 0).addBox(-3.0F, -6.0F, 0.0F, 6.0F, 6.0F, 4.0F)
-						.texOffs(16, 14).addBox(-3.0F, -8.0F, 2.0F, 2.0F, 2.0F, 1.0F)
-						.texOffs(16, 14).addBox(1.0F, -8.0F, 2.0F, 2.0F, 2.0F, 1.0F)
-						.texOffs(0, 10).addBox(-1.5F, -3.001F, -3.0F, 3.0F, 3.0F, 4.0F),
-				PartPose.ZERO);
-		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
 	@Override
