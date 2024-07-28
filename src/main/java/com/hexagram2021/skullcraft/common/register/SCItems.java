@@ -329,7 +329,7 @@ public class SCItems {
 				) {
 					@Override
 					public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotIndex, boolean selected) {
-						if(entity instanceof Player player) {
+						if(entity instanceof Player player && player.tickCount % 20 == 0) {
 							Inventory inv = player.getInventory();
 							if (slotIndex < inv.items.size() || slotIndex >= inv.items.size() + inv.armor.size()) {
 								return;
@@ -337,7 +337,7 @@ public class SCItems {
 							if (!player.hasEffect(MobEffects.DARKNESS) && level.random.nextInt(4) == 0) {
 								player.addEffect(new MobEffectInstance(MobEffects.DARKNESS, 80, 0, false, false, true));
 							}
-							player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 3, false, false, true));
+							player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 40, 2, false, false, true));
 						}
 					}
 				}
