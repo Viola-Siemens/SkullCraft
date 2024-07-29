@@ -1,0 +1,34 @@
+{
+  "parent": "skullcraft:skullcraft/root",
+  "criteria": {
+    "kopis": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:kopis"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.skullcraft.obtain_a_kopis.description"
+    },
+    "frame": "task",
+    "icon": {
+      "count": 1,
+      "id": "skullcraft:kopis"
+    },
+    "title": {
+      "translate": "advancements.skullcraft.obtain_a_kopis.title"
+    }
+  },
+  "requirements": [
+    [
+      "kopis"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

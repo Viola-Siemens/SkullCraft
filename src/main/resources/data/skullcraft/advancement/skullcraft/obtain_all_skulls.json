@@ -1,0 +1,629 @@
+{
+  "parent": "skullcraft:skullcraft/obtain_a_skull",
+  "criteria": {
+    "skeleton_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:skeleton_skull"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wither_skeleton_skull": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:wither_skeleton_skull"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "zombie_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:zombie_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "player_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:player_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "creeper_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:creeper_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "dragon_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:dragon_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "piglin_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "minecraft:piglin_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "villager_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:villager_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "illager_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:illager_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "witch_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:witch_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "iron_golem_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:iron_golem_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "zombie_villager_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:zombie_villager_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "slime_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:slime_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "lavaslime_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:lavaslime_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "blaze_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:blaze_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "spider_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:spider_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cave_spider_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:cave_spider_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "pig_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:pig_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "vex_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:vex_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "enderman_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:enderman_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "snow_golem_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:snow_golem_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "technoblade_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:technoblade_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "allay_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:allay_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "sheep_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:sheep_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "bat_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:bat_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "shulker_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:shulker_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "cow_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:cow_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "red_mooshroom_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:red_mooshroom_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "brown_mooshroom_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:brown_mooshroom_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "piglin_brute_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:piglin_brute_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "zombified_piglin_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:zombified_piglin_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "black_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:black_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "brown_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:brown_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "chestnut_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:chestnut_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "creamy_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:creamy_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "darkbrown_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:darkbrown_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "gray_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:gray_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "white_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:white_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "donkey_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:donkey_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "mule_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:mule_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "skeleton_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:skeleton_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "zombie_horse_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:zombie_horse_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "warden_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:warden_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "hoglin_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:hoglin_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "zoglin_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:zoglin_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.skullcraft.obtain_all_skulls.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "skullcraft:warden_head"
+    },
+    "title": {
+      "translate": "advancements.skullcraft.obtain_all_skulls.title"
+    }
+  },
+  "requirements": [
+    [
+      "skeleton_skull"
+    ],
+    [
+      "wither_skeleton_skull"
+    ],
+    [
+      "zombie_head"
+    ],
+    [
+      "player_head"
+    ],
+    [
+      "creeper_head"
+    ],
+    [
+      "dragon_head"
+    ],
+    [
+      "piglin_head"
+    ],
+    [
+      "villager_head",
+      "illager_head"
+    ],
+    [
+      "witch_head"
+    ],
+    [
+      "iron_golem_head"
+    ],
+    [
+      "zombie_villager_head"
+    ],
+    [
+      "slime_head"
+    ],
+    [
+      "lavaslime_head"
+    ],
+    [
+      "blaze_head"
+    ],
+    [
+      "spider_head"
+    ],
+    [
+      "cave_spider_head"
+    ],
+    [
+      "pig_head"
+    ],
+    [
+      "allay_head",
+      "vex_head"
+    ],
+    [
+      "wolf_head"
+    ],
+    [
+      "angry_wolf_head"
+    ],
+    [
+      "enderman_head"
+    ],
+    [
+      "snow_golem_head"
+    ],
+    [
+      "technoblade_head"
+    ],
+    [
+      "sheep_head"
+    ],
+    [
+      "bat_head"
+    ],
+    [
+      "shulker_head"
+    ],
+    [
+      "cow_head"
+    ],
+    [
+      "red_mooshroom_head"
+    ],
+    [
+      "brown_mooshroom_head"
+    ],
+    [
+      "piglin_brute_head"
+    ],
+    [
+      "zombified_piglin_head"
+    ],
+    [
+      "black_horse_head"
+    ],
+    [
+      "brown_horse_head"
+    ],
+    [
+      "chestnut_horse_head"
+    ],
+    [
+      "creamy_horse_head"
+    ],
+    [
+      "darkbrown_horse_head"
+    ],
+    [
+      "gray_horse_head"
+    ],
+    [
+      "white_horse_head"
+    ],
+    [
+      "donkey_head"
+    ],
+    [
+      "mule_head"
+    ],
+    [
+      "skeleton_horse_head",
+      "zombie_horse_head"
+    ],
+    [
+      "warden_head"
+    ],
+    [
+      "hoglin_head"
+    ],
+    [
+      "zoglin_head"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}

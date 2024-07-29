@@ -144,6 +144,15 @@
   "gui.ipp.jei.mob.skullcraft_hoglin": "Hoglin",
   "gui.ipp.jei.mob.skullcraft_zoglin": "Zoglin",
 
+  "advancements.skullcraft.root.title": "Skull Craft",
+  "advancements.skullcraft.root.description": "Welcome to skull craft mod!",
+  "advancements.skullcraft.obtain_a_skull.title": "First Skull",
+  "advancements.skullcraft.obtain_a_skull.description": "Obtain a skull.",
+  "advancements.skullcraft.obtain_a_kopis.title": "Heavy Blade",
+  "advancements.skullcraft.obtain_a_kopis.description": "Obtain a kopis to help you get mobs' skulls!",
+  "advancements.skullcraft.obtain_all_skulls.title": "Skull Hunter",
+  "advancements.skullcraft.obtain_all_skulls.description": "Collect all kinds of skulls.",
+
   "subtitles.block.skull_charger": "Skull Charger used",
   "subtitles.entity.illager.ambient": "Illager murmurs",
   "subtitles.entity.technoblade.ambient": "TECHNOBLADE NEVER DIES!"

@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:textures/block/soul_soil.png",
+    "description": {
+      "translate": "advancements.skullcraft.root.description"
+    },
+    "icon": {
+      "item": "skullcraft:pig_skull"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.skullcraft.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "tick"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

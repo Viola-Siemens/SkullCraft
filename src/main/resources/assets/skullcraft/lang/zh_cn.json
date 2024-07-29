@@ -144,6 +144,15 @@
   "gui.ipp.jei.mob.skullcraft_hoglin": "疣猪兽",
   "gui.ipp.jei.mob.skullcraft_zoglin": "僵尸疣猪兽",
 
+  "advancements.skullcraft.root.title": "头颅工艺",
+  "advancements.skullcraft.root.description": "感谢您使用头颅工艺 Mod！",
+  "advancements.skullcraft.obtain_a_skull.title": "第一个头颅",
+  "advancements.skullcraft.obtain_a_skull.description": "获得一个头颅。",
+  "advancements.skullcraft.obtain_a_kopis.title": "笨重的刀",
+  "advancements.skullcraft.obtain_a_kopis.description": "获得一把斩刀，来帮助你砍下生物们的头颅！",
+  "advancements.skullcraft.obtain_all_skulls.title": "头颅猎人",
+  "advancements.skullcraft.obtain_all_skulls.description": "收集所有种类的生物头颅。",
+
   "subtitles.block.skull_charger": "头颅充电站：使用",
   "subtitles.entity.illager.ambient": "灾厄村民：咕哝",
   "subtitles.entity.technoblade.ambient": "TECHNOBLADE NEVER DIES!"
