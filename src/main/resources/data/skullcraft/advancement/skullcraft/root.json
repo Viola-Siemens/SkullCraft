@@ -11,7 +11,8 @@
       "translate": "advancements.skullcraft.root.description"
     },
     "icon": {
-      "item": "skullcraft:pig_skull"
+      "count": 1,
+      "id": "skullcraft:pig_head"
     },
     "show_toast": false,
     "title": {
