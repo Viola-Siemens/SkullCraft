@@ -4,7 +4,12 @@ import com.google.common.collect.ImmutableSet;
 import com.hexagram2021.skullcraft.common.SCSounds;
 import com.hexagram2021.skullcraft.common.register.SCBlocks;
 import com.hexagram2021.skullcraft.common.register.SCItems;
+import com.hexagram2021.skullcraft.common.util.SCLogger;
+import com.hexagram2021.skullcraft.mixin.StructureTemplatePoolAccess;
+import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import net.minecraft.core.Registry;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -19,6 +24,9 @@ import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.structure.pools.SinglePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
+import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -26,8 +34,10 @@ import net.neoforged.neoforge.event.village.VillagerTradesEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
@@ -36,6 +46,46 @@ public class Villages {
 	public static final ResourceLocation ONMYOUJI = ResourceLocation.fromNamespaceAndPath(MODID, "onmyouji");
 
 	public static void init() {
+	}
+
+	public static void addAllStructuresToPool(RegistryAccess registryAccess) {
+		SCLogger.info("Adding skullcraft structures to template pools.");
+		addToPool(
+				ResourceLocation.withDefaultNamespace("village/plains/houses"),
+				registryAccess,
+				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/plains/houses/plains_onmyouji_1"), 3)
+		);
+	}
+	private static void addToPool(ResourceLocation poolName, RegistryAccess registryAccess, Consumer<PoolBuilder> consumer) {
+		Registry<StructureTemplatePool> registry = registryAccess.registryOrThrow(Registries.TEMPLATE_POOL);
+		StructureTemplatePool structureTemplatePool = registry.get(poolName);
+		if(structureTemplatePool == null) {
+			SCLogger.error("Ignored empty structure template pool: " + poolName);
+			return;
+		}
+		StructureTemplatePoolAccess pool = (StructureTemplatePoolAccess)structureTemplatePool;
+		List<Pair<StructurePoolElement, Integer>> rawTemplates = pool.getRawTemplates() instanceof ArrayList ?
+				pool.getRawTemplates() : new ArrayList<>(pool.getRawTemplates());
+
+		PoolBuilder poolBuilder = new PoolBuilder(pool, rawTemplates);
+		consumer.accept(poolBuilder);
+
+		pool.setRawTemplates(rawTemplates);
+	}
+	private static final class PoolBuilder {
+		StructureTemplatePoolAccess pool;
+		List<Pair<StructurePoolElement, Integer>> rawTemplates;
+
+		public PoolBuilder(StructureTemplatePoolAccess pool, List<Pair<StructurePoolElement, Integer>> rawTemplates) {
+			this.pool = pool;
+			this.rawTemplates = rawTemplates;
+		}
+
+		public void add(ResourceLocation toAdd, int weight) {
+			SinglePoolElement addedElement = SinglePoolElement.single(toAdd.toString()).apply(StructureTemplatePool.Projection.RIGID);
+			this.rawTemplates.add(Pair.of(addedElement, weight));
+			this.pool.getTemplates().add(addedElement);
+		}
 	}
 
 	public static class Registers {

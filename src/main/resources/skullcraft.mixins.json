@@ -15,6 +15,7 @@
     "DeathLootMixin",
     "NoteBlockInstrumentMixin",
     "PlayerHeadDeathLootMixin",
-    "SkullBlockEntityMixin"
+    "SkullBlockEntityMixin",
+    "StructureTemplatePoolAccess"
   ]
 }
