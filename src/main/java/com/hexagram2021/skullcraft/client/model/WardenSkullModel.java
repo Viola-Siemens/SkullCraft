@@ -17,7 +17,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
-public class WardenSkullModel extends SkullModelBase {
+public class WardenSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "warden_head"), "main");
 
 	private final ModelPart root;
@@ -54,5 +54,10 @@ public class WardenSkullModel extends SkullModelBase {
 	@Override
 	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
 		this.root.render(transform, consumer, x, y, rgba);
+	}
+
+	@Override
+	public float getWallSkullZShift() {
+		return -0.125F;
 	}
 }

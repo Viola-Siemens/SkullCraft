@@ -14,7 +14,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
-public class CubeSkullModel extends SkullModelBase {
+public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "slime_head"), "main");
 	public static final ModelLayerLocation LAVASLIME_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "lavaslime_head"), "main");
 	public static final ModelLayerLocation BLAZE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "blaze_head"), "main");
@@ -147,5 +147,10 @@ public class CubeSkullModel extends SkullModelBase {
 	@Override
 	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
 		this.root.render(transform, consumer, x, y, rgba);
+	}
+
+	@Override
+	public float getWallSkullZShift() {
+		return 0.0F;
 	}
 }

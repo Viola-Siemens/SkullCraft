@@ -17,7 +17,7 @@ import net.neoforged.api.distmarker.OnlyIn;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 @OnlyIn(Dist.CLIENT)
-public class PiglinSkullModel extends SkullModelBase {
+public class PiglinSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation PIGLIN_BRUTE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "piglin_brute_head"), "main");
 	public static final ModelLayerLocation ZOMBIFIED_PIGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zombified_piglin_head"), "main");
 
@@ -63,5 +63,10 @@ public class PiglinSkullModel extends SkullModelBase {
 	@Override
 	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
 		this.root.render(transform, consumer, x, y, rgba);
+	}
+
+	@Override
+	public float getWallSkullZShift() {
+		return 0.0F;
 	}
 }

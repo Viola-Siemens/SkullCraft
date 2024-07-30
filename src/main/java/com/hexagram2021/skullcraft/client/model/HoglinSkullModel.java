@@ -15,7 +15,7 @@ import net.minecraft.util.Mth;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-public class HoglinSkullModel extends SkullModelBase {
+public class HoglinSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation HOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "hoglin_head"), "main");
 	public static final ModelLayerLocation ZOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zoglin_head"), "main");
 
@@ -55,5 +55,10 @@ public class HoglinSkullModel extends SkullModelBase {
 	@Override
 	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
 		this.root.render(transform, consumer, x, y, rgba);
+	}
+
+	@Override
+	public float getWallSkullZShift() {
+		return 0.0F;
 	}
 }
