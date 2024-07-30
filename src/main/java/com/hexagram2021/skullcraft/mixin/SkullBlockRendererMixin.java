@@ -24,18 +24,24 @@ public class SkullBlockRendererMixin {
 									   MultiBufferSource bufferSource, int packedLight, int packedOverlay,
 									   CallbackInfo ci) {
 		if(SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && blockEntity instanceof Scalable scalable) {
-			final float dx = (float)scalable.skullcraft$getScaleX() / 100.0F;
-			final float dy = (float)scalable.skullcraft$getScaleY() / 100.0F;
-			final float dz = (float)scalable.skullcraft$getScaleZ() / 100.0F;
+			float dx = (float)scalable.skullcraft$getScaleX() / 100.0F;
+			float dy = (float)scalable.skullcraft$getScaleY() / 100.0F;
+			float dz = (float)scalable.skullcraft$getScaleZ() / 100.0F;
 			BlockState blockState = blockEntity.getBlockState();
 			if(blockState.getBlock() instanceof WallSkullBlock) {
 				Direction direction = blockState.getValue(WallSkullBlock.FACING);
+				if(direction.getAxis().equals(Direction.Axis.X)) {
+					float d = dx;
+					dx = dz;
+					dz = d;
+				}
 				poseStack.translate(
 						(0.5F - dx * 0.5F) * (1.0F - direction.getStepX()),
 						0.5F - dy * 0.5F,
 						(0.5F - dz * 0.5F) * (1.0F - direction.getStepZ())
 				);
 			} else {
+				// TODO: support non-symmetry skull
 				poseStack.translate(0.5F - dx * 0.5F, 0.0F, 0.5F - dz * 0.5F);
 			}
 			poseStack.scale(dx, dy, dz);

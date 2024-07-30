@@ -148,13 +148,93 @@ public class SCItems {
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_HEAD = new ItemEntry<>(
 				"wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-				SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
-		)
+						SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_ASHEN_HEAD = new ItemEntry<>(
+				"wolf_ashen_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.WOLF_ASHEN_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_BLACK_HEAD = new ItemEntry<>(
+				"wolf_black_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.WOLF_BLACK_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_CHESTNUT_HEAD = new ItemEntry<>(
+				"wolf_chestnut_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.WOLF_CHESTNUT_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_RUSTY_HEAD = new ItemEntry<>(
+				"wolf_rusty_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_RUSTY_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_SNOWY_HEAD = new ItemEntry<>(
+				"wolf_snowy_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SNOWY_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_SPOTTED_HEAD = new ItemEntry<>(
+				"wolf_spotted_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SPOTTED_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_STRIPED_HEAD = new ItemEntry<>(
+				"wolf_striped_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_STRIPED_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> WOLF_WOODS_HEAD = new ItemEntry<>(
+				"wolf_woods_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WOODS_WALL_HEAD.get(), props, Direction.DOWN
+				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_HEAD = new ItemEntry<>(
 				"angry_wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-				SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
-		)
+						SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_ASHEN_HEAD = new ItemEntry<>(
+				"angry_wolf_ashen_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_BLACK_HEAD = new ItemEntry<>(
+				"angry_wolf_black_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_CHESTNUT_HEAD = new ItemEntry<>(
+				"angry_wolf_chestnut_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_RUSTY_HEAD = new ItemEntry<>(
+				"angry_wolf_rusty_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_SNOWY_HEAD = new ItemEntry<>(
+				"angry_wolf_snowy_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_SPOTTED_HEAD = new ItemEntry<>(
+				"angry_wolf_spotted_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_STRIPED_HEAD = new ItemEntry<>(
+				"angry_wolf_striped_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_WOODS_HEAD = new ItemEntry<>(
+				"angry_wolf_woods_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_WALL_HEAD.get(), props, Direction.DOWN
+				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ENDERMAN_HEAD = new ItemEntry<>(
 				"enderman_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(

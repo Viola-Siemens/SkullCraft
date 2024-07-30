@@ -122,9 +122,73 @@ public class SCBlocks {
 				"wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF, props)
 		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_ASHEN_HEAD = new BlockEntry<>(
+				"wolf_ashen_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_ASHEN, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_BLACK_HEAD = new BlockEntry<>(
+				"wolf_black_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_BLACK, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_CHESTNUT_HEAD = new BlockEntry<>(
+				"wolf_chestnut_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_CHESTNUT, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_RUSTY_HEAD = new BlockEntry<>(
+				"wolf_rusty_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_RUSTY, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_SNOWY_HEAD = new BlockEntry<>(
+				"wolf_snowy_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_SNOWY, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_SPOTTED_HEAD = new BlockEntry<>(
+				"wolf_spotted_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_SPOTTED, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_STRIPED_HEAD = new BlockEntry<>(
+				"wolf_striped_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_STRIPED, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> WOLF_WOODS_HEAD = new BlockEntry<>(
+				"wolf_woods_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.WOLF_WOODS, props)
+		);
 		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_HEAD = new BlockEntry<>(
 				"angry_wolf_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_ASHEN_HEAD = new BlockEntry<>(
+				"angry_wolf_ashen_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_ASHEN, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_BLACK_HEAD = new BlockEntry<>(
+				"angry_wolf_black_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_BLACK, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_CHESTNUT_HEAD = new BlockEntry<>(
+				"angry_wolf_chestnut_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_CHESTNUT, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_RUSTY_HEAD = new BlockEntry<>(
+				"angry_wolf_rusty_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_RUSTY, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_SNOWY_HEAD = new BlockEntry<>(
+				"angry_wolf_snowy_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_SNOWY, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_SPOTTED_HEAD = new BlockEntry<>(
+				"angry_wolf_spotted_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_SPOTTED, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_STRIPED_HEAD = new BlockEntry<>(
+				"angry_wolf_striped_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_STRIPED, props)
+		);
+		public static final BlockEntry<CubeSkullBlock> ANGRY_WOLF_WOODS_HEAD = new BlockEntry<>(
+				"angry_wolf_woods_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_WOODS, props)
 		);
 		public static final BlockEntry<CubeSkullBlock> ENDERMAN_HEAD = new BlockEntry<>(
 				"enderman_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ENDERMAN),
@@ -167,9 +231,73 @@ public class SCBlocks {
 				"wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
 				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF, props)
 		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_ASHEN_WALL_HEAD = new BlockEntry<>(
+				"wolf_ashen_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_ASHEN, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_BLACK_WALL_HEAD = new BlockEntry<>(
+				"wolf_black_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_BLACK, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_CHESTNUT_WALL_HEAD = new BlockEntry<>(
+				"wolf_chestnut_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_CHESTNUT, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_RUSTY_WALL_HEAD = new BlockEntry<>(
+				"wolf_rusty_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_RUSTY, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_SNOWY_WALL_HEAD = new BlockEntry<>(
+				"wolf_snowy_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_SNOWY, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_SPOTTED_WALL_HEAD = new BlockEntry<>(
+				"wolf_spotted_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_SPOTTED, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_STRIPED_WALL_HEAD = new BlockEntry<>(
+				"wolf_striped_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_STRIPED, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> WOLF_WOODS_WALL_HEAD = new BlockEntry<>(
+				"wolf_woods_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.WOLF_WOODS, props)
+		);
 		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_WALL_HEAD = new BlockEntry<>(
 				"angry_wolf_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
 				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_ASHEN_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_ashen_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_ASHEN, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_BLACK_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_black_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_BLACK, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_CHESTNUT_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_chestnut_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_CHESTNUT, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_RUSTY_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_rusty_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_RUSTY, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_SNOWY_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_snowy_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_SNOWY, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_SPOTTED_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_spotted_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_SPOTTED, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_STRIPED_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_striped_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_STRIPED, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> ANGRY_WOLF_WOODS_WALL_HEAD = new BlockEntry<>(
+				"angry_wolf_woods_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ANGRY_WOLF),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.ANGRY_WOLF_WOODS, props)
 		);
 		public static final BlockEntry<CubeWallSkullBlock> ENDERMAN_WALL_HEAD = new BlockEntry<>(
 				"enderman_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_ENDERMAN),

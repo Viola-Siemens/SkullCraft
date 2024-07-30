@@ -36,7 +36,6 @@ public class NoteBlockInstrumentMixin {
 		int ordinal = $VALUES.length;
 		$VALUES = Arrays.copyOf($VALUES, ordinal + 31);
 
-
 		NOTE_BLOCK_IMITATE_VILLAGER = $VALUES[ordinal] =
 				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_VILLAGER", ordinal, "villager", SCSounds.NOTE_BLOCK_IMITATE_VILLAGER);
 		NOTE_BLOCK_IMITATE_ILLAGER = $VALUES[ordinal + 1] =

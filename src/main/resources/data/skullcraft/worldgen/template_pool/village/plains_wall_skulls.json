@@ -3,7 +3,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/cow_wall_skull",
+        "location": "skullcraft:village/plains/cow_wall_skull",
         "processors": {
           "processors": []
         },
@@ -14,7 +14,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/donkey_wall_skull",
+        "location": "skullcraft:village/plains/donkey_wall_skull",
         "processors": {
           "processors": []
         },
@@ -25,7 +25,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/pig_wall_skull",
+        "location": "skullcraft:village/plains/pig_wall_skull",
         "processors": {
           "processors": []
         },
@@ -36,7 +36,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/player_wall_head",
+        "location": "skullcraft:village/plains/player_wall_head",
         "processors": {
           "processors": []
         },
@@ -47,7 +47,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/sheep_wall_skull",
+        "location": "skullcraft:village/plains/sheep_wall_skull",
         "processors": {
           "processors": []
         },
@@ -58,7 +58,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/wolf_wall_skull",
+        "location": "skullcraft:village/plains/wolf_wall_skull",
         "processors": {
           "processors": []
         },

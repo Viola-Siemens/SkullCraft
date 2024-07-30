@@ -201,11 +201,171 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "wolf_ashen_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_ashen_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_black_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_black_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_chestnut_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_chestnut_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_rusty_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_rusty_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_snowy_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_snowy_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_spotted_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_spotted_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_striped_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_striped_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "wolf_woods_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:wolf_woods_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "angry_wolf_head": {
       "conditions": {
         "items": [
           {
             "items": "skullcraft:angry_wolf_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_ashen_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_ashen_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_black_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_black_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_chestnut_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_chestnut_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_rusty_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_rusty_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_snowy_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_snowy_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_spotted_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_spotted_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_striped_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_striped_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "angry_wolf_woods_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:angry_wolf_woods_head"
           }
         ]
       },
@@ -508,7 +668,23 @@
       "allay_head",
       "vex_head",
       "wolf_head",
+      "wolf_ashen_head",
+      "wolf_black_head",
+      "wolf_chestnut_head",
+      "wolf_rusty_head",
+      "wolf_snowy_head",
+      "wolf_spotted_head",
+      "wolf_striped_head",
+      "wolf_woods_head",
       "angry_wolf_head",
+      "angry_wolf_ashen_head",
+      "angry_wolf_black_head",
+      "angry_wolf_chestnut_head",
+      "angry_wolf_rusty_head",
+      "angry_wolf_snowy_head",
+      "angry_wolf_spotted_head",
+      "angry_wolf_striped_head",
+      "angry_wolf_woods_head",
       "enderman_head",
       "snow_golem_head",
       "technoblade_head",

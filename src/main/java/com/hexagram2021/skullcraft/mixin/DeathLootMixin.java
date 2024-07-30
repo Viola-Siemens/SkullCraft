@@ -64,8 +64,36 @@ public class DeathLootMixin {
 			case CaveSpider ignored -> SCItems.CubeSkulls.CAVE_SPIDER_HEAD.get();
 			case Spider ignored -> SCItems.CubeSkulls.SPIDER_HEAD.get();
 			case Pig ignored -> SCItems.CubeSkulls.PIG_HEAD.get();
-			case Wolf wolf -> wolf.isAngry() ?
-					SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get();
+			case Wolf wolf -> {
+				boolean angry = wolf.isAngry();
+				yield wolf.getVariant().unwrapKey().map(variant -> {
+					if(variant.equals(WolfVariants.ASHEN)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get() : SCItems.CubeSkulls.WOLF_ASHEN_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.BLACK)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get() : SCItems.CubeSkulls.WOLF_BLACK_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.CHESTNUT)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get() : SCItems.CubeSkulls.WOLF_CHESTNUT_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.RUSTY)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get() : SCItems.CubeSkulls.WOLF_RUSTY_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.SNOWY)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get() : SCItems.CubeSkulls.WOLF_SNOWY_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.SPOTTED)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get() : SCItems.CubeSkulls.WOLF_SPOTTED_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.STRIPED)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get() : SCItems.CubeSkulls.WOLF_STRIPED_HEAD.get();
+					}
+					if(variant.equals(WolfVariants.WOODS)) {
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get() : SCItems.CubeSkulls.WOLF_WOODS_HEAD.get();
+					}
+					return angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get();
+				}).orElseGet(() -> angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get());
+			}
 			case EnderMan ignored -> SCItems.CubeSkulls.ENDERMAN_HEAD.get();
 			case SnowGolem ignored -> SCItems.CubeSkulls.SNOW_GOLEM_HEAD.get();
 			case Sheep ignored -> SCItems.SmallCubeSkulls.SHEEP_HEAD.get();
