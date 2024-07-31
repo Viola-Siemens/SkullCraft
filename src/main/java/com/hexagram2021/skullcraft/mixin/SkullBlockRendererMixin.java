@@ -9,9 +9,12 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.SkullBlockRenderer;
 import net.minecraft.core.Direction;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.block.SkullBlock;
 import net.minecraft.world.level.block.WallSkullBlock;
 import net.minecraft.world.level.block.entity.SkullBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.RotationSegment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -41,7 +44,12 @@ public class SkullBlockRendererMixin {
 						(0.5F - dz * 0.5F) * (1.0F - direction.getStepZ())
 				);
 			} else {
-				// TODO: support non-symmetry skull
+				float theta = RotationSegment.convertToDegrees(blockState.getValue(SkullBlock.ROTATION)) * Mth.DEG_TO_RAD;
+				float cos = Mth.cos(theta);
+				float sin = Mth.sin(theta);
+				float d = dx;
+				dx = d * cos * cos + dz * sin * sin;
+				dz = d * sin * sin + dz * cos * cos;
 				poseStack.translate(0.5F - dx * 0.5F, 0.0F, 0.5F - dz * 0.5F);
 			}
 			poseStack.scale(dx, dy, dz);
