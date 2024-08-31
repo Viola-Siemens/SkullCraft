@@ -14,17 +14,6 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/common/donkey_wall_skull",
-        "processors": {
-          "processors": []
-        },
-        "projection": "rigid"
-      },
-      "weight": 1
-    },
-    {
-      "element": {
-        "element_type": "minecraft:legacy_single_pool_element",
         "location": "skullcraft:village/common/pig_wall_skull",
         "processors": {
           "processors": []
@@ -58,7 +47,7 @@
     {
       "element": {
         "element_type": "minecraft:legacy_single_pool_element",
-        "location": "skullcraft:village/common/wolf_woods_wall_skull",
+        "location": "skullcraft:village/common/wolf_striped_wall_skull",
         "processors": {
           "processors": []
         },

@@ -55,6 +55,11 @@ public class Villages {
 				registryAccess,
 				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/plains/houses/plains_onmyouji_1"), 3)
 		);
+		addToPool(
+				ResourceLocation.withDefaultNamespace("village/desert/houses"),
+				registryAccess,
+				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/desert/houses/desert_onmyouji_1"), 3)
+		);
 	}
 	private static void addToPool(ResourceLocation poolName, RegistryAccess registryAccess, Consumer<PoolBuilder> consumer) {
 		Registry<StructureTemplatePool> registry = registryAccess.registryOrThrow(Registries.TEMPLATE_POOL);
