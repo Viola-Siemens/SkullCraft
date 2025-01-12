@@ -12,7 +12,9 @@
               "function": "minecraft:copy_components",
               "source": "block_entity",
               "include": [
-                "skullcraft:head_scale"
+                "skullcraft:head_scale",
+                "minecraft:enchantments",
+                "minecraft:repair_cost"
               ]
             }
           ],

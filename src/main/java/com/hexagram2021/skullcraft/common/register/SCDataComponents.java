@@ -1,6 +1,5 @@
 package com.hexagram2021.skullcraft.common.register;
 
-import com.hexagram2021.skullcraft.SkullCraft;
 import com.hexagram2021.skullcraft.common.components.SkullScale;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
@@ -14,7 +13,7 @@ public class SCDataComponents {
 	private static final DeferredRegister<DataComponentType<?>> REGISTER = DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, MODID);
 
 	public static final DeferredHolder<DataComponentType<?>, DataComponentType<SkullScale>> SKULL_SCALE = REGISTER.register(
-			SkullCraft.SCALE_TAG,
+			"head_scale",
 			() -> DataComponentType.<SkullScale>builder()
 					.persistent(SkullScale.CODEC)
 					.networkSynchronized(SkullScale.STREAM_CODEC)

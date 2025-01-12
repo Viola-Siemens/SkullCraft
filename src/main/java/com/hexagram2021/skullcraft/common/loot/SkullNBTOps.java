@@ -1,11 +1,13 @@
 package com.hexagram2021.skullcraft.common.loot;
 
-import com.hexagram2021.skullcraft.common.block.Scalable;
+import com.hexagram2021.skullcraft.common.block.IEnchantableBlockEntity;
+import com.hexagram2021.skullcraft.common.block.IScalableBlockEntity;
 import com.hexagram2021.skullcraft.common.components.SkullScale;
 import com.hexagram2021.skullcraft.common.register.SCDataComponents;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -43,17 +45,25 @@ public class SkullNBTOps {
 			if(context.hasParam(LootContextParams.BLOCK_ENTITY)) {
 				BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
 				if(blockEntity instanceof SkullBlockEntity) {
-					Scalable skullBlockEntity = (Scalable)blockEntity;
-					int scaleX = skullBlockEntity.skullcraft$getScaleX();
-					int scaleY = skullBlockEntity.skullcraft$getScaleY();
-					int scaleZ = skullBlockEntity.skullcraft$getScaleZ();
+					IScalableBlockEntity scalableBlockEntity = (IScalableBlockEntity)blockEntity;
+					int scaleX = scalableBlockEntity.skullcraft$getScaleX();
+					int scaleY = scalableBlockEntity.skullcraft$getScaleY();
+					int scaleZ = scalableBlockEntity.skullcraft$getScaleZ();
 					if(scaleX != 100 || scaleY != 100 || scaleZ != 100) {
 						SkullScale skullScale = new SkullScale(scaleX, scaleY, scaleZ);
 						for(ItemStack itemStack: generatedLoot) {
 							Item item = itemStack.getItem();
-							if(item instanceof BlockItem && ((BlockItem)item).getBlock() instanceof AbstractSkullBlock) {
+							if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
 								itemStack.set(SCDataComponents.SKULL_SCALE.get(), skullScale);
 							}
+						}
+					}
+					IEnchantableBlockEntity enchantableBlockEntity = (IEnchantableBlockEntity)blockEntity;
+					for(ItemStack itemStack: generatedLoot) {
+						Item item = itemStack.getItem();
+						if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
+							itemStack.set(DataComponents.ENCHANTMENTS, enchantableBlockEntity.skullcraft$getEnchantments());
+							itemStack.set(DataComponents.REPAIR_COST, enchantableBlockEntity.skullcraft$getRepairCost());
 						}
 					}
 				}

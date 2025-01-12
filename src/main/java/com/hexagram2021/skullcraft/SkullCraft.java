@@ -19,7 +19,9 @@ import java.util.function.Supplier;
 public class SkullCraft {
 	public static final String MODID = "skullcraft";
 
-	public static final String SCALE_TAG = "head_scale";
+	public static final String SCALE_TAG = "skullcraft:head_scale";
+	public static final String ENCHANTMENTS_TAG = "skullcraft:enchantments";
+	public static final String REPAIR_COST_TAG = "skullcraft:repair_cost";
 
 	public static <T> Supplier<T> bootstrapErrorToXCPInDev(Supplier<T> in) {
 		if(FMLLoader.isProduction()) {

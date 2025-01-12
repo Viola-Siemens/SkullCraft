@@ -2,7 +2,7 @@ package com.hexagram2021.skullcraft.mixin;
 
 import com.hexagram2021.skullcraft.client.config.SCClientConfig;
 import com.hexagram2021.skullcraft.client.model.IWallShiftSkullModel;
-import com.hexagram2021.skullcraft.common.block.Scalable;
+import com.hexagram2021.skullcraft.common.block.IScalableBlockEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -26,7 +26,7 @@ public class SkullBlockRendererMixin {
 	public void skullcraft$renderScale(SkullBlockEntity blockEntity, float partialTick, PoseStack poseStack,
 									   MultiBufferSource bufferSource, int packedLight, int packedOverlay,
 									   CallbackInfo ci) {
-		if(SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && blockEntity instanceof Scalable scalable) {
+		if(SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && blockEntity instanceof IScalableBlockEntity scalable) {
 			float dx = (float)scalable.skullcraft$getScaleX() / 100.0F;
 			float dy = (float)scalable.skullcraft$getScaleY() / 100.0F;
 			float dz = (float)scalable.skullcraft$getScaleZ() / 100.0F;
