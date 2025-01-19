@@ -81,6 +81,9 @@ public class SCItems {
 	public static final ItemEntry<Item> KOPIS_HILT = new ItemEntry<>(
 			"kopis_hilt", DEFAULT_ITEM_PROPERTIES, Item::new
 	);
+	public static final ItemEntry<Item> SKULL_ENCHANTING_BEAD = new ItemEntry<>(
+			"skull_enchanting_bead", DEFAULT_ITEM_PROPERTIES, Item::new
+	);
 
 	public static class HumanSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> VILLAGER_HEAD = new ItemEntry<>(
@@ -244,6 +247,11 @@ public class SCItems {
 		public static final ItemEntry<StandingAndWallBlockItem> SNOW_GOLEM_HEAD = new ItemEntry<>(
 				"snow_golem_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
 						SCBlocks.CubeSkulls.SNOW_GOLEM_HEAD.get(), SCBlocks.CubeSkulls.SNOW_GOLEM_WALL_HEAD.get(), props, Direction.DOWN
+				)
+		);
+		public static final ItemEntry<StandingAndWallBlockItem> BREEZE_HEAD = new ItemEntry<>(
+				"breeze_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.BREEZE_HEAD.get(), SCBlocks.CubeSkulls.BREEZE_WALL_HEAD.get(), props, Direction.DOWN
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> TECHNOBLADE_HEAD = new ItemEntry<>(

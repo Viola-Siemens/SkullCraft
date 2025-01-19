@@ -16,6 +16,7 @@ public class SCNoteBlockInstruments {
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_PIG;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ENDERMAN;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_SNOW_GOLEM;
+	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_BREEZE;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_TECHNOBLADE;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_SHEEP;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_BAT;

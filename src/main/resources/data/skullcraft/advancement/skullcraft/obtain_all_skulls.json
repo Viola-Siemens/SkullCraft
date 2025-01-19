@@ -391,6 +391,16 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "breeze_head": {
+      "conditions": {
+        "items": [
+          {
+            "items": "skullcraft:breeze_head"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "technoblade_head": {
       "conditions": {
         "items": [
@@ -761,6 +771,9 @@
     ],
     [
       "snow_golem_head"
+    ],
+    [
+      "breeze_head"
     ],
     [
       "technoblade_head"

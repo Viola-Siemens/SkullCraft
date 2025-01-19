@@ -2,6 +2,7 @@ package com.hexagram2021.skullcraft.common.crafting;
 
 import com.hexagram2021.skullcraft.common.block.entity.SkullChargerBlockEntity;
 import com.hexagram2021.skullcraft.common.register.SCContainerTypes;
+import com.hexagram2021.skullcraft.common.register.SCItems;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -15,19 +16,19 @@ import net.minecraft.world.level.block.AbstractSkullBlock;
 public class SkullChargerMenu extends AbstractContainerMenu {
 	public static final int INPUT_SLOT = 0;
 	public static final int FUEL_SLOT = 1;
-	private static final int INV_SLOT_START = 2;
-	private static final int INV_SLOT_END = 29;
-	private static final int USE_ROW_SLOT_START = 29;
-	private static final int USE_ROW_SLOT_END = 38;
-	public static final int SLOT_COUNT = 2;
+	public static final int ENCHANT_SLOT = 2;
+	private static final int INV_SLOT_START = 3;
+	private static final int INV_SLOT_END = 30;
+	private static final int USE_ROW_SLOT_START = 30;
+	private static final int USE_ROW_SLOT_END = 39;
+	public static final int SLOT_COUNT = 3;
 	public static final int DATA_COUNT = 4;
 
 	private final Container skullCharger;
 	private final ContainerData skullChargerData;
 
 	final Slot inputSlot;
-
-	Runnable slotUpdateListener = () -> {};
+	final Slot enchantSlot;
 
 	public SkullChargerMenu(int id, Inventory inventory) {
 		this(id, inventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(DATA_COUNT));
@@ -50,7 +51,6 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 			@Override
 			public void setChanged() {
 				super.setChanged();
-				SkullChargerMenu.this.slotUpdateListener.run();
 			}
 
 			@Override
@@ -61,7 +61,18 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		this.addSlot(new Slot(container, FUEL_SLOT, 20, 51) {
 			@Override
 			public boolean mayPlace(ItemStack itemStack) {
-				return itemStack.is(Items.SOUL_SOIL);
+				return SkullChargerMenu.this.isFuel(itemStack);
+			}
+
+			@Override
+			public int getMaxStackSize() {
+				return 64;
+			}
+		});
+		this.enchantSlot = this.addSlot(new Slot(container, ENCHANT_SLOT, 92, 40) {
+			@Override
+			public boolean mayPlace(ItemStack itemStack) {
+				return SkullChargerMenu.this.isEnchantingBead(itemStack);
 			}
 
 			@Override
@@ -96,6 +107,10 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		return this.inputSlot.hasItem() && this.canCharge(this.inputSlot.getItem());
 	}
 
+	public boolean hasEnchantingBead() {
+		return this.enchantSlot.hasItem() && this.isEnchantingBead(this.enchantSlot.getItem());
+	}
+
 	private boolean canCharge(ItemStack itemStack) {
 		return itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock;
 	}
@@ -104,12 +119,25 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		return itemStack.is(Items.SOUL_SOIL);
 	}
 
+	protected boolean isEnchantingBead(ItemStack itemStack) {
+		return itemStack.is(SCItems.SKULL_ENCHANTING_BEAD.get());
+	}
+
 	@Override
 	public boolean clickMenuButton(Player player, int index) {
-		if(this.hasInputItem() && index >= 0 && index <= 2) {
-			this.setAddXYZ(index);
-			this.broadcastChanges();
-			return true;
+		if(this.hasInputItem()) {
+			if(index >= 0 && index <= 2) {
+				this.setAddXYZ(index);
+				this.broadcastChanges();
+				return true;
+			}
+			if(index == 3 && this.hasEnchantingBead()) {
+				if(this.skullCharger instanceof SkullChargerBlockEntity skullChargerBlockEntity) {
+					skullChargerBlockEntity.performEnchant(player.level(), player.registryAccess(), player.getRandom());
+				}
+				this.broadcastChanges();
+				return true;
+			}
 		}
 		return false;
 	}
@@ -121,13 +149,17 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		if (slot.hasItem()) {
 			ItemStack itemstack1 = slot.getItem();
 			itemstack = itemstack1.copy();
-			if (index != FUEL_SLOT && index != INPUT_SLOT) {
+			if (index != FUEL_SLOT && index != ENCHANT_SLOT && index != INPUT_SLOT) {
 				if (this.canCharge(itemstack1)) {
 					if (!this.moveItemStackTo(itemstack1, INPUT_SLOT, INPUT_SLOT + 1, false)) {
 						return ItemStack.EMPTY;
 					}
 				} else if (this.isFuel(itemstack1)) {
 					if (!this.moveItemStackTo(itemstack1, FUEL_SLOT, FUEL_SLOT + 1, false)) {
+						return ItemStack.EMPTY;
+					}
+				} else if(this.isEnchantingBead(itemstack1)) {
+					if (!this.moveItemStackTo(itemstack1, ENCHANT_SLOT, ENCHANT_SLOT + 1, false)) {
 						return ItemStack.EMPTY;
 					}
 				} else if (index >= INV_SLOT_START && index < INV_SLOT_END) {
@@ -155,10 +187,6 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		}
 
 		return itemstack;
-	}
-
-	public void registerUpdateListener(Runnable func) {
-		this.slotUpdateListener = func;
 	}
 
 	public int getEnergy() {

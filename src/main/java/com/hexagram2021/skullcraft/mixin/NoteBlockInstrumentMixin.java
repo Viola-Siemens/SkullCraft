@@ -34,7 +34,7 @@ public class NoteBlockInstrumentMixin {
 	@Inject(method = "<clinit>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;$VALUES:[Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;", shift = At.Shift.AFTER))
 	private static void skullcraft$injectEnum(CallbackInfo ci) {
 		int ordinal = $VALUES.length;
-		$VALUES = Arrays.copyOf($VALUES, ordinal + 31);
+		$VALUES = Arrays.copyOf($VALUES, ordinal + 32);
 
 		NOTE_BLOCK_IMITATE_VILLAGER = $VALUES[ordinal] =
 				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_VILLAGER", ordinal, "villager", SCSounds.NOTE_BLOCK_IMITATE_VILLAGER);
@@ -64,39 +64,41 @@ public class NoteBlockInstrumentMixin {
 				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ENDERMAN", ordinal + 12, "enderman", SCSounds.NOTE_BLOCK_IMITATE_ENDERMAN);
 		NOTE_BLOCK_IMITATE_SNOW_GOLEM = $VALUES[ordinal + 13] =
 				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SNOW_GOLEM", ordinal + 13, "snow_golem", SCSounds.NOTE_BLOCK_IMITATE_SNOW_GOLEM);
-		NOTE_BLOCK_IMITATE_TECHNOBLADE = $VALUES[ordinal + 14] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_TECHNOBLADE", ordinal + 14, "technoblade", SCSounds.NOTE_BLOCK_IMITATE_TECHNOBLADE);
-		NOTE_BLOCK_IMITATE_SHEEP = $VALUES[ordinal + 15] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SHEEP", ordinal + 15, "sheep", SCSounds.NOTE_BLOCK_IMITATE_SHEEP);
-		NOTE_BLOCK_IMITATE_BAT = $VALUES[ordinal + 16] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_BAT", ordinal + 16, "bat", SCSounds.NOTE_BLOCK_IMITATE_BAT);
-		NOTE_BLOCK_IMITATE_SHULKER = $VALUES[ordinal + 17] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SHULKER", ordinal + 17, "shulker", SCSounds.NOTE_BLOCK_IMITATE_SHULKER);
-		NOTE_BLOCK_IMITATE_ALLAY = $VALUES[ordinal + 18] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ALLAY", ordinal + 18, "allay", SCSounds.NOTE_BLOCK_IMITATE_ALLAY);
-		NOTE_BLOCK_IMITATE_VEX = $VALUES[ordinal + 19] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_VEX", ordinal + 19, "vex", SCSounds.NOTE_BLOCK_IMITATE_VEX);
-		NOTE_BLOCK_IMITATE_COW = $VALUES[ordinal + 20] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_COW", ordinal + 20, "cow", SCSounds.NOTE_BLOCK_IMITATE_COW);
-		NOTE_BLOCK_IMITATE_PIGLIN_BRUTE = $VALUES[ordinal + 21] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_PIGLIN_BRUTE", ordinal + 21, "piglin_brute", SCSounds.NOTE_BLOCK_IMITATE_PIGLIN_BRUTE);
-		NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN = $VALUES[ordinal + 22] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN", ordinal + 22, "zombified_piglin", SCSounds.NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN);
-		NOTE_BLOCK_IMITATE_HORSE = $VALUES[ordinal + 23] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_HORSE", ordinal + 23, "horse", SCSounds.NOTE_BLOCK_IMITATE_HORSE);
-		NOTE_BLOCK_IMITATE_DONKEY = $VALUES[ordinal + 24] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_DONKEY", ordinal + 24, "donkey", SCSounds.NOTE_BLOCK_IMITATE_DONKEY);
-		NOTE_BLOCK_IMITATE_MULE = $VALUES[ordinal + 25] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_MULE", ordinal + 25, "mule", SCSounds.NOTE_BLOCK_IMITATE_MULE);
-		NOTE_BLOCK_IMITATE_SKELETON_HORSE = $VALUES[ordinal + 26] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SKELETON_HORSE", ordinal + 26, "skeleton_horse", SCSounds.NOTE_BLOCK_IMITATE_SKELETON_HORSE);
-		NOTE_BLOCK_IMITATE_ZOMBIE_HORSE = $VALUES[ordinal + 27] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOMBIE_HORSE", ordinal + 27, "zombie_horse", SCSounds.NOTE_BLOCK_IMITATE_ZOMBIE_HORSE);
-		NOTE_BLOCK_IMITATE_WARDEN = $VALUES[ordinal + 28] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_WARDEN", ordinal + 28, "warden", SCSounds.NOTE_BLOCK_IMITATE_WARDEN);
-		NOTE_BLOCK_IMITATE_HOGLIN = $VALUES[ordinal + 29] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_HOGLIN", ordinal + 29, "hoglin", SCSounds.NOTE_BLOCK_IMITATE_HOGLIN);
-		NOTE_BLOCK_IMITATE_ZOGLIN = $VALUES[ordinal + 30] =
-				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOGLIN", ordinal + 30, "zoglin", SCSounds.NOTE_BLOCK_IMITATE_ZOGLIN);
+		NOTE_BLOCK_IMITATE_BREEZE = $VALUES[ordinal + 14] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_BREEZE", ordinal + 14, "breeze", SCSounds.NOTE_BLOCK_IMITATE_BREEZE);
+		NOTE_BLOCK_IMITATE_TECHNOBLADE = $VALUES[ordinal + 15] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_TECHNOBLADE", ordinal + 15, "technoblade", SCSounds.NOTE_BLOCK_IMITATE_TECHNOBLADE);
+		NOTE_BLOCK_IMITATE_SHEEP = $VALUES[ordinal + 16] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SHEEP", ordinal + 16, "sheep", SCSounds.NOTE_BLOCK_IMITATE_SHEEP);
+		NOTE_BLOCK_IMITATE_BAT = $VALUES[ordinal + 17] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_BAT", ordinal + 17, "bat", SCSounds.NOTE_BLOCK_IMITATE_BAT);
+		NOTE_BLOCK_IMITATE_SHULKER = $VALUES[ordinal + 18] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SHULKER", ordinal + 18, "shulker", SCSounds.NOTE_BLOCK_IMITATE_SHULKER);
+		NOTE_BLOCK_IMITATE_ALLAY = $VALUES[ordinal + 19] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ALLAY", ordinal + 19, "allay", SCSounds.NOTE_BLOCK_IMITATE_ALLAY);
+		NOTE_BLOCK_IMITATE_VEX = $VALUES[ordinal + 20] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_VEX", ordinal + 20, "vex", SCSounds.NOTE_BLOCK_IMITATE_VEX);
+		NOTE_BLOCK_IMITATE_COW = $VALUES[ordinal + 21] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_COW", ordinal + 21, "cow", SCSounds.NOTE_BLOCK_IMITATE_COW);
+		NOTE_BLOCK_IMITATE_PIGLIN_BRUTE = $VALUES[ordinal + 22] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_PIGLIN_BRUTE", ordinal + 22, "piglin_brute", SCSounds.NOTE_BLOCK_IMITATE_PIGLIN_BRUTE);
+		NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN = $VALUES[ordinal + 23] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN", ordinal + 23, "zombified_piglin", SCSounds.NOTE_BLOCK_IMITATE_ZOMBIFIED_PIGLIN);
+		NOTE_BLOCK_IMITATE_HORSE = $VALUES[ordinal + 24] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_HORSE", ordinal + 24, "horse", SCSounds.NOTE_BLOCK_IMITATE_HORSE);
+		NOTE_BLOCK_IMITATE_DONKEY = $VALUES[ordinal + 25] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_DONKEY", ordinal + 25, "donkey", SCSounds.NOTE_BLOCK_IMITATE_DONKEY);
+		NOTE_BLOCK_IMITATE_MULE = $VALUES[ordinal + 26] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_MULE", ordinal + 26, "mule", SCSounds.NOTE_BLOCK_IMITATE_MULE);
+		NOTE_BLOCK_IMITATE_SKELETON_HORSE = $VALUES[ordinal + 27] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_SKELETON_HORSE", ordinal + 27, "skeleton_horse", SCSounds.NOTE_BLOCK_IMITATE_SKELETON_HORSE);
+		NOTE_BLOCK_IMITATE_ZOMBIE_HORSE = $VALUES[ordinal + 28] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOMBIE_HORSE", ordinal + 28, "zombie_horse", SCSounds.NOTE_BLOCK_IMITATE_ZOMBIE_HORSE);
+		NOTE_BLOCK_IMITATE_WARDEN = $VALUES[ordinal + 29] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_WARDEN", ordinal + 29, "warden", SCSounds.NOTE_BLOCK_IMITATE_WARDEN);
+		NOTE_BLOCK_IMITATE_HOGLIN = $VALUES[ordinal + 30] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_HOGLIN", ordinal + 30, "hoglin", SCSounds.NOTE_BLOCK_IMITATE_HOGLIN);
+		NOTE_BLOCK_IMITATE_ZOGLIN = $VALUES[ordinal + 31] =
+				skullcraft$createSkullInstrument("NOTE_BLOCK_IMITATE_ZOGLIN", ordinal + 31, "zoglin", SCSounds.NOTE_BLOCK_IMITATE_ZOGLIN);
 	}
 }

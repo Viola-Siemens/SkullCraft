@@ -43,6 +43,7 @@
   "block.skullcraft.angry_wolf_woods_head": "Angry Woods Wolf Head",
   "block.skullcraft.enderman_head": "Enderman Head",
   "block.skullcraft.snow_golem_head": "Snow Golem Head",
+  "block.skullcraft.breeze_head": "Breeze Head",
   "block.skullcraft.technoblade_head": "Technoblade Head",
   "block.skullcraft.allay_head": "Allay Head",
   "block.skullcraft.slime_wall_head": "Slime Wall Head",
@@ -72,6 +73,7 @@
   "block.skullcraft.angry_wolf_woods_wall_head": "Angry Woods Wolf Wall Head",
   "block.skullcraft.enderman_wall_head": "Enderman Wall Head",
   "block.skullcraft.snow_golem_wall_head": "Snow Golem Wall Head",
+  "block.skullcraft.breeze_wall_head": "Breeze Wall Head",
   "block.skullcraft.technoblade_wall_head": "Technoblade Wall Head",
   "block.skullcraft.allay_wall_head": "Allay Wall Head",
   "block.skullcraft.sheep_head": "Sheep Head",
@@ -122,6 +124,7 @@
   "item.skullcraft.kopis": "Kopis",
   "item.skullcraft.kopis_blade": "Kopis Blade",
   "item.skullcraft.kopis_hilt": "Kopis Hilt",
+  "item.skullcraft.skull_enchanting_bead": "Skull Enchanting Bead",
 
   "entity.minecraft.villager.skullcraft.onmyouji": "Onmyouji",
 
@@ -143,6 +146,7 @@
   "tooltip.skullcraft.skull_charger0": "Increase width",
   "tooltip.skullcraft.skull_charger1": "Increase height",
   "tooltip.skullcraft.skull_charger2": "Increase length",
+  "tooltip.skullcraft.skull_charger.enchant": "Randomly Enchant",
 
   "gui.ipp.jei.mob.skullcraft_villager": "Villager",
   "gui.ipp.jei.mob.skullcraft_illager": "Illager",
@@ -158,6 +162,7 @@
   "gui.ipp.jei.mob.skullcraft_angry_wolf": "Angry Wolf",
   "gui.ipp.jei.mob.skullcraft_enderman": "Enderman",
   "gui.ipp.jei.mob.skullcraft_snow_golem": "Snow Golem",
+  "gui.ipp.jei.mob.skullcraft_breeze": "Breeze",
   "gui.ipp.jei.mob.skullcraft_technoblade": "Technoblade",
   "gui.ipp.jei.mob.skullcraft_sheep": "Sheep",
   "gui.ipp.jei.mob.skullcraft_bat": "Bat",

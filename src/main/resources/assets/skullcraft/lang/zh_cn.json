@@ -43,6 +43,7 @@
   "block.skullcraft.angry_wolf_woods_head": "愤怒的森林狼的头",
   "block.skullcraft.enderman_head": "末影人的头",
   "block.skullcraft.snow_golem_head": "雪傀儡的头",
+  "block.skullcraft.breeze_head": "旋风人的头",
   "block.skullcraft.technoblade_head": "Technoblade的头",
   "block.skullcraft.allay_head": "悦灵的头",
   "block.skullcraft.slime_wall_head": "墙上的史莱姆的头",
@@ -72,6 +73,7 @@
   "block.skullcraft.angry_wolf_woods_wall_head": "墙上的愤怒的森林狼的头",
   "block.skullcraft.enderman_wall_head": "墙上的末影人的头",
   "block.skullcraft.snow_golem_wall_head": "墙上的雪傀儡的头",
+  "block.skullcraft.breeze_wall_head": "墙上的旋风人的头",
   "block.skullcraft.technoblade_wall_head": "墙上的Technoblade的头",
   "block.skullcraft.allay_wall_head": "墙上的悦灵的头",
   "block.skullcraft.sheep_head": "羊的头",
@@ -122,6 +124,7 @@
   "item.skullcraft.kopis": "斩刀",
   "item.skullcraft.kopis_blade": "斩刀刀刃",
   "item.skullcraft.kopis_hilt": "斩刀刀柄",
+  "item.skullcraft.skull_enchanting_bead": "头颅附魔珠",
 
   "entity.minecraft.villager.skullcraft.onmyouji": "阴阳师",
 
@@ -143,6 +146,7 @@
   "tooltip.skullcraft.skull_charger0": "增加宽度",
   "tooltip.skullcraft.skull_charger1": "增加高度",
   "tooltip.skullcraft.skull_charger2": "增加长度",
+  "tooltip.skullcraft.skull_charger.enchant": "随机附魔",
 
   "gui.ipp.jei.mob.skullcraft_villager": "村民",
   "gui.ipp.jei.mob.skullcraft_illager": "灾厄村民",
@@ -158,6 +162,7 @@
   "gui.ipp.jei.mob.skullcraft_angry_wolf": "愤怒的狼",
   "gui.ipp.jei.mob.skullcraft_enderman": "末影人",
   "gui.ipp.jei.mob.skullcraft_snow_golem": "雪傀儡",
+  "gui.ipp.jei.mob.skullcraft_breeze": "旋风人",
   "gui.ipp.jei.mob.skullcraft_technoblade": "Technoblade",
   "gui.ipp.jei.mob.skullcraft_sheep": "羊",
   "gui.ipp.jei.mob.skullcraft_bat": "蝙蝠",

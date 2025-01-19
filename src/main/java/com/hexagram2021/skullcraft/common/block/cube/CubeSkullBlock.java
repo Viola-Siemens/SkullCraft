@@ -15,6 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+@SuppressWarnings("deprecation")
 public class CubeSkullBlock extends AbstractSkullBlock {
 	public static final MapCodec<CubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
 			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
@@ -91,6 +92,7 @@ public class CubeSkullBlock extends AbstractSkullBlock {
 		ANGRY_WOLF_WOODS("skullcraft:angry_wolf_woods"),
 		ENDERMAN("skullcraft:enderman"),
 		SNOW_GOLEM("skullcraft:snow_golem"),
+		BREEZE("skullcraft:breeze"),
 		TECHNOBLADE("skullcraft:technoblade");
 
 		private final String name;

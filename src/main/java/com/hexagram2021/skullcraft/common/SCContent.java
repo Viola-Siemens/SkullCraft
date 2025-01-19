@@ -68,6 +68,7 @@ public class SCContent {
 				SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.SNOW_GOLEM_HEAD.get(), SCBlocks.CubeSkulls.SNOW_GOLEM_WALL_HEAD.get(),
+				SCBlocks.CubeSkulls.BREEZE_HEAD.get(), SCBlocks.CubeSkulls.BREEZE_WALL_HEAD.get(),
 				SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.SHEEP_HEAD.get(), SCBlocks.SmallCubeSkulls.SHEEP_WALL_HEAD.get(),
 				SCBlocks.SmallCubeSkulls.BAT_HEAD.get(), SCBlocks.SmallCubeSkulls.BAT_WALL_HEAD.get(),

@@ -41,6 +41,7 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 	public static final ModelLayerLocation ANGRY_WOLF_WOODS_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "angry_wolf_woods_head"), "main");
 	public static final ModelLayerLocation ENDERMAN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "enderman_head"), "main");
 	public static final ModelLayerLocation SNOW_GOLEM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "snow_golem_head"), "main");
+	public static final ModelLayerLocation BREEZE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "breeze_head"), "main");
 	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "technoblade_head"), "main");
 
 	private final ModelPart root;
@@ -137,6 +138,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 	public static LayerDefinition createSnowGolemHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 64);
+	}
+
+	public static LayerDefinition createBreezeHeadLayer() {
+		MeshDefinition meshdefinition = createHeadModel();
+		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
 	public static LayerDefinition createTechnobladeHeadLayer() {

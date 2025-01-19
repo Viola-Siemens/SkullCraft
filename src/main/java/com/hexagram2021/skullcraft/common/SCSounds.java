@@ -27,6 +27,7 @@ public class SCSounds {
 	public static final SoundEvent NOTE_BLOCK_IMITATE_PIG = registerSound("block.note_block.imitate.pig");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_ENDERMAN = registerSound("block.note_block.imitate.enderman");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_SNOW_GOLEM = registerSound("block.note_block.imitate.snow_golem");
+	public static final SoundEvent NOTE_BLOCK_IMITATE_BREEZE = registerSound("block.note_block.imitate.breeze");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_TECHNOBLADE = registerSound("block.note_block.imitate.technoblade");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_SHEEP = registerSound("block.note_block.imitate.sheep");
 	public static final SoundEvent NOTE_BLOCK_IMITATE_BAT = registerSound("block.note_block.imitate.bat");

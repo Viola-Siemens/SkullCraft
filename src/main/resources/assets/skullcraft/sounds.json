@@ -126,6 +126,19 @@
     ],
     "subtitle": "subtitles.entity.snowball.throw"
   },
+  "block.note_block.imitate.breeze": {
+    "sounds": [
+      {
+        "name": "entity.breeze.idle_ground",
+        "type": "event"
+      },
+      {
+        "name": "entity.breeze.idle_air",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.breeze.idle_ground"
+  },
   "block.note_block.imitate.technoblade": {
     "sounds": [
       "skullcraft:technoblade"

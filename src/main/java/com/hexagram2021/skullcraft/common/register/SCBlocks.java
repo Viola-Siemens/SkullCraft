@@ -198,6 +198,10 @@ public class SCBlocks {
 				"snow_golem_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SNOW_GOLEM),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.SNOW_GOLEM, props)
 		);
+		public static final BlockEntry<CubeSkullBlock> BREEZE_HEAD = new BlockEntry<>(
+				"breeze_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_BREEZE),
+				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.BREEZE, props)
+		);
 		public static final BlockEntry<CubeSkullBlock> TECHNOBLADE_HEAD = new BlockEntry<>(
 				"technoblade_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_TECHNOBLADE),
 				(props) -> new CubeSkullBlock(CubeSkullBlock.Types.TECHNOBLADE, props)
@@ -306,6 +310,10 @@ public class SCBlocks {
 		public static final BlockEntry<CubeWallSkullBlock> SNOW_GOLEM_WALL_HEAD = new BlockEntry<>(
 				"snow_golem_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SNOW_GOLEM),
 				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.SNOW_GOLEM, props)
+		);
+		public static final BlockEntry<CubeWallSkullBlock> BREEZE_WALL_HEAD = new BlockEntry<>(
+				"breeze_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_BREEZE),
+				(props) -> new CubeWallSkullBlock(CubeSkullBlock.Types.BREEZE, props)
 		);
 		public static final BlockEntry<CubeWallSkullBlock> TECHNOBLADE_WALL_HEAD = new BlockEntry<>(
 				"technoblade_wall_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_TECHNOBLADE),

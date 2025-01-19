@@ -14,6 +14,7 @@ import net.minecraft.world.entity.animal.horse.*;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.monster.breeze.Breeze;
 import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
@@ -96,6 +97,7 @@ public class DeathLootMixin {
 			}
 			case EnderMan ignored -> SCItems.CubeSkulls.ENDERMAN_HEAD.get();
 			case SnowGolem ignored -> SCItems.CubeSkulls.SNOW_GOLEM_HEAD.get();
+			case Breeze ignored -> SCItems.CubeSkulls.BREEZE_HEAD.get();
 			case Sheep ignored -> SCItems.SmallCubeSkulls.SHEEP_HEAD.get();
 			case Bat ignored -> SCItems.SmallCubeSkulls.BAT_HEAD.get();
 			case Shulker ignored -> SCItems.SmallCubeSkulls.SHULKER_HEAD.get();

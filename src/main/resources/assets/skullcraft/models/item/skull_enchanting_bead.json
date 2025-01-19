@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "skullcraft:item/skull_enchanting_bead"
+  }
+}

@@ -6,14 +6,15 @@ import com.hexagram2021.skullcraft.common.components.SkullScale;
 import com.hexagram2021.skullcraft.common.crafting.SkullChargerMenu;
 import com.hexagram2021.skullcraft.common.register.SCBlockEntities;
 import com.hexagram2021.skullcraft.common.register.SCDataComponents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.NonNullList;
+import com.hexagram2021.skullcraft.common.register.SCEnchantmentTags;
+import com.hexagram2021.skullcraft.common.register.SCItems;
+import net.minecraft.core.*;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -25,17 +26,21 @@ import net.minecraft.world.inventory.StackedContentsCompatible;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible {
 	protected static final int SLOT_INPUT = 0;
 	protected static final int SLOT_FUEL = 1;
+	protected static final int SLOT_ENCHANTING_BEAD = 2;
 	public static final int DATA_ENERGY = 0;
 	public static final int DATA_ADDX = 1;
 	public static final int DATA_ADDY = 2;
@@ -46,10 +51,10 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	public static final long MIN_SOUND_GAP = 40;
 
 	private static final int[] SLOTS_FOR_UP = new int[]{SLOT_INPUT};
-	private static final int[] SLOTS_FOR_SIDES = new int[]{SLOT_FUEL, SLOT_INPUT};
+	private static final int[] SLOTS_FOR_SIDES = new int[]{SLOT_ENCHANTING_BEAD, SLOT_FUEL, SLOT_INPUT};
 	private static final int[] SLOTS_FOR_DOWN = new int[]{SLOT_INPUT};
 
-	protected NonNullList<ItemStack> items = NonNullList.withSize(2, ItemStack.EMPTY);
+	protected NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
 
 	int energy;
 
@@ -200,6 +205,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		return switch (index) {
 			case SLOT_INPUT -> (itemStack.getItem() instanceof BlockItem blockItem) && blockItem.getBlock() instanceof AbstractSkullBlock;
 			case SLOT_FUEL -> itemStack.is(Items.SOUL_SOIL);
+			case SLOT_ENCHANTING_BEAD -> itemStack.is(SCItems.SKULL_ENCHANTING_BEAD.get());
 			default -> false;
 		};
 	}
@@ -263,6 +269,32 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 					blockEntity.addZ = 0;
 				}
 			}
+		}
+	}
+
+	@SuppressWarnings("SequencedCollectionMethodCanBeUsed")
+	public void performEnchant(Level level, RegistryAccess registryAccess, RandomSource randomSource) {
+		ItemStack ingredient = this.items.get(SLOT_INPUT);
+		ItemStack bead = this.items.get(SLOT_ENCHANTING_BEAD);
+		if(bead.isEmpty()) {
+			return;
+		}
+		Optional<HolderSet.Named<Enchantment>> optional = registryAccess.registryOrThrow(Registries.ENCHANTMENT).getTag(SCEnchantmentTags.IN_SKULL_CHARGER);
+		if (optional.isEmpty()) {
+			return;
+		}
+		HolderSet<Enchantment> holderSet = optional.get();
+		List<Holder<Enchantment>> availableEnchantments = holderSet.stream().filter(enchantmentHolder -> enchantmentHolder.value().getMaxLevel() > ingredient.getEnchantmentLevel(enchantmentHolder)).toList();
+		if(availableEnchantments.isEmpty()) {
+			return;
+		}
+		bead.shrink(1);
+		Holder<Enchantment> enchantment = availableEnchantments.get(randomSource.nextInt(availableEnchantments.size()));
+		ingredient.enchant(enchantment, ingredient.getEnchantmentLevel(enchantment) + 1);
+		long time = level.getGameTime();
+		if(time - lastSoundTime >= MIN_SOUND_GAP) {
+			level.playSound(null, this.getBlockPos(), SCSounds.SKULL_CHARGER, SoundSource.BLOCKS, 1.0F, 1.0F);
+			lastSoundTime = time;
 		}
 	}
 }

@@ -23,12 +23,12 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	private static final int RECIPES_IMAGE_SIZE_HEIGHT = 18;
 	private static final int RECIPES_X = 52;
 	private static final int RECIPES_Y = 14;
+	private static final int BUTTON_ENCHANT_INDEX = 3;
 
-	private boolean displayRecipes;
+	private boolean enchantButtonClicked = false;
 
 	public SkullChargerScreen(SkullChargerMenu menu, Inventory inventory, Component component) {
 		super(menu, inventory, component);
-		menu.registerUpdateListener(this::containerChanged);
 		--this.titleLabelY;
 	}
 
@@ -56,7 +56,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	@Override
 	protected void renderTooltip(GuiGraphics transform, int x, int y) {
 		super.renderTooltip(transform, x, y);
-		if (this.displayRecipes) {
+		if (this.menu.hasInputItem()) {
 			int recipeX = this.leftPos + RECIPES_X;
 			int recipeY = this.topPos + RECIPES_Y;
 
@@ -65,6 +65,13 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 				int curY = recipeY + 2;
 				if (x >= curX && x < curX + RECIPES_IMAGE_SIZE_WIDTH && y >= curY && y < curY + RECIPES_IMAGE_SIZE_WIDTH) {
 					transform.renderTooltip(this.font, Component.translatable("tooltip.skullcraft.skull_charger" + i), x, y);
+				}
+			}
+			if(this.menu.hasEnchantingBead()) {
+				int curX = recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH;
+				int curY = recipeY + 2;
+				if (x >= curX && x < curX + RECIPES_IMAGE_SIZE_WIDTH && y >= curY && y < curY + RECIPES_IMAGE_SIZE_WIDTH) {
+					transform.renderTooltip(this.font, Component.translatable("tooltip.skullcraft.skull_charger.enchant"), x, y);
 				}
 			}
 		}
@@ -84,23 +91,46 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 
 				transform.blit(BG_LOCATION, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
 			}
+			if(this.menu.hasEnchantingBead()) {
+				int curX = recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH;
+				int curY = recipeY + 2;
+				int h = this.imageHeight;
+				if(this.enchantButtonClicked) {
+					h += RECIPES_IMAGE_SIZE_HEIGHT;
+				} else if (x >= curX && y >= curY && x < curX + RECIPES_IMAGE_SIZE_WIDTH && y < curY + RECIPES_IMAGE_SIZE_HEIGHT) {
+					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
+				}
+
+				transform.blit(BG_LOCATION, curX, curY - 1, BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
+			}
 		}
 	}
 
 	@Override
 	public boolean mouseClicked(double x, double y, int key) {
 		final SimpleSoundInstance uiSound = SimpleSoundInstance.forUI(SoundEvents.UI_STONECUTTER_SELECT_RECIPE, 1.0F);
-		if (this.displayRecipes) {
+		if (this.menu.hasInputItem()) {
 			int recipeX = this.leftPos + RECIPES_X;
 			int recipeY = this.topPos + RECIPES_Y;
 
 			for(int i = 0; i < 3; ++i) {
-				double d0 = x - (double)(recipeX + i * RECIPES_IMAGE_SIZE_WIDTH);
-				double d1 = y - (double)(recipeY);
-				if (d0 >= 0.0D && d1 >= 0.0D && d0 < RECIPES_IMAGE_SIZE_WIDTH && d1 < RECIPES_IMAGE_SIZE_HEIGHT &&
+				double buttonX = x - (double)(recipeX + i * RECIPES_IMAGE_SIZE_WIDTH);
+				double buttonY = y - (double)(recipeY);
+				if (buttonX >= 0.0D && buttonY >= 0.0D && buttonX < RECIPES_IMAGE_SIZE_WIDTH && buttonY < RECIPES_IMAGE_SIZE_HEIGHT &&
 						this.menu.clickMenuButton(this.minecraft.player, i)) {
 					Minecraft.getInstance().getSoundManager().play(uiSound);
 					this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, i);
+					return true;
+				}
+			}
+			if(this.menu.hasEnchantingBead()) {
+				double buttonX = x - (double)(recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH);
+				double buttonY = y - (double)(recipeY);
+				if (buttonX >= 0.0D && buttonY >= 0.0D && buttonX < RECIPES_IMAGE_SIZE_WIDTH && buttonY < RECIPES_IMAGE_SIZE_HEIGHT &&
+						this.menu.clickMenuButton(this.minecraft.player, BUTTON_ENCHANT_INDEX)) {
+					this.enchantButtonClicked = true;
+					Minecraft.getInstance().getSoundManager().play(uiSound);
+					this.minecraft.gameMode.handleInventoryButtonClick(this.menu.containerId, BUTTON_ENCHANT_INDEX);
 					return true;
 				}
 			}
@@ -109,7 +139,12 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 		return super.mouseClicked(x, y, key);
 	}
 
-	private void containerChanged() {
-		this.displayRecipes = this.menu.hasInputItem();
+	@Override
+	public boolean mouseReleased(double pMouseX, double pMouseY, int pButton) {
+		if(this.enchantButtonClicked) {
+			this.enchantButtonClicked = false;
+			return true;
+		}
+		return super.mouseReleased(pMouseX, pMouseY, pButton);
 	}
 }

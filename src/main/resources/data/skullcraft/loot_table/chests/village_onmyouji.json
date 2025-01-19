@@ -18,7 +18,7 @@
             }
           ],
           "name": "minecraft:soul_soil",
-          "weight": 2
+          "weight": 8
         },
         {
           "type": "minecraft:item",
@@ -34,15 +34,21 @@
             }
           ],
           "name": "minecraft:bread",
+          "weight": 16
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:obsidian",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:emerald",
           "weight": 4
         },
         {
           "type": "minecraft:item",
-          "name": "minecraft:obsidian"
-        },
-        {
-          "type": "minecraft:item",
-          "name": "minecraft:emerald"
+          "name": "skullcraft:skull_enchanting_bead"
         }
       ],
       "rolls": {

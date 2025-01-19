@@ -102,6 +102,7 @@ public class ClientEventSubscriber {
 		event.registerLayerDefinition(CubeSkullModel.ANGRY_WOLF_WOODS_HEAD, CubeSkullModel::createWolfHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.ENDERMAN_HEAD, CubeSkullModel::createEndermanHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.SNOW_GOLEM_HEAD, CubeSkullModel::createSnowGolemHeadLayer);
+		event.registerLayerDefinition(CubeSkullModel.BREEZE_HEAD, CubeSkullModel::createBreezeHeadLayer);
 		event.registerLayerDefinition(CubeSkullModel.TECHNOBLADE_HEAD, CubeSkullModel::createTechnobladeHeadLayer);
 
 		event.registerLayerDefinition(SmallCubeSkullModel.SHEEP_HEAD, SmallCubeSkullModel::createSheepHeadLayer);
@@ -168,6 +169,7 @@ public class ClientEventSubscriber {
 		event.registerSkullModel(CubeSkullBlock.Types.ANGRY_WOLF_WOODS, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.ANGRY_WOLF_WOODS_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.ENDERMAN, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.ENDERMAN_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.SNOW_GOLEM, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.SNOW_GOLEM_HEAD)));
+		event.registerSkullModel(CubeSkullBlock.Types.BREEZE, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.BREEZE_HEAD)));
 		event.registerSkullModel(CubeSkullBlock.Types.TECHNOBLADE, new CubeSkullModel(event.getEntityModelSet().bakeLayer(CubeSkullModel.TECHNOBLADE_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.SHEEP, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.SHEEP_HEAD)));
 		event.registerSkullModel(SmallCubeSkullBlock.Types.BAT, new SmallCubeSkullModel(event.getEntityModelSet().bakeLayer(SmallCubeSkullModel.BAT_HEAD)) {
@@ -235,6 +237,7 @@ public class ClientEventSubscriber {
 			builder.put(CubeSkullBlock.Types.ANGRY_WOLF_WOODS, ResourceLocation.withDefaultNamespace("textures/entity/wolf/wolf_woods_angry.png"));
 			builder.put(CubeSkullBlock.Types.ENDERMAN, ResourceLocation.withDefaultNamespace("textures/entity/enderman/enderman.png"));
 			builder.put(CubeSkullBlock.Types.SNOW_GOLEM, ResourceLocation.withDefaultNamespace("textures/entity/snow_golem.png"));
+			builder.put(CubeSkullBlock.Types.BREEZE, ResourceLocation.withDefaultNamespace("textures/entity/breeze/breeze.png"));
 			builder.put(CubeSkullBlock.Types.TECHNOBLADE, ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/technoblade.png"));
 			builder.put(SmallCubeSkullBlock.Types.SHEEP, ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/sheep.png"));
 			builder.put(SmallCubeSkullBlock.Types.BAT, ResourceLocation.withDefaultNamespace("textures/entity/bat.png"));
