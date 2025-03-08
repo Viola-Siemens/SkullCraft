@@ -192,6 +192,11 @@
 
   "enchantment.skullcraft.combat_protection": "战斗防护",
   "enchantment.skullcraft.ground_strike": "平地暴击",
+  "enchantment.skullcraft.stamina_boost": "耐力提升",
+
+  "enchantment.skullcraft.combat_protection.desc": "减少与玩家和怪物战斗时的伤害。",
+  "enchantment.skullcraft.ground_strike.desc": "使你能够在地面上对敌人造成暴击。",
+  "enchantment.skullcraft.stamina_boost.desc": "减少饥饿值的消耗速度。",
 
   "subtitles.block.skull_charger": "头颅充电站：使用",
   "subtitles.entity.illager.ambient": "灾厄村民：咕哝",

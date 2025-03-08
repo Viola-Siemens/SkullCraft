@@ -10,6 +10,7 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 public final class SCEnchantments {
 	public static final ResourceKey<Enchantment> COMBAT_PROTECTION = key("combat_protection");
 	public static final ResourceKey<Enchantment> GROUND_STRIKE = key("ground_strike");
+	public static final ResourceKey<Enchantment> STAMINA_BOOST = key("stamina_boost");
 
 	private static ResourceKey<Enchantment> key(String name) {
 		return ResourceKey.create(Registries.ENCHANTMENT, ResourceLocation.fromNamespaceAndPath(MODID, name));

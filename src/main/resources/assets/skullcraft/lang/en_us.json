@@ -192,6 +192,11 @@
 
   "enchantment.skullcraft.combat_protection": "Combat Protection",
   "enchantment.skullcraft.ground_strike": "Ground Strike",
+  "enchantment.skullcraft.stamina_boost": "Stamina Boost",
+
+  "enchantment.skullcraft.combat_protection.desc": "Reduces damage from combating with players and monsters.",
+  "enchantment.skullcraft.ground_strike.desc": "Causes critical hits to enemies even when you are on the ground.",
+  "enchantment.skullcraft.stamina_boost.desc": "Reduces the speed of hunger draining.",
 
   "subtitles.block.skull_charger": "Skull Charger used",
   "subtitles.entity.illager.ambient": "Illager murmurs",
