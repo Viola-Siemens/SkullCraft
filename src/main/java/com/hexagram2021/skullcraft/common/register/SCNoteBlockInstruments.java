@@ -2,7 +2,7 @@ package com.hexagram2021.skullcraft.common.register;
 
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 
-@SuppressWarnings("NotNullFieldNotInitialized")
+@SuppressWarnings({"NotNullFieldNotInitialized", "java:S1104", "java:S1444", "java:S3008"})
 public class SCNoteBlockInstruments {
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_VILLAGER;
 	public static NoteBlockInstrument NOTE_BLOCK_IMITATE_ILLAGER;

@@ -4,6 +4,7 @@ import com.hexagram2021.skullcraft.common.crafting.SkullChargerMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -42,14 +43,14 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 	protected void renderBg(GuiGraphics transform, float partialTicks, int x, int y) {
 		int left = this.leftPos;
 		int top = this.topPos;
-		transform.blit(BG_LOCATION, left, top, 0, 0, this.imageWidth, this.imageHeight);
+		transform.blit(RenderType::guiTextured, BG_LOCATION, left, top, 0.0F, 0.0F, this.imageWidth, this.imageHeight, 256, 256);
 		int recipeX = this.leftPos + RECIPES_X;
 		int recipeY = this.topPos + RECIPES_Y;
 		this.renderButtons(transform, x, y, recipeX, recipeY);
 		int energyLevel = this.menu.getEnergy();
 		if(energyLevel > 0) {
 			int k = Mth.clamp((energyLevel + 1) / 2, 1, 50);
-			transform.blit(BG_LOCATION, left + 58, top + 62, 176, 15, k, 8);
+			transform.blit(RenderType::guiTextured, BG_LOCATION, left + 58, top + 62, 176.0F, 15.0F, k, 8, 256, 256);
 		}
 	}
 
@@ -89,7 +90,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
 				}
 
-				transform.blit(BG_LOCATION, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
+				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
 			}
 			if(this.menu.hasEnchantingBead()) {
 				int curX = recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH;
@@ -101,7 +102,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
 				}
 
-				transform.blit(BG_LOCATION, curX, curY - 1, BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT);
+				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
 			}
 		}
 	}
@@ -114,8 +115,8 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 			int recipeY = this.topPos + RECIPES_Y;
 
 			for(int i = 0; i < 3; ++i) {
-				double buttonX = x - (double)(recipeX + i * RECIPES_IMAGE_SIZE_WIDTH);
-				double buttonY = y - (double)(recipeY);
+				double buttonX = x - (recipeX + i * RECIPES_IMAGE_SIZE_WIDTH);
+				double buttonY = y - recipeY;
 				if (buttonX >= 0.0D && buttonY >= 0.0D && buttonX < RECIPES_IMAGE_SIZE_WIDTH && buttonY < RECIPES_IMAGE_SIZE_HEIGHT &&
 						this.menu.clickMenuButton(this.minecraft.player, i)) {
 					Minecraft.getInstance().getSoundManager().play(uiSound);
@@ -124,8 +125,8 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 				}
 			}
 			if(this.menu.hasEnchantingBead()) {
-				double buttonX = x - (double)(recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH);
-				double buttonY = y - (double)(recipeY);
+				double buttonX = x - (recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH);
+				double buttonY = y - recipeY;
 				if (buttonX >= 0.0D && buttonY >= 0.0D && buttonX < RECIPES_IMAGE_SIZE_WIDTH && buttonY < RECIPES_IMAGE_SIZE_HEIGHT &&
 						this.menu.clickMenuButton(this.minecraft.player, BUTTON_ENCHANT_INDEX)) {
 					this.enchantButtonClicked = true;

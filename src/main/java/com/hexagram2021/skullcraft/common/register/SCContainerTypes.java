@@ -11,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SCContainerTypes {
-	public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(Registries.MENU, MODID);
+	private static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(Registries.MENU, MODID);
 
 	public static final DeferredHolder<MenuType<?>, MenuType<SkullChargerMenu>> SKULL_CHARGER_MENU = REGISTER.register(
 			"skull_charger", () -> new MenuType<>(SkullChargerMenu::new, FeatureFlags.VANILLA_SET)

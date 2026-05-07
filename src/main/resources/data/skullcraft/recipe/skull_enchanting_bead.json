@@ -6,12 +6,8 @@
     "MMM"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:lapis_lazuli"
-    },
-    "M": {
-      "item": "minecraft:magma_cream"
-    }
+    "#": "minecraft:lapis_lazuli",
+    "M": "minecraft:magma_cream"
   },
   "result": {
     "id": "skullcraft:skull_enchanting_bead",

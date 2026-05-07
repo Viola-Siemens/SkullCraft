@@ -8,7 +8,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -30,7 +29,7 @@ public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 		this.combinedConditions = Util.anyOf(Arrays.asList(conditionsIn));
 	}
 
-	@Override @NotNull
+	@Override
 	public final ObjectArrayList<ItemStack> apply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		return this.combinedConditions.test(context) ? this.doApply(generatedLoot, context) : generatedLoot;
 	}

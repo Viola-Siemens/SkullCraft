@@ -52,6 +52,6 @@ public class SkullCraft {
 		if(event.getUpdateCause() != TagsUpdatedEvent.UpdateCause.SERVER_DATA_LOAD) {
 			return;
 		}
-		Villages.addAllStructuresToPool(event.getRegistryAccess());
+		Villages.addAllStructuresToPool(event.getLookupProvider());
 	}
 }

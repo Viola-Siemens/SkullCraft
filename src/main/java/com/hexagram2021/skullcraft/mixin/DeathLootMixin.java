@@ -34,11 +34,10 @@ public class DeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
 	public void skullcraft$dropCustomHead(ServerLevel level, DamageSource damageSource, boolean recentHit, CallbackInfo ci) {
 		Entity entity = damageSource.getEntity();
+		Mob current = (Mob)(Object)this;
 		if (entity instanceof Creeper creeper) {
-			if (creeper.canDropMobsSkull()) {
-				if (skullcraft$dropSkullItem((Mob)(Object)this, false)) {
-					creeper.increaseDroppedSkulls();
-				}
+			if (creeper.canDropMobsSkull() && skullcraft$dropSkullItem(current, false)) {
+				creeper.increaseDroppedSkulls();
 			}
 		} else if(entity instanceof LivingEntity livingEntity &&
 				livingEntity.getMainHandItem().getItem() == SCItems.KOPIS.get() &&
@@ -47,101 +46,104 @@ public class DeathLootMixin {
 								itemStack -> itemStack.getItem() == SCItems.CubeSkulls.TECHNOBLADE_HEAD.get()
 						) && entity.level().random.nextBoolean()))
 		) {
-			skullcraft$dropSkullItem((Mob)(Object)this, true);
+			skullcraft$dropSkullItem(current, true);
 		}
 	}
 
+	@SuppressWarnings({"java:S1479", "java:S3776"})
 	@Unique
 	private static boolean skullcraft$dropSkullItem(Mob current, boolean includeVanillaSkulls) {
-		Item skullItem = switch (current) {
-			case AbstractVillager ignored -> SCItems.HumanSkulls.VILLAGER_HEAD.get();
-			case AbstractIllager ignored -> SCItems.HumanSkulls.ILLAGER_HEAD.get();
-			case Witch ignored -> SCItems.HumanSkulls.WITCH_HEAD.get();
-			case IronGolem ignored -> SCItems.HumanSkulls.IRON_GOLEM_HEAD.get();
-			case ZombieVillager ignored -> SCItems.HumanSkulls.ZOMBIE_VILLAGER_HEAD.get();
-			case MagmaCube ignored -> SCItems.CubeSkulls.LAVASLIME_HEAD.get();
-			case Slime ignored -> SCItems.CubeSkulls.SLIME_HEAD.get();
-			case Blaze ignored -> SCItems.CubeSkulls.BLAZE_HEAD.get();
-			case CaveSpider ignored -> SCItems.CubeSkulls.CAVE_SPIDER_HEAD.get();
-			case Spider ignored -> SCItems.CubeSkulls.SPIDER_HEAD.get();
-			case Pig ignored -> SCItems.CubeSkulls.PIG_HEAD.get();
-			case Wolf wolf -> {
-				boolean angry = wolf.isAngry();
-				yield wolf.getVariant().unwrapKey().map(variant -> {
-					if(variant.equals(WolfVariants.ASHEN)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get() : SCItems.CubeSkulls.WOLF_ASHEN_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.BLACK)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get() : SCItems.CubeSkulls.WOLF_BLACK_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.CHESTNUT)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get() : SCItems.CubeSkulls.WOLF_CHESTNUT_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.RUSTY)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get() : SCItems.CubeSkulls.WOLF_RUSTY_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.SNOWY)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get() : SCItems.CubeSkulls.WOLF_SNOWY_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.SPOTTED)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get() : SCItems.CubeSkulls.WOLF_SPOTTED_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.STRIPED)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get() : SCItems.CubeSkulls.WOLF_STRIPED_HEAD.get();
-					}
-					if(variant.equals(WolfVariants.WOODS)) {
-						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get() : SCItems.CubeSkulls.WOLF_WOODS_HEAD.get();
-					}
-					return angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get();
-				}).orElseGet(() -> angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get());
-			}
-			case EnderMan ignored -> SCItems.CubeSkulls.ENDERMAN_HEAD.get();
-			case SnowGolem ignored -> SCItems.CubeSkulls.SNOW_GOLEM_HEAD.get();
-			case Breeze ignored -> SCItems.CubeSkulls.BREEZE_HEAD.get();
-			case Sheep ignored -> SCItems.SmallCubeSkulls.SHEEP_HEAD.get();
-			case Bat ignored -> SCItems.SmallCubeSkulls.BAT_HEAD.get();
-			case Shulker ignored -> SCItems.SmallCubeSkulls.SHULKER_HEAD.get();
-			case Allay ignored -> SCItems.SmallCubeSkulls.ALLAY_HEAD.get();
-			case Vex ignored -> SCItems.SmallCubeSkulls.VEX_HEAD.get();
-			case MushroomCow mushroomCow -> switch (mushroomCow.getVariant()) {
-				case RED -> SCItems.CowSkulls.RED_MOOSHROOM_HEAD.get();
-				case BROWN -> SCItems.CowSkulls.BROWN_MOOSHROOM_HEAD.get();
+		if(current.level() instanceof ServerLevel serverLevel) {
+			Item skullItem = switch (current) {
+				case AbstractVillager ignored -> SCItems.HumanSkulls.VILLAGER_HEAD.get();
+				case AbstractIllager ignored -> SCItems.HumanSkulls.ILLAGER_HEAD.get();
+				case Witch ignored -> SCItems.HumanSkulls.WITCH_HEAD.get();
+				case IronGolem ignored -> SCItems.HumanSkulls.IRON_GOLEM_HEAD.get();
+				case ZombieVillager ignored -> SCItems.HumanSkulls.ZOMBIE_VILLAGER_HEAD.get();
+				case MagmaCube ignored -> SCItems.CubeSkulls.LAVASLIME_HEAD.get();
+				case Slime ignored -> SCItems.CubeSkulls.SLIME_HEAD.get();
+				case Blaze ignored -> SCItems.CubeSkulls.BLAZE_HEAD.get();
+				case CaveSpider ignored -> SCItems.CubeSkulls.CAVE_SPIDER_HEAD.get();
+				case Spider ignored -> SCItems.CubeSkulls.SPIDER_HEAD.get();
+				case Pig ignored -> SCItems.CubeSkulls.PIG_HEAD.get();
+				case Wolf wolf -> {
+					boolean angry = wolf.isAngry();
+					yield wolf.getVariant().unwrapKey().map(variant -> {
+						if (variant.equals(WolfVariants.ASHEN)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get() : SCItems.CubeSkulls.WOLF_ASHEN_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.BLACK)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get() : SCItems.CubeSkulls.WOLF_BLACK_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.CHESTNUT)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get() : SCItems.CubeSkulls.WOLF_CHESTNUT_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.RUSTY)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get() : SCItems.CubeSkulls.WOLF_RUSTY_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.SNOWY)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get() : SCItems.CubeSkulls.WOLF_SNOWY_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.SPOTTED)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get() : SCItems.CubeSkulls.WOLF_SPOTTED_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.STRIPED)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get() : SCItems.CubeSkulls.WOLF_STRIPED_HEAD.get();
+						}
+						if (variant.equals(WolfVariants.WOODS)) {
+							return angry ? SCItems.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get() : SCItems.CubeSkulls.WOLF_WOODS_HEAD.get();
+						}
+						return angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get();
+					}).orElseGet(() -> angry ? SCItems.CubeSkulls.ANGRY_WOLF_HEAD.get() : SCItems.CubeSkulls.WOLF_HEAD.get());
+				}
+				case EnderMan ignored -> SCItems.CubeSkulls.ENDERMAN_HEAD.get();
+				case SnowGolem ignored -> SCItems.CubeSkulls.SNOW_GOLEM_HEAD.get();
+				case Breeze ignored -> SCItems.CubeSkulls.BREEZE_HEAD.get();
+				case Sheep ignored -> SCItems.SmallCubeSkulls.SHEEP_HEAD.get();
+				case Bat ignored -> SCItems.SmallCubeSkulls.BAT_HEAD.get();
+				case Shulker ignored -> SCItems.SmallCubeSkulls.SHULKER_HEAD.get();
+				case Allay ignored -> SCItems.SmallCubeSkulls.ALLAY_HEAD.get();
+				case Vex ignored -> SCItems.SmallCubeSkulls.VEX_HEAD.get();
+				case MushroomCow mushroomCow -> switch (mushroomCow.getVariant()) {
+					case RED -> SCItems.CowSkulls.RED_MOOSHROOM_HEAD.get();
+					case BROWN -> SCItems.CowSkulls.BROWN_MOOSHROOM_HEAD.get();
+				};
+				case Cow ignored -> SCItems.CowSkulls.COW_HEAD.get();
+				case PiglinBrute ignored -> SCItems.PiglinSkulls.PIGLIN_BRUTE_HEAD.get();
+				case ZombifiedPiglin ignored -> SCItems.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get();
+				case Horse horse -> switch (horse.getVariant()) {
+					case WHITE -> SCItems.HorseSkulls.WHITE_HORSE_HEAD.get();
+					case CREAMY -> SCItems.HorseSkulls.CREAMY_HORSE_HEAD.get();
+					case CHESTNUT -> SCItems.HorseSkulls.CHESTNUT_HORSE_HEAD.get();
+					case BROWN -> SCItems.HorseSkulls.BROWN_HORSE_HEAD.get();
+					case BLACK -> SCItems.HorseSkulls.BLACK_HORSE_HEAD.get();
+					case GRAY -> SCItems.HorseSkulls.GRAY_HORSE_HEAD.get();
+					case DARK_BROWN -> SCItems.HorseSkulls.DARKBROWN_HORSE_HEAD.get();
+				};
+				case Donkey ignored -> SCItems.HorseSkulls.DONKEY_HEAD.get();
+				case Mule ignored -> SCItems.HorseSkulls.MULE_HEAD.get();
+				case SkeletonHorse ignored -> SCItems.HorseSkulls.SKELETON_HORSE_HEAD.get();
+				case ZombieHorse ignored -> SCItems.HorseSkulls.ZOMBIE_HORSE_HEAD.get();
+				case Warden ignored -> SCItems.WardenSkulls.WARDEN_HEAD.get();
+				case Zoglin ignored -> SCItems.HoglinSkulls.ZOGLIN_HEAD.get();
+				case Hoglin ignored -> SCItems.HoglinSkulls.HOGLIN_HEAD.get();
+				default -> includeVanillaSkulls ? switch (current) {
+					case Zombie ignored -> Items.ZOMBIE_HEAD;
+					case AbstractSkeleton ignored -> Items.SKELETON_SKULL;
+					case Creeper ignored -> Items.CREEPER_HEAD;
+					case EnderDragon ignored -> Items.DRAGON_HEAD;
+					case WitherBoss ignored -> Items.WITHER_SKELETON_SKULL;
+					case AbstractPiglin ignored -> Items.PIGLIN_HEAD;
+					default -> null;
+				} : null;
 			};
-			case Cow ignored -> SCItems.CowSkulls.COW_HEAD.get();
-			case PiglinBrute ignored -> SCItems.PiglinSkulls.PIGLIN_BRUTE_HEAD.get();
-			case ZombifiedPiglin ignored -> SCItems.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get();
-			case Horse horse -> switch (horse.getVariant()) {
-				case WHITE -> SCItems.HorseSkulls.WHITE_HORSE_HEAD.get();
-				case CREAMY -> SCItems.HorseSkulls.CREAMY_HORSE_HEAD.get();
-				case CHESTNUT -> SCItems.HorseSkulls.CHESTNUT_HORSE_HEAD.get();
-				case BROWN -> SCItems.HorseSkulls.BROWN_HORSE_HEAD.get();
-				case BLACK -> SCItems.HorseSkulls.BLACK_HORSE_HEAD.get();
-				case GRAY -> SCItems.HorseSkulls.GRAY_HORSE_HEAD.get();
-				case DARK_BROWN -> SCItems.HorseSkulls.DARKBROWN_HORSE_HEAD.get();
-			};
-			case Donkey ignored -> SCItems.HorseSkulls.DONKEY_HEAD.get();
-			case Mule ignored -> SCItems.HorseSkulls.MULE_HEAD.get();
-			case SkeletonHorse ignored -> SCItems.HorseSkulls.SKELETON_HORSE_HEAD.get();
-			case ZombieHorse ignored -> SCItems.HorseSkulls.ZOMBIE_HORSE_HEAD.get();
-			case Warden ignored -> SCItems.WardenSkulls.WARDEN_HEAD.get();
-			case Zoglin ignored -> SCItems.HoglinSkulls.ZOGLIN_HEAD.get();
-			case Hoglin ignored -> SCItems.HoglinSkulls.HOGLIN_HEAD.get();
-			default -> includeVanillaSkulls ? switch (current) {
-				case Zombie ignored -> Items.ZOMBIE_HEAD;
-				case AbstractSkeleton ignored -> Items.SKELETON_SKULL;
-				case Creeper ignored -> Items.CREEPER_HEAD;
-				case EnderDragon ignored -> Items.DRAGON_HEAD;
-				case WitherBoss ignored -> Items.WITHER_SKELETON_SKULL;
-				case AbstractPiglin ignored -> Items.PIGLIN_HEAD;
-				default -> null;
-			} : null;
-		};
 
-		if(skullItem != null) {
-			ItemStack itemstack = new ItemStack(skullItem);
-			if (!itemstack.isEmpty()) {
-				current.spawnAtLocation(itemstack);
-				return true;
+			if (skullItem != null) {
+				ItemStack itemstack = new ItemStack(skullItem);
+				if (!itemstack.isEmpty()) {
+					current.spawnAtLocation(serverLevel, itemstack);
+					return true;
+				}
 			}
 		}
 		return false;

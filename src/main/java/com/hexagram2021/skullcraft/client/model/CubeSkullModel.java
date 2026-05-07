@@ -1,7 +1,5 @@
 package com.hexagram2021.skullcraft.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -44,10 +42,8 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 	public static final ModelLayerLocation BREEZE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "breeze_head"), "main");
 	public static final ModelLayerLocation TECHNOBLADE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "technoblade_head"), "main");
 
-	private final ModelPart root;
-
 	public CubeSkullModel(ModelPart root) {
-		this.root = root;
+		super(root);
 	}
 
 	private static MeshDefinition createHeadModel() {
@@ -164,11 +160,6 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.root.yRot = yRot * ((float)Math.PI / 180F);
 		this.root.xRot = xRot * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
-		this.root.render(transform, consumer, x, y, rgba);
 	}
 
 	@Override

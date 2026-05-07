@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.GAME)
+@EventBusSubscriber(modid = MODID)
 public class SCGameEventSubscriber {
 	@SubscribeEvent
 	public static void tryCriticalHit(CriticalHitEvent event) {
@@ -23,11 +23,11 @@ public class SCGameEventSubscriber {
 			return;
 		}
 		player.getInventory().armor.stream()
-				.filter(itemStack -> itemStack.getEnchantmentLevel(groundStrike) > 0 && !player.getCooldowns().isOnCooldown(itemStack.getItem()))
+				.filter(itemStack -> itemStack.getEnchantmentLevel(groundStrike) > 0 && !player.getCooldowns().isOnCooldown(itemStack))
 				.findFirst().ifPresent(itemStack -> {
 					event.setCriticalHit(true);
 					event.setDamageMultiplier(1.5F);
-					player.getCooldowns().addCooldown(itemStack.getItem(), 120 / (itemStack.getEnchantmentLevel(groundStrike) + 1));
+					player.getCooldowns().addCooldown(itemStack, 120 / (itemStack.getEnchantmentLevel(groundStrike) + 1));
 				});
 	}
 }

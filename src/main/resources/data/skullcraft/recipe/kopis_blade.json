@@ -6,15 +6,9 @@
     "SO "
   ],
   "key": {
-    "O": {
-      "item": "minecraft:obsidian"
-    },
-    "R": {
-      "item": "minecraft:respawn_anchor"
-    },
-    "S": {
-      "item": "minecraft:soul_soil"
-    }
+    "O": "minecraft:obsidian",
+    "R": "minecraft:respawn_anchor",
+    "S": "minecraft:soul_soil"
   },
   "result": {
     "id": "skullcraft:kopis_blade",

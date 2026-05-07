@@ -1,7 +1,5 @@
 package com.hexagram2021.skullcraft.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -19,10 +17,8 @@ public class HoglinSkullModel extends SkullModelBase implements IWallShiftSkullM
 	public static final ModelLayerLocation HOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "hoglin_head"), "main");
 	public static final ModelLayerLocation ZOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zoglin_head"), "main");
 
-	private final ModelPart root;
-
 	public HoglinSkullModel(ModelPart root) {
-		this.root = root;
+		super(root);
 	}
 
 	public static LayerDefinition createHeadLayer() {
@@ -50,11 +46,6 @@ public class HoglinSkullModel extends SkullModelBase implements IWallShiftSkullM
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.root.yRot = yRot * ((float)Math.PI / 180F);
 		this.root.xRot = xRot * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
-		this.root.render(transform, consumer, x, y, rgba);
 	}
 
 	@Override

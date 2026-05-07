@@ -1,7 +1,5 @@
 package com.hexagram2021.skullcraft.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -27,11 +25,10 @@ public class HorseSkullModel extends SkullModelBase implements IWallShiftSkullMo
 	public static final ModelLayerLocation SKELETON_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "skeleton_horse_head"), "main");
 	public static final ModelLayerLocation ZOMBIE_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zombie_horse_head"), "main");
 
-	private final ModelPart root;
 	protected final ModelPart head;
 
 	public HorseSkullModel(ModelPart root) {
-		this.root = root;
+		super(root);
 		this.head = root.getChild("head_parts");
 	}
 
@@ -92,11 +89,6 @@ public class HorseSkullModel extends SkullModelBase implements IWallShiftSkullMo
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.head.yRot = yRot * ((float)Math.PI / 180F);
 		this.head.xRot = xRot * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
-		this.root.render(transform, consumer, x, y, rgba);
 	}
 
 	@Override

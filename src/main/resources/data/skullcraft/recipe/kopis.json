@@ -5,12 +5,8 @@
     "H"
   ],
   "key": {
-    "B": {
-      "item": "skullcraft:kopis_blade"
-    },
-    "H": {
-      "item": "skullcraft:kopis_hilt"
-    }
+    "B": "skullcraft:kopis_blade",
+    "H": "skullcraft:kopis_hilt"
   },
   "result": {
     "id": "skullcraft:kopis",

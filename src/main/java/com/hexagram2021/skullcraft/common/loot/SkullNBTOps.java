@@ -42,29 +42,27 @@ public class SkullNBTOps {
 
 		@Override
 		public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-			if(context.hasParam(LootContextParams.BLOCK_ENTITY)) {
-				BlockEntity blockEntity = context.getParamOrNull(LootContextParams.BLOCK_ENTITY);
-				if(blockEntity instanceof SkullBlockEntity) {
-					IScalableBlockEntity scalableBlockEntity = (IScalableBlockEntity)blockEntity;
-					int scaleX = scalableBlockEntity.skullcraft$getScaleX();
-					int scaleY = scalableBlockEntity.skullcraft$getScaleY();
-					int scaleZ = scalableBlockEntity.skullcraft$getScaleZ();
-					if(scaleX != 100 || scaleY != 100 || scaleZ != 100) {
-						SkullScale skullScale = new SkullScale(scaleX, scaleY, scaleZ);
-						for(ItemStack itemStack: generatedLoot) {
-							Item item = itemStack.getItem();
-							if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
-								itemStack.set(SCDataComponents.SKULL_SCALE.get(), skullScale);
-							}
-						}
-					}
-					IEnchantableBlockEntity enchantableBlockEntity = (IEnchantableBlockEntity)blockEntity;
+			BlockEntity blockEntity = context.getOptionalParameter(LootContextParams.BLOCK_ENTITY);
+			if(blockEntity instanceof SkullBlockEntity) {
+				IScalableBlockEntity scalableBlockEntity = (IScalableBlockEntity)blockEntity;
+				int scaleX = scalableBlockEntity.skullcraft$getScaleX();
+				int scaleY = scalableBlockEntity.skullcraft$getScaleY();
+				int scaleZ = scalableBlockEntity.skullcraft$getScaleZ();
+				if(scaleX != 100 || scaleY != 100 || scaleZ != 100) {
+					SkullScale skullScale = new SkullScale(scaleX, scaleY, scaleZ);
 					for(ItemStack itemStack: generatedLoot) {
 						Item item = itemStack.getItem();
 						if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
-							itemStack.set(DataComponents.ENCHANTMENTS, enchantableBlockEntity.skullcraft$getEnchantments());
-							itemStack.set(DataComponents.REPAIR_COST, enchantableBlockEntity.skullcraft$getRepairCost());
+							itemStack.set(SCDataComponents.SKULL_SCALE.get(), skullScale);
 						}
+					}
+				}
+				IEnchantableBlockEntity enchantableBlockEntity = (IEnchantableBlockEntity)blockEntity;
+				for(ItemStack itemStack: generatedLoot) {
+					Item item = itemStack.getItem();
+					if(item instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
+						itemStack.set(DataComponents.ENCHANTMENTS, enchantableBlockEntity.skullcraft$getEnchantments());
+						itemStack.set(DataComponents.REPAIR_COST, enchantableBlockEntity.skullcraft$getRepairCost());
 					}
 				}
 			}

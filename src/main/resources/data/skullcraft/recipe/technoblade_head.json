@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "skullcraft:pig_head"
-    },
-    {
-      "item": "minecraft:gold_block"
-    }
+    "skullcraft:pig_head",
+    "minecraft:gold_block"
   ],
   "result": {
     "id": "skullcraft:technoblade_head",

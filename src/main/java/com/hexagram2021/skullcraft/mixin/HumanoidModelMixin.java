@@ -5,8 +5,7 @@ import com.hexagram2021.skullcraft.client.model.HattedModel;
 import net.minecraft.client.model.HeadedModel;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.client.renderer.entity.state.HumanoidRenderState;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.AbstractSkullBlock;
@@ -20,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import javax.annotation.Nullable;
 
 @Mixin(HumanoidModel.class)
-public class HumanoidModelMixin<T extends LivingEntity> implements HattedModel {
+public class HumanoidModelMixin implements HattedModel {
 	@Shadow @Final
 	public ModelPart hat;
 
@@ -34,9 +33,9 @@ public class HumanoidModelMixin<T extends LivingEntity> implements HattedModel {
 		return null;
 	}
 
-	@Inject(method = "setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", at = @At(value = "HEAD"))
-	public void skullcraft$trySkipRenderHead(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, CallbackInfo ci) {
-		ItemStack itemStack = entity.getItemBySlot(EquipmentSlot.HEAD);
+	@Inject(method = "setupAnim(Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V", at = @At(value = "HEAD"))
+	public void skullcraft$trySkipRenderHead(HumanoidRenderState renderState, CallbackInfo ci) {
+		ItemStack itemStack = renderState.headItem;
 		HeadedModel model = (HeadedModel) this;
 		if (itemStack.getItem() instanceof BlockItem blockItem && blockItem.getBlock() instanceof AbstractSkullBlock) {
 			if (SCClientConfig.HIDE_ORIGINAL_HEAD.get()) {

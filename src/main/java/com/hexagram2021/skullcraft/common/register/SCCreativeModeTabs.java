@@ -19,7 +19,7 @@ public class SCCreativeModeTabs {
 
 	public static final DeferredHolder<CreativeModeTab, CreativeModeTab> SKULL_CRAFT = register(
 			"skull_craft", Component.translatable("itemGroup.skullcraft"), () -> new ItemStack(SCBlocks.SKULL_CHARGER),
-			(parameters, output) -> SCItems.ItemEntry.REGISTERED_ITEMS.forEach(output::accept)
+			(parameters, output) -> SCItems.ItemEntry.registeredItems().forEach(output::accept)
 	);
 
 	public static void init(IEventBus bus) {

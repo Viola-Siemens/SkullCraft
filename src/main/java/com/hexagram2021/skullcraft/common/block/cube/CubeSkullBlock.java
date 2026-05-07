@@ -40,13 +40,13 @@ public class CubeSkullBlock extends AbstractSkullBlock {
 	}
 
 	@Override
-	public VoxelShape getOcclusionShape(BlockState blockState, BlockGetter level, BlockPos blockPos) {
+	public VoxelShape getOcclusionShape(BlockState blockState) {
 		return Shapes.empty();
 	}
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(ROTATION, Mth.floor(((double)context.getRotation() * 16.0D / 360.0D) + 0.5D) & 15);
+		return super.getStateForPlacement(context).setValue(ROTATION, Mth.floor((context.getRotation() * 16.0D / 360.0D) + 0.5D) & 15);
 	}
 
 	@Override

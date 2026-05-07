@@ -27,9 +27,9 @@ public class SkullBlockRendererMixin {
 									   MultiBufferSource bufferSource, int packedLight, int packedOverlay,
 									   CallbackInfo ci) {
 		if(SCClientConfig.ENABLE_CUSTOM_SKULL_SIZE.get() && blockEntity instanceof IScalableBlockEntity scalable) {
-			float dx = (float)scalable.skullcraft$getScaleX() / 100.0F;
-			float dy = (float)scalable.skullcraft$getScaleY() / 100.0F;
-			float dz = (float)scalable.skullcraft$getScaleZ() / 100.0F;
+			float dx = scalable.skullcraft$getScaleX() / 100.0F;
+			float dy = scalable.skullcraft$getScaleY() / 100.0F;
+			float dz = scalable.skullcraft$getScaleZ() / 100.0F;
 			BlockState blockState = blockEntity.getBlockState();
 			if(blockState.getBlock() instanceof WallSkullBlock) {
 				Direction direction = blockState.getValue(WallSkullBlock.FACING);

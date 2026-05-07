@@ -140,7 +140,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 	public void skullcraft$setEnchantments(@Nullable ItemEnchantments enchantments) {
 		this.skullcraft$enchantments = enchantments;
 	}
-	@Override
+	@Override @Nullable
 	public ItemEnchantments skullcraft$getEnchantments() {
 		return this.skullcraft$enchantments;
 	}

@@ -4,11 +4,11 @@ import com.google.common.collect.Lists;
 import com.hexagram2021.skullcraft.common.register.SCItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Creeper;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ResolvableProfile;
@@ -23,13 +23,11 @@ public class PlayerHeadDeathLootMixin {
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
 	public void skullcraft$dropCustomHead(ServerLevel level, DamageSource damageSource, boolean recentHit, CallbackInfo ci) {
 		LivingEntity entity = (LivingEntity)(Object)this;
-		if(entity instanceof Player player) {
+		if(entity instanceof ServerPlayer player) {
 			Entity killer = damageSource.getEntity();
 			if(killer instanceof Creeper creeper) {
-				if(creeper.canDropMobsSkull()) {
-					if(skullcraft$dropPlayerHead(player)) {
-						creeper.increaseDroppedSkulls();
-					}
+				if(creeper.canDropMobsSkull() && skullcraft$dropPlayerHead(player)) {
+					creeper.increaseDroppedSkulls();
 				}
 			} else if(killer instanceof LivingEntity livingEntity && livingEntity.getMainHandItem().getItem() == SCItems.KOPIS.get() &&
 					(killer.level().random.nextInt(5) == 0 ||
@@ -43,11 +41,11 @@ public class PlayerHeadDeathLootMixin {
 	}
 
 	@Unique
-	private static boolean skullcraft$dropPlayerHead(Player player) {
+	private static boolean skullcraft$dropPlayerHead(ServerPlayer player) {
 		ItemStack itemstack = new ItemStack(Items.PLAYER_HEAD);
 		itemstack.set(DataComponents.PROFILE, new ResolvableProfile(player.getGameProfile()));
 		if (!itemstack.isEmpty()) {
-			player.spawnAtLocation(itemstack);
+			player.spawnAtLocation(player.serverLevel(), itemstack);
 			return true;
 		}
 		return false;

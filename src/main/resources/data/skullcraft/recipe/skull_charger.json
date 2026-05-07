@@ -6,18 +6,10 @@
     "BSB"
   ],
   "key": {
-    "#": {
-      "item": "minecraft:player_head"
-    },
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "S": {
-      "item": "minecraft:soul_soil"
-    },
-    "B": {
-      "item": "minecraft:chiseled_stone_bricks"
-    }
+    "#": "minecraft:player_head",
+    "R": "minecraft:redstone",
+    "S": "minecraft:soul_soil",
+    "B": "minecraft:chiseled_stone_bricks"
   },
   "result": {
     "id": "skullcraft:skull_charger",

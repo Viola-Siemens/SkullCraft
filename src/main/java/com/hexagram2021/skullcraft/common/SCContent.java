@@ -20,7 +20,7 @@ import java.util.Set;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = MODID)
 public class SCContent {
 	public static void modConstruction(IEventBus bus) {
 		SCBlocks.init(bus);

@@ -4,6 +4,7 @@ import com.hexagram2021.skullcraft.common.SCSounds;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,6 +21,7 @@ public class NoteBlockInstrumentMixin {
 		throw new UnsupportedOperationException("Replaced by Mixin");
 	}
 
+	@SuppressWarnings("java:S3008")
 	@Shadow @Mutable @Final
 	private static NoteBlockInstrument[] $VALUES;
 
@@ -31,7 +33,7 @@ public class NoteBlockInstrumentMixin {
 		);
 	}
 
-	@Inject(method = "<clinit>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;$VALUES:[Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;", shift = At.Shift.AFTER))
+	@Inject(method = "<clinit>", at = @At(value = "FIELD", target = "Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;$VALUES:[Lnet/minecraft/world/level/block/state/properties/NoteBlockInstrument;", shift = At.Shift.AFTER, opcode = Opcodes.PUTSTATIC))
 	private static void skullcraft$injectEnum(CallbackInfo ci) {
 		int ordinal = $VALUES.length;
 		$VALUES = Arrays.copyOf($VALUES, ordinal + 32);

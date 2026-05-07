@@ -1,6 +1,7 @@
 package com.hexagram2021.skullcraft.common.world;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Lists;
 import com.hexagram2021.skullcraft.common.SCSounds;
 import com.hexagram2021.skullcraft.common.register.SCBlocks;
 import com.hexagram2021.skullcraft.common.register.SCItems;
@@ -8,8 +9,8 @@ import com.hexagram2021.skullcraft.common.util.SCLogger;
 import com.hexagram2021.skullcraft.mixin.StructureTemplatePoolAccess;
 import com.mojang.datafixers.util.Pair;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.core.Registry;
-import net.minecraft.core.RegistryAccess;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -42,40 +43,43 @@ import java.util.function.Supplier;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-public class Villages {
+public final class Villages {
 	public static final ResourceLocation ONMYOUJI = ResourceLocation.fromNamespaceAndPath(MODID, "onmyouji");
+
+	private Villages() {
+	}
 
 	public static void init() {
 	}
 
-	public static void addAllStructuresToPool(RegistryAccess registryAccess) {
+	public static void addAllStructuresToPool(HolderLookup.Provider provider) {
 		SCLogger.info("Adding skullcraft structures to template pools.");
 		addToPool(
 				ResourceLocation.withDefaultNamespace("village/plains/houses"),
-				registryAccess,
+				provider,
 				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/plains/houses/plains_onmyouji_1"), 3)
 		);
 		addToPool(
 				ResourceLocation.withDefaultNamespace("village/desert/houses"),
-				registryAccess,
+				provider,
 				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/desert/houses/desert_onmyouji_1"), 3)
 		);
 	}
-	private static void addToPool(ResourceLocation poolName, RegistryAccess registryAccess, Consumer<PoolBuilder> consumer) {
-		Registry<StructureTemplatePool> registry = registryAccess.registryOrThrow(Registries.TEMPLATE_POOL);
-		StructureTemplatePool structureTemplatePool = registry.get(poolName);
+	private static void addToPool(ResourceLocation poolName, HolderLookup.Provider provider, Consumer<PoolBuilder> consumer) {
+		HolderLookup.RegistryLookup<StructureTemplatePool> registry = provider.lookupOrThrow(Registries.TEMPLATE_POOL);
+		Holder.Reference<StructureTemplatePool> structureTemplatePool = registry.get(ResourceKey.create(Registries.TEMPLATE_POOL, poolName)).orElse(null);
 		if(structureTemplatePool == null) {
 			SCLogger.error("Ignored empty structure template pool: " + poolName);
 			return;
 		}
-		StructureTemplatePoolAccess pool = (StructureTemplatePoolAccess)structureTemplatePool;
-		List<Pair<StructurePoolElement, Integer>> rawTemplates = pool.getRawTemplates() instanceof ArrayList ?
-				pool.getRawTemplates() : new ArrayList<>(pool.getRawTemplates());
+		StructureTemplatePoolAccess pool = (StructureTemplatePoolAccess)structureTemplatePool.value();
+		List<Pair<StructurePoolElement, Integer>> rawTemplates = pool.skullcraft$getRawTemplates() instanceof ArrayList ?
+				pool.skullcraft$getRawTemplates() : Lists.newArrayList(pool.skullcraft$getRawTemplates());
 
 		PoolBuilder poolBuilder = new PoolBuilder(pool, rawTemplates);
 		consumer.accept(poolBuilder);
 
-		pool.setRawTemplates(rawTemplates);
+		pool.skullcraft$setRawTemplates(rawTemplates);
 	}
 	private static final class PoolBuilder {
 		StructureTemplatePoolAccess pool;
@@ -87,9 +91,9 @@ public class Villages {
 		}
 
 		public void add(ResourceLocation toAdd, int weight) {
-			SinglePoolElement addedElement = SinglePoolElement.single(toAdd.toString()).apply(StructureTemplatePool.Projection.RIGID);
+			SinglePoolElement addedElement = StructurePoolElement.single(toAdd.toString()).apply(StructureTemplatePool.Projection.RIGID);
 			this.rawTemplates.add(Pair.of(addedElement, weight));
-			this.pool.getTemplates().add(addedElement);
+			this.pool.skullcraft$getTemplates().add(addedElement);
 		}
 	}
 
@@ -131,8 +135,8 @@ public class Villages {
 	}
 
 	@SuppressWarnings("SameParameterValue")
-	@EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.GAME)
-	public static class Events {
+	@EventBusSubscriber(modid = MODID)
+	public static final class Events {
 		@SubscribeEvent
 		public static void registerTrades(VillagerTradesEvent event) {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
@@ -192,6 +196,9 @@ public class Villages {
 		}
 		private static VillagerTrades.ItemListing commonSell(ItemLike item, int price, int count, int xp) {
 			return (trader, random) -> new MerchantOffer(new ItemCost(Items.EMERALD, price), new ItemStack(item, count), 16, xp, 0.05F);
+		}
+
+		private Events() {
 		}
 	}
 }

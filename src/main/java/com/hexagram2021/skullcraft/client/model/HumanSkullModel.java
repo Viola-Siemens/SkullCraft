@@ -1,7 +1,5 @@
 package com.hexagram2021.skullcraft.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -21,12 +19,11 @@ public class HumanSkullModel extends SkullModelBase implements IWallShiftSkullMo
 	public static final ModelLayerLocation IRON_GOLEM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "iron_golem_head"), "main");
 	public static final ModelLayerLocation ZOMBIE_VILLAGER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zombie_villager_head"), "main");
 
-	private final ModelPart root;
 	protected final ModelPart head;
 	protected final ModelPart nose;
 
 	public HumanSkullModel(ModelPart root) {
-		this.root = root;
+		super(root);
 		this.head = root.getChild("head");
 		this.nose = this.head.getChild("nose");
 	}
@@ -80,11 +77,6 @@ public class HumanSkullModel extends SkullModelBase implements IWallShiftSkullMo
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.head.yRot = yRot * ((float)Math.PI / 180F);
 		this.head.xRot = xRot * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
-		this.root.render(transform, consumer, x, y, rgba);
 	}
 
 	@Override

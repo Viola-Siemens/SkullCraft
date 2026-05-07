@@ -5,23 +5,23 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -32,12 +32,8 @@ import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 public class SCItems {
 	public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, MODID);
 
-	public static final Supplier<Item.Properties> DEFAULT_ITEM_PROPERTIES = Item.Properties::new;
-	public static final Supplier<Item.Properties> UNCOMMON_ITEM_PROPERTIES = () -> new Item.Properties().rarity(Rarity.UNCOMMON);
-	public static final Supplier<Item.Properties> RARE_ITEM_PROPERTIES = () -> new Item.Properties().rarity(Rarity.RARE);
-
 	public static final ItemEntry<BlockItem> SKULL_CHARGER = new ItemEntry<>(
-			"skull_charger", DEFAULT_ITEM_PROPERTIES, (props) -> new BlockItem(SCBlocks.SKULL_CHARGER.get(), props) {
+			"skull_charger", new Item.Properties().useBlockDescriptionPrefix(), props -> new BlockItem(SCBlocks.SKULL_CHARGER.get(), props) {
 				@Override
 				public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 					components.add(Component.translatable("desc.skullcraft.skull_charger").withStyle(ChatFormatting.GRAY));
@@ -45,218 +41,197 @@ public class SCItems {
 			}
 	);
 
-	public static final Tier KOPIS_TIER = new Tier() {
-		@Override
-		public int getUses() { return 1145; }
+	public static final ToolMaterial KOPIS_TIER = new ToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1145, 0.0F, 6.0F, 10, SCItemTags.KOPIS_TOOL_MATERIALS);
 
-		@Override
-		public float getSpeed() { return 0.0F; }
-
-		@Override
-		public float getAttackDamageBonus() { return 6.0F; }
-
-		@Override
-		public TagKey<Block> getIncorrectBlocksForDrops() {
-			return BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
-		}
-
-		@Override
-		public int getEnchantmentValue() { return 10; }
-
-		@Override
-		public Ingredient getRepairIngredient() { return Ingredient.of(Items.OBSIDIAN); }
-	};
-
-	public static final ItemEntry<SwordItem> KOPIS = new ItemEntry<>(
-			"kopis", DEFAULT_ITEM_PROPERTIES, (props) -> new SwordItem(KOPIS_TIER, props.attributes(SwordItem.createAttributes(KOPIS_TIER, 3, -3.6F))) {
+	public static final ItemEntry<SwordItem> KOPIS = new ItemEntry<>("kopis", new Item.Properties(), props -> new SwordItem(KOPIS_TIER, 3, -3.6F, props) {
 		@Override
 		public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 			components.add(Component.translatable("desc.skullcraft.kopis").withStyle(ChatFormatting.GRAY));
 		}
-	}
-	);
+	});
 	public static final ItemEntry<Item> KOPIS_BLADE = new ItemEntry<>(
-			"kopis_blade", DEFAULT_ITEM_PROPERTIES, Item::new
+			"kopis_blade", new Item.Properties(), Item::new
 	);
 	public static final ItemEntry<Item> KOPIS_HILT = new ItemEntry<>(
-			"kopis_hilt", DEFAULT_ITEM_PROPERTIES, Item::new
+			"kopis_hilt", new Item.Properties(), Item::new
 	);
 	public static final ItemEntry<Item> SKULL_ENCHANTING_BEAD = new ItemEntry<>(
-			"skull_enchanting_bead", DEFAULT_ITEM_PROPERTIES, Item::new
+			"skull_enchanting_bead", new Item.Properties(), Item::new
 	);
 
 	public static class HumanSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> VILLAGER_HEAD = new ItemEntry<>(
-				"villager_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HumanSkulls.VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.VILLAGER_WALL_HEAD.get(), props, Direction.DOWN
+				"villager_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HumanSkulls.VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.VILLAGER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ILLAGER_HEAD = new ItemEntry<>(
-				"illager_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HumanSkulls.ILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ILLAGER_WALL_HEAD.get(), props, Direction.DOWN
+				"illager_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HumanSkulls.ILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ILLAGER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WITCH_HEAD = new ItemEntry<>(
-				"witch_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HumanSkulls.WITCH_HEAD.get(), SCBlocks.HumanSkulls.WITCH_WALL_HEAD.get(), props, Direction.DOWN
+				"witch_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HumanSkulls.WITCH_HEAD.get(), SCBlocks.HumanSkulls.WITCH_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> IRON_GOLEM_HEAD = new ItemEntry<>(
-				"iron_golem_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HumanSkulls.IRON_GOLEM_HEAD.get(), SCBlocks.HumanSkulls.IRON_GOLEM_WALL_HEAD.get(), props, Direction.DOWN
+				"iron_golem_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HumanSkulls.IRON_GOLEM_HEAD.get(), SCBlocks.HumanSkulls.IRON_GOLEM_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ZOMBIE_VILLAGER_HEAD = new ItemEntry<>(
-				"zombie_villager_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HumanSkulls.ZOMBIE_VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ZOMBIE_VILLAGER_WALL_HEAD.get(), props, Direction.DOWN
+				"zombie_villager_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HumanSkulls.ZOMBIE_VILLAGER_HEAD.get(), SCBlocks.HumanSkulls.ZOMBIE_VILLAGER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
 		private HumanSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class CubeSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> SLIME_HEAD = new ItemEntry<>(
-				"slime_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.SLIME_HEAD.get(), SCBlocks.CubeSkulls.SLIME_WALL_HEAD.get(), props, Direction.DOWN
+				"slime_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.SLIME_HEAD.get(), SCBlocks.CubeSkulls.SLIME_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> LAVASLIME_HEAD = new ItemEntry<>(
-				"lavaslime_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.LAVASLIME_HEAD.get(), SCBlocks.CubeSkulls.LAVASLIME_WALL_HEAD.get(), props, Direction.DOWN
+				"lavaslime_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.LAVASLIME_HEAD.get(), SCBlocks.CubeSkulls.LAVASLIME_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> BLAZE_HEAD = new ItemEntry<>(
-				"blaze_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.BLAZE_HEAD.get(), SCBlocks.CubeSkulls.BLAZE_WALL_HEAD.get(), props, Direction.DOWN
+				"blaze_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.BLAZE_HEAD.get(), SCBlocks.CubeSkulls.BLAZE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> SPIDER_HEAD = new ItemEntry<>(
-				"spider_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.SPIDER_HEAD.get(), SCBlocks.CubeSkulls.SPIDER_WALL_HEAD.get(), props, Direction.DOWN
+				"spider_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.SPIDER_HEAD.get(), SCBlocks.CubeSkulls.SPIDER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> CAVE_SPIDER_HEAD = new ItemEntry<>(
-				"cave_spider_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.CAVE_SPIDER_HEAD.get(), SCBlocks.CubeSkulls.CAVE_SPIDER_WALL_HEAD.get(), props, Direction.DOWN
+				"cave_spider_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.CAVE_SPIDER_HEAD.get(), SCBlocks.CubeSkulls.CAVE_SPIDER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> PIG_HEAD = new ItemEntry<>(
-				"pig_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.PIG_HEAD.get(), SCBlocks.CubeSkulls.PIG_WALL_HEAD.get(), props, Direction.DOWN
+				"pig_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.PIG_HEAD.get(), SCBlocks.CubeSkulls.PIG_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_HEAD = new ItemEntry<>(
-				"wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_ASHEN_HEAD = new ItemEntry<>(
-				"wolf_ashen_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.WOLF_ASHEN_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_ashen_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.WOLF_ASHEN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_BLACK_HEAD = new ItemEntry<>(
-				"wolf_black_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.WOLF_BLACK_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_black_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.WOLF_BLACK_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_CHESTNUT_HEAD = new ItemEntry<>(
-				"wolf_chestnut_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.WOLF_CHESTNUT_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_chestnut_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.WOLF_CHESTNUT_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_RUSTY_HEAD = new ItemEntry<>(
-				"wolf_rusty_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_RUSTY_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_rusty_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_RUSTY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_SNOWY_HEAD = new ItemEntry<>(
-				"wolf_snowy_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SNOWY_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_snowy_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SNOWY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_SPOTTED_HEAD = new ItemEntry<>(
-				"wolf_spotted_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SPOTTED_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_spotted_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_SPOTTED_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_STRIPED_HEAD = new ItemEntry<>(
-				"wolf_striped_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_STRIPED_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_striped_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.WOLF_STRIPED_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WOLF_WOODS_HEAD = new ItemEntry<>(
-				"wolf_woods_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WOODS_WALL_HEAD.get(), props, Direction.DOWN
+				"wolf_woods_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.WOLF_WOODS_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_HEAD = new ItemEntry<>(
-				"angry_wolf_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_ASHEN_HEAD = new ItemEntry<>(
-				"angry_wolf_ashen_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_ashen_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_ASHEN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_BLACK_HEAD = new ItemEntry<>(
-				"angry_wolf_black_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_black_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_BLACK_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_CHESTNUT_HEAD = new ItemEntry<>(
-				"angry_wolf_chestnut_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_chestnut_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_CHESTNUT_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_RUSTY_HEAD = new ItemEntry<>(
-				"angry_wolf_rusty_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_rusty_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_RUSTY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_SNOWY_HEAD = new ItemEntry<>(
-				"angry_wolf_snowy_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_snowy_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SNOWY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_SPOTTED_HEAD = new ItemEntry<>(
-				"angry_wolf_spotted_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_spotted_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_SPOTTED_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_STRIPED_HEAD = new ItemEntry<>(
-				"angry_wolf_striped_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_striped_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_STRIPED_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ANGRY_WOLF_WOODS_HEAD = new ItemEntry<>(
-				"angry_wolf_woods_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_WALL_HEAD.get(), props, Direction.DOWN
+				"angry_wolf_woods_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_HEAD.get(), SCBlocks.CubeSkulls.ANGRY_WOLF_WOODS_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ENDERMAN_HEAD = new ItemEntry<>(
-				"enderman_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(), props, Direction.DOWN
+				"enderman_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.ENDERMAN_HEAD.get(), SCBlocks.CubeSkulls.ENDERMAN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> SNOW_GOLEM_HEAD = new ItemEntry<>(
-				"snow_golem_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.SNOW_GOLEM_HEAD.get(), SCBlocks.CubeSkulls.SNOW_GOLEM_WALL_HEAD.get(), props, Direction.DOWN
+				"snow_golem_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.SNOW_GOLEM_HEAD.get(), SCBlocks.CubeSkulls.SNOW_GOLEM_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> BREEZE_HEAD = new ItemEntry<>(
-				"breeze_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.BREEZE_HEAD.get(), SCBlocks.CubeSkulls.BREEZE_WALL_HEAD.get(), props, Direction.DOWN
+				"breeze_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.BREEZE_HEAD.get(), SCBlocks.CubeSkulls.BREEZE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> TECHNOBLADE_HEAD = new ItemEntry<>(
-				"technoblade_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(), props, Direction.DOWN
+				"technoblade_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CubeSkulls.TECHNOBLADE_HEAD.get(), SCBlocks.CubeSkulls.TECHNOBLADE_WALL_HEAD.get(), Direction.DOWN, props
 				) {
 					@Override
 					public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
@@ -268,33 +243,34 @@ public class SCItems {
 		private CubeSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class SmallCubeSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> SHEEP_HEAD = new ItemEntry<>(
-				"sheep_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.SHEEP_HEAD.get(), SCBlocks.SmallCubeSkulls.SHEEP_WALL_HEAD.get(), props, Direction.DOWN
+				"sheep_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.SHEEP_HEAD.get(), SCBlocks.SmallCubeSkulls.SHEEP_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> BAT_HEAD = new ItemEntry<>(
-				"bat_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.BAT_HEAD.get(), SCBlocks.SmallCubeSkulls.BAT_WALL_HEAD.get(), props, Direction.DOWN
+				"bat_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.BAT_HEAD.get(), SCBlocks.SmallCubeSkulls.BAT_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> SHULKER_HEAD = new ItemEntry<>(
-				"shulker_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.SHULKER_HEAD.get(), SCBlocks.SmallCubeSkulls.SHULKER_WALL_HEAD.get(), props, Direction.DOWN
+				"shulker_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.SHULKER_HEAD.get(), SCBlocks.SmallCubeSkulls.SHULKER_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ALLAY_HEAD = new ItemEntry<>(
-				"allay_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.ALLAY_HEAD.get(), SCBlocks.SmallCubeSkulls.ALLAY_WALL_HEAD.get(), props, Direction.DOWN
+				"allay_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.ALLAY_HEAD.get(), SCBlocks.SmallCubeSkulls.ALLAY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> VEX_HEAD = new ItemEntry<>(
-				"vex_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(), props, Direction.DOWN
+				"vex_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.SmallCubeSkulls.VEX_HEAD.get(), SCBlocks.SmallCubeSkulls.VEX_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
@@ -302,23 +278,24 @@ public class SCItems {
 		private SmallCubeSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class CowSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> COW_HEAD = new ItemEntry<>(
-				"cow_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CowSkulls.COW_HEAD.get(), SCBlocks.CowSkulls.COW_WALL_HEAD.get(), props, Direction.DOWN
+				"cow_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CowSkulls.COW_HEAD.get(), SCBlocks.CowSkulls.COW_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> RED_MOOSHROOM_HEAD = new ItemEntry<>(
-				"red_mooshroom_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CowSkulls.RED_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.RED_MOOSHROOM_WALL_HEAD.get(), props, Direction.DOWN
+				"red_mooshroom_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CowSkulls.RED_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.RED_MOOSHROOM_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> BROWN_MOOSHROOM_HEAD = new ItemEntry<>(
-				"brown_mooshroom_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.CowSkulls.BROWN_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.BROWN_MOOSHROOM_WALL_HEAD.get(), props, Direction.DOWN
+				"brown_mooshroom_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.CowSkulls.BROWN_MOOSHROOM_HEAD.get(), SCBlocks.CowSkulls.BROWN_MOOSHROOM_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
@@ -326,94 +303,97 @@ public class SCItems {
 		private CowSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class PiglinSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> PIGLIN_BRUTE_HEAD = new ItemEntry<>(
-				"piglin_brute_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.PiglinSkulls.PIGLIN_BRUTE_HEAD.get(), SCBlocks.PiglinSkulls.PIGLIN_BRUTE_WALL_HEAD.get(), props, Direction.DOWN
+				"piglin_brute_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.PiglinSkulls.PIGLIN_BRUTE_HEAD.get(), SCBlocks.PiglinSkulls.PIGLIN_BRUTE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ZOMBIFIED_PIGLIN_HEAD = new ItemEntry<>(
-				"zombified_piglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get(), SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_WALL_HEAD.get(), props, Direction.DOWN
+				"zombified_piglin_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_HEAD.get(), SCBlocks.PiglinSkulls.ZOMBIFIED_PIGLIN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
 		private PiglinSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class HorseSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> BLACK_HORSE_HEAD = new ItemEntry<>(
-				"black_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.BLACK_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BLACK_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"black_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.BLACK_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BLACK_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> BROWN_HORSE_HEAD = new ItemEntry<>(
-				"brown_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.BROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BROWN_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"brown_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.BROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.BROWN_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> CHESTNUT_HORSE_HEAD = new ItemEntry<>(
-				"chestnut_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.CHESTNUT_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CHESTNUT_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"chestnut_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.CHESTNUT_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CHESTNUT_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> CREAMY_HORSE_HEAD = new ItemEntry<>(
-				"creamy_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.CREAMY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CREAMY_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"creamy_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.CREAMY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.CREAMY_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> DARKBROWN_HORSE_HEAD = new ItemEntry<>(
-				"darkbrown_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.DARKBROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.DARKBROWN_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"darkbrown_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.DARKBROWN_HORSE_HEAD.get(), SCBlocks.HorseSkulls.DARKBROWN_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> GRAY_HORSE_HEAD = new ItemEntry<>(
-				"gray_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.GRAY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.GRAY_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"gray_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.GRAY_HORSE_HEAD.get(), SCBlocks.HorseSkulls.GRAY_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> WHITE_HORSE_HEAD = new ItemEntry<>(
-				"white_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.WHITE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.WHITE_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"white_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.WHITE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.WHITE_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> DONKEY_HEAD = new ItemEntry<>(
-				"donkey_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.DONKEY_HEAD.get(), SCBlocks.HorseSkulls.DONKEY_WALL_HEAD.get(), props, Direction.DOWN
+				"donkey_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.DONKEY_HEAD.get(), SCBlocks.HorseSkulls.DONKEY_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> MULE_HEAD = new ItemEntry<>(
-				"mule_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.MULE_HEAD.get(), SCBlocks.HorseSkulls.MULE_WALL_HEAD.get(), props, Direction.DOWN
+				"mule_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.MULE_HEAD.get(), SCBlocks.HorseSkulls.MULE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> SKELETON_HORSE_HEAD = new ItemEntry<>(
-				"skeleton_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.SKELETON_HORSE_HEAD.get(), SCBlocks.HorseSkulls.SKELETON_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"skeleton_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.SKELETON_HORSE_HEAD.get(), SCBlocks.HorseSkulls.SKELETON_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ZOMBIE_HORSE_HEAD = new ItemEntry<>(
-				"zombie_horse_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(), props, Direction.DOWN
+				"zombie_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HorseSkulls.ZOMBIE_HORSE_HEAD.get(), SCBlocks.HorseSkulls.ZOMBIE_HORSE_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
 		private HorseSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class WardenSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> WARDEN_HEAD = new ItemEntry<>(
-				"warden_head", RARE_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get(), props, Direction.DOWN
+				"warden_head", new Item.Properties().rarity(Rarity.RARE).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.WardenSkulls.WARDEN_HEAD.get(), SCBlocks.WardenSkulls.WARDEN_WALL_HEAD.get(), Direction.DOWN, props
 				) {
 					@Override
 					public void inventoryTick(ItemStack stack, Level level, Entity entity, int slotIndex, boolean selected) {
@@ -434,24 +414,26 @@ public class SCItems {
 		private WardenSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
 	public static class HoglinSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> HOGLIN_HEAD = new ItemEntry<>(
-				"hoglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HoglinSkulls.HOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.HOGLIN_WALL_HEAD.get(), props, Direction.DOWN
+				"hoglin_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HoglinSkulls.HOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.HOGLIN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 		public static final ItemEntry<StandingAndWallBlockItem> ZOGLIN_HEAD = new ItemEntry<>(
-				"zoglin_head", UNCOMMON_ITEM_PROPERTIES, (props) -> new StandingAndWallBlockItem(
-						SCBlocks.HoglinSkulls.ZOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.ZOGLIN_WALL_HEAD.get(), props, Direction.DOWN
+				"zoglin_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
+						SCBlocks.HoglinSkulls.ZOGLIN_HEAD.get(), SCBlocks.HoglinSkulls.ZOGLIN_WALL_HEAD.get(), Direction.DOWN, props
 				)
 		);
 
 		private HoglinSkulls() {}
 
 		private static void init() {
+			// Lazy init
 		}
 	}
 
@@ -468,14 +450,14 @@ public class SCItems {
 	}
 
 	public static final class ItemEntry<T extends Item> implements Supplier<T>, ItemLike {
-		public static final List<ItemEntry<? extends Item>> REGISTERED_ITEMS = Lists.newArrayList();
+		private static final List<ItemEntry<? extends Item>> REGISTERED_ITEMS = Lists.newArrayList();
 
 		private final DeferredHolder<Item, T> item;
-		private final Supplier<Item.Properties> properties;
 
-		public ItemEntry(String name, Supplier<Item.Properties> properties, Function<Item.Properties, T> make) {
-			this.properties = properties;
-			this.item = REGISTER.register(name, () -> make.apply(properties.get()));
+		public ItemEntry(String name, Item.Properties properties, Function<Item.Properties, T> make) {
+			this.item = REGISTER.register(name, () -> make.apply(properties.setId(
+					ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, name))
+			)));
 
 			REGISTERED_ITEMS.add(this);
 		}
@@ -489,13 +471,13 @@ public class SCItems {
 			return this.item.getId();
 		}
 
-		public Item.Properties getProperties() {
-			return this.properties.get();
-		}
-
 		@Override
 		public Item asItem() {
 			return this.item.get();
+		}
+		
+		public static List<ItemEntry<? extends Item>> registeredItems() {
+			return Collections.unmodifiableList(REGISTERED_ITEMS);
 		}
 	}
 }

@@ -39,7 +39,7 @@ public class CowSkullBlock extends AbstractSkullBlock {
 	}
 
 	@Override
-	public VoxelShape getOcclusionShape(BlockState blockState, BlockGetter level, BlockPos blockPos) {
+	public VoxelShape getOcclusionShape(BlockState blockState) {
 		return Shapes.empty();
 	}
 

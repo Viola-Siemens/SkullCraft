@@ -1,7 +1,6 @@
 package com.hexagram2021.skullcraft.common.register;
 
-import com.google.common.collect.ImmutableSet;
-import com.hexagram2021.skullcraft.common.block.entity.*;
+import com.hexagram2021.skullcraft.common.block.entity.SkullChargerBlockEntity;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -11,12 +10,11 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
 public class SCBlockEntities {
-	public static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
+	private static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
 
-	@SuppressWarnings("DataFlowIssue")
 	public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<SkullChargerBlockEntity>> SKULL_CHARGER = REGISTER.register(
 			"skull_charger", () -> new BlockEntityType<>(
-					SkullChargerBlockEntity::new, ImmutableSet.of(SCBlocks.SKULL_CHARGER.get()), null
+					SkullChargerBlockEntity::new, SCBlocks.SKULL_CHARGER.get()
 			)
 	);
 

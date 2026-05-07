@@ -1,7 +1,5 @@
 package com.hexagram2021.skullcraft.client.model;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.model.SkullModelBase;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -22,10 +20,8 @@ public class CowSkullModel extends SkullModelBase implements IWallShiftSkullMode
 	public static final ModelLayerLocation RED_MOOSHROOM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "red_mooshroom_head"), "main");
 	public static final ModelLayerLocation BROWN_MOOSHROOM_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "brown_mooshroom_head"), "main");
 
-	private final ModelPart root;
-
 	public CowSkullModel(ModelPart root) {
-		this.root = root;
+		super(root);
 	}
 
 	private static MeshDefinition createHeadModel() {
@@ -49,11 +45,6 @@ public class CowSkullModel extends SkullModelBase implements IWallShiftSkullMode
 	public void setupAnim(float tick, float yRot, float xRot) {
 		this.root.yRot = yRot * ((float)Math.PI / 180F);
 		this.root.xRot = xRot * ((float)Math.PI / 180F);
-	}
-
-	@Override
-	public void renderToBuffer(PoseStack transform, VertexConsumer consumer, int x, int y, int rgba) {
-		this.root.render(transform, consumer, x, y, rgba);
 	}
 
 	@Override

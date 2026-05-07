@@ -19,7 +19,7 @@ import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.world.entity.player.StackedItemContents;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.StackedContentsCompatible;
@@ -34,7 +34,8 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @SuppressWarnings("unused")
 public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible {
@@ -153,7 +154,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 	}
 
 	@Override
-	public void fillStackedContents(StackedContents contents) {
+	public void fillStackedContents(StackedItemContents contents) {
 		for(ItemStack itemstack : this.items) {
 			contents.accountStack(itemstack);
 		}
@@ -164,7 +165,7 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		if (this.level.getBlockEntity(this.worldPosition) != this) {
 			return false;
 		}
-		return player.distanceToSqr((double)this.worldPosition.getX() + 0.5D, (double)this.worldPosition.getY() + 0.5D, (double)this.worldPosition.getZ() + 0.5D) <= 64.0D;
+		return player.distanceToSqr(this.worldPosition.getX() + 0.5D, this.worldPosition.getY() + 0.5D, this.worldPosition.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -225,20 +226,15 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		return new SkullChargerMenu(id, inventory, this, this.dataAccess);
 	}
 
-	static long lastSoundTime = 0;
+	private long lastSoundTime = 0;
 
-	@SuppressWarnings("SequencedCollectionMethodCanBeUsed")
 	public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, SkullChargerBlockEntity blockEntity) {
 		ItemStack ingredient = blockEntity.items.get(SLOT_INPUT);
 		ItemStack fuel = blockEntity.items.get(SLOT_FUEL);
 
-		if(!fuel.isEmpty()) {
-			if(fuel.is(Items.SOUL_SOIL)) {
-				if(blockEntity.energy + ENERGY_ADD <= MAX_ENERGY_LEVEL) {
-					fuel.shrink(1);
-					blockEntity.energy += ENERGY_ADD;
-				}
-			}
+		if(!fuel.isEmpty() && fuel.is(Items.SOUL_SOIL) && blockEntity.energy + ENERGY_ADD <= MAX_ENERGY_LEVEL) {
+			fuel.shrink(1);
+			blockEntity.energy += ENERGY_ADD;
 		}
 
 		if(!ingredient.isEmpty()) {
@@ -259,9 +255,9 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 						blockEntity.energy -= energyCost;
 
 						long time = level.getGameTime();
-						if(time - lastSoundTime >= MIN_SOUND_GAP) {
+						if(time - blockEntity.lastSoundTime >= MIN_SOUND_GAP) {
 							level.playSound(null, blockPos, SCSounds.SKULL_CHARGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-							lastSoundTime = time;
+							blockEntity.lastSoundTime = time;
 						}
 					}
 					blockEntity.addX = 0;
@@ -272,19 +268,19 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 
-	@SuppressWarnings("SequencedCollectionMethodCanBeUsed")
 	public void performEnchant(Level level, RegistryAccess registryAccess, RandomSource randomSource) {
 		ItemStack ingredient = this.items.get(SLOT_INPUT);
 		ItemStack bead = this.items.get(SLOT_ENCHANTING_BEAD);
 		if(bead.isEmpty()) {
 			return;
 		}
-		Optional<HolderSet.Named<Enchantment>> optional = registryAccess.registryOrThrow(Registries.ENCHANTMENT).getTag(SCEnchantmentTags.IN_SKULL_CHARGER);
-		if (optional.isEmpty()) {
-			return;
-		}
-		HolderSet<Enchantment> holderSet = optional.get();
-		List<Holder<Enchantment>> availableEnchantments = holderSet.stream().filter(enchantmentHolder -> enchantmentHolder.value().getMaxLevel() > ingredient.getEnchantmentLevel(enchantmentHolder)).toList();
+		Stream<Holder<Enchantment>> holderSet = StreamSupport.stream(
+				registryAccess.lookupOrThrow(Registries.ENCHANTMENT)
+						.getTagOrEmpty(SCEnchantmentTags.IN_SKULL_CHARGER)
+						.spliterator(),
+				false
+		);
+		List<Holder<Enchantment>> availableEnchantments = holderSet.filter(enchantmentHolder -> enchantmentHolder.value().getMaxLevel() > ingredient.getEnchantmentLevel(enchantmentHolder)).toList();
 		if(availableEnchantments.isEmpty()) {
 			return;
 		}
@@ -292,9 +288,9 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		Holder<Enchantment> enchantment = availableEnchantments.get(randomSource.nextInt(availableEnchantments.size()));
 		ingredient.enchant(enchantment, ingredient.getEnchantmentLevel(enchantment) + 1);
 		long time = level.getGameTime();
-		if(time - lastSoundTime >= MIN_SOUND_GAP) {
+		if(time - this.lastSoundTime >= MIN_SOUND_GAP) {
 			level.playSound(null, this.getBlockPos(), SCSounds.SKULL_CHARGER, SoundSource.BLOCKS, 1.0F, 1.0F);
-			lastSoundTime = time;
+			this.lastSoundTime = time;
 		}
 	}
 }
