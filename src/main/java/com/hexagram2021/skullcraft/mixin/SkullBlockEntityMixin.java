@@ -22,6 +22,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 
+/**
+ * 头颅方块实体 Mixin，实现 {@link IScalableBlockEntity} 和 {@link IEnchantableBlockEntity} 接口，
+ * 为原版头颅方块实体添加缩放比例和附魔数据的持久化存储能力喵~
+ *
+ * @author liudongyu
+ */
 @Mixin(SkullBlockEntity.class)
 public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantableBlockEntity {
 	@Unique
@@ -38,7 +44,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 	private Integer skullcraft$repairCost;
 
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
-	public void skullcraft$initScaleXYZ(CallbackInfo ci) {
+	private void skullcraft$initScaleXYZ(CallbackInfo ci) {
 		this.skullcraft$scaleX = 100;
 		this.skullcraft$scaleY = 100;
 		this.skullcraft$scaleZ = 100;
@@ -52,7 +58,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void skullcraft$loadScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
+	private void skullcraft$loadScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
 		if(nbt.contains(SkullCraft.SCALE_TAG, Tag.TAG_COMPOUND)) {
 			CompoundTag scaleTag = nbt.getCompound(SkullCraft.SCALE_TAG);
 			this.skullcraft$scaleX = scaleTag.getInt("x");
@@ -79,7 +85,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void skullcraft$saveScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
+	private void skullcraft$saveScaleXYZ(CompoundTag nbt, HolderLookup.Provider provider, CallbackInfo ci) {
 		if(this.skullcraft$scaleX != 100 || this.skullcraft$scaleY != 100 || this.skullcraft$scaleZ != 100) {
 			CompoundTag scaleTag = new CompoundTag();
 			scaleTag.putInt("x", this.skullcraft$scaleX);
@@ -95,7 +101,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void skullcraft$loadSkullCraftComponents(BlockEntity.DataComponentInput componentInput, CallbackInfo ci) {
+	private void skullcraft$loadSkullCraftComponents(BlockEntity.DataComponentInput componentInput, CallbackInfo ci) {
 		SkullScale skullScale = componentInput.getOrDefault(SCDataComponents.SKULL_SCALE, SkullScale.DEFAULT);
 		this.skullcraft$scaleX = skullScale.x();
 		this.skullcraft$scaleY = skullScale.y();
@@ -110,7 +116,7 @@ public class SkullBlockEntityMixin implements IScalableBlockEntity, IEnchantable
 			shift = At.Shift.AFTER,
 			ordinal = 0
 	))
-	public void skullcraft$saveSkullCraftComponents(DataComponentMap.Builder components, CallbackInfo ci) {
+	private void skullcraft$saveSkullCraftComponents(DataComponentMap.Builder components, CallbackInfo ci) {
 		components.set(SCDataComponents.SKULL_SCALE, new SkullScale(this.skullcraft$scaleX, this.skullcraft$scaleY, this.skullcraft$scaleZ));
 		components.set(DataComponents.ENCHANTMENTS, this.skullcraft$enchantments);
 		components.set(DataComponents.REPAIR_COST, this.skullcraft$repairCost);

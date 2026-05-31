@@ -14,6 +14,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 牛形生物头颅模型，用于渲染牛、哞菇等生物的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class CowSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation COW_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "cow_head"), "main");
@@ -36,6 +41,10 @@ public class CowSkullModel extends SkullModelBase implements IWallShiftSkullMode
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建牛形生物头颅模型
+	 * @return 层片定义
+	 */
 	public static LayerDefinition createCowHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 32);

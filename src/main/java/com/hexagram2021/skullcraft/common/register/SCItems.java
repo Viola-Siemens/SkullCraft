@@ -28,10 +28,16 @@ import java.util.function.Supplier;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 物品注册类，负责注册模组中所有自定义物品，包括各类头颅物品、Kopis 剑及其组件喵~
+ *
+ * @author liudongyu
+ */
 @SuppressWarnings("unused")
-public class SCItems {
+public final class SCItems {
 	public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, MODID);
 
+	/** 头颅充能器物品喵~ */
 	public static final ItemEntry<BlockItem> SKULL_CHARGER = new ItemEntry<>(
 			"skull_charger", new Item.Properties().useBlockDescriptionPrefix(), props -> new BlockItem(SCBlocks.SKULL_CHARGER.get(), props) {
 				@Override
@@ -41,24 +47,32 @@ public class SCItems {
 			}
 	);
 
+	/** Kopis 剑的工具等级喵~ */
 	public static final ToolMaterial KOPIS_TIER = new ToolMaterial(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 1145, 0.0F, 6.0F, 10, SCItemTags.KOPIS_TOOL_MATERIALS);
 
+	/** Kopis 剑物品喵~ */
 	public static final ItemEntry<SwordItem> KOPIS = new ItemEntry<>("kopis", new Item.Properties(), props -> new SwordItem(KOPIS_TIER, 3, -3.6F, props) {
 		@Override
 		public void appendHoverText(ItemStack itemStack, Item.TooltipContext context, List<Component> components, TooltipFlag flag) {
 			components.add(Component.translatable("desc.skullcraft.kopis").withStyle(ChatFormatting.GRAY));
 		}
 	});
+	/** Kopis 剑刃物品喵~ */
 	public static final ItemEntry<Item> KOPIS_BLADE = new ItemEntry<>(
 			"kopis_blade", new Item.Properties(), Item::new
 	);
+	/** Kopis 剑柄物品喵~ */
 	public static final ItemEntry<Item> KOPIS_HILT = new ItemEntry<>(
 			"kopis_hilt", new Item.Properties(), Item::new
 	);
+	/** 头颅附魔珠物品喵~ */
 	public static final ItemEntry<Item> SKULL_ENCHANTING_BEAD = new ItemEntry<>(
 			"skull_enchanting_bead", new Item.Properties(), Item::new
 	);
 
+	/**
+	 * 人形生物头颅物品集合喵~
+	 */
 	public static class HumanSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> VILLAGER_HEAD = new ItemEntry<>(
 				"villager_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -93,6 +107,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 立方体形生物头颅物品集合喵~
+	 */
 	public static class CubeSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> SLIME_HEAD = new ItemEntry<>(
 				"slime_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -247,6 +264,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 小型立方体形生物头颅物品集合喵~
+	 */
 	public static class SmallCubeSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> SHEEP_HEAD = new ItemEntry<>(
 				"sheep_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -282,6 +302,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 牛形生物头颅物品集合喵~
+	 */
 	public static class CowSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> COW_HEAD = new ItemEntry<>(
 				"cow_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -307,6 +330,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 猪灵形生物头颅物品集合喵~
+	 */
 	public static class PiglinSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> PIGLIN_BRUTE_HEAD = new ItemEntry<>(
 				"piglin_brute_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -326,6 +352,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 马形生物头颅物品集合喵~
+	 */
 	public static class HorseSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> BLACK_HORSE_HEAD = new ItemEntry<>(
 				"black_horse_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -390,6 +419,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 监守者头颅物品集合喵~
+	 */
 	public static class WardenSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> WARDEN_HEAD = new ItemEntry<>(
 				"warden_head", new Item.Properties().rarity(Rarity.RARE).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -418,6 +450,9 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 疣猪兽形生物头颅物品集合喵~
+	 */
 	public static class HoglinSkulls {
 		public static final ItemEntry<StandingAndWallBlockItem> HOGLIN_HEAD = new ItemEntry<>(
 				"hoglin_head", new Item.Properties().rarity(Rarity.UNCOMMON).useBlockDescriptionPrefix().equippableUnswappable(EquipmentSlot.HEAD), props -> new StandingAndWallBlockItem(
@@ -437,6 +472,11 @@ public class SCItems {
 		}
 	}
 
+	/**
+	 * 将物品注册到事件总线，并触发所有内部类的延迟初始化喵~
+	 *
+	 * @param bus 模组事件总线喵~
+	 */
 	public static void init(IEventBus bus) {
 		REGISTER.register(bus);
 		HumanSkulls.init();
@@ -449,11 +489,28 @@ public class SCItems {
 		HoglinSkulls.init();
 	}
 
+	private SCItems() {
+	}
+
+	/**
+	 * 物品注册项封装类，同时实现 {@link Supplier} 和 {@link ItemLike} 接口，
+	 * 并自动追踪所有已注册的物品喵~
+	 *
+	 * @param <T> 物品类型喵~
+	 */
 	public static final class ItemEntry<T extends Item> implements Supplier<T>, ItemLike {
+		/** 所有已注册物品的列表喵~ */
 		private static final List<ItemEntry<? extends Item>> REGISTERED_ITEMS = Lists.newArrayList();
 
 		private final DeferredHolder<Item, T> item;
 
+		/**
+		 * 构造物品注册项，并自动加入已注册列表喵~
+		 *
+		 * @param name       物品注册名喵~
+		 * @param properties 物品属性喵~
+		 * @param make       物品构造工厂喵~
+		 */
 		public ItemEntry(String name, Item.Properties properties, Function<Item.Properties, T> make) {
 			this.item = REGISTER.register(name, () -> make.apply(properties.setId(
 					ResourceKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(MODID, name))
@@ -467,6 +524,11 @@ public class SCItems {
 			return this.item.get();
 		}
 
+		/**
+		 * 获取物品的注册 ID 喵~
+		 *
+		 * @return 物品注册 ID 喵~
+		 */
 		public ResourceLocation getId() {
 			return this.item.getId();
 		}
@@ -475,7 +537,12 @@ public class SCItems {
 		public Item asItem() {
 			return this.item.get();
 		}
-		
+
+		/**
+		 * 获取所有已注册物品的不可修改列表喵~
+		 *
+		 * @return 已注册物品列表喵~
+		 */
 		public static List<ItemEntry<? extends Item>> registeredItems() {
 			return Collections.unmodifiableList(REGISTERED_ITEMS);
 		}

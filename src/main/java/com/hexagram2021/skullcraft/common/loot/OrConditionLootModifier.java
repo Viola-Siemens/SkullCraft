@@ -12,10 +12,21 @@ import net.neoforged.neoforge.common.loot.IGlobalLootModifier;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+/**
+ * 基于“或”条件的全局战利品修改器基类，当任意一个条件满足时即应用修改喵~
+ *
+ * @author liudongyu
+ */
 public abstract class OrConditionLootModifier implements IGlobalLootModifier {
 	protected final LootItemCondition[] conditions;
 	private final Predicate<LootContext> combinedConditions;
 
+	/**
+	 * 创建一个 OrConditionLootModifier 的 codec
+	 * @param instance codec 实例
+	 * @return codec
+	 * @param <T> 继承 OrConditionLootModifier 的类
+	 */
 	public static <T extends OrConditionLootModifier> Products.P1<RecordCodecBuilder.Mu<T>, LootItemCondition[]> codecStart(RecordCodecBuilder.Instance<T> instance) {
 		return instance.group(LOOT_CONDITIONS_CODEC.fieldOf("conditions").forGetter(lm -> lm.conditions));
 	}

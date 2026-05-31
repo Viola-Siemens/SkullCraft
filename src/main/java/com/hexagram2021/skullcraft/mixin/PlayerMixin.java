@@ -10,8 +10,18 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
+/**
+ * 玩家 Mixin，在计算食物消耗时根据"耐力提升"附魔等级减少消耗值喵~
+ * @author liudongyu
+ */
 @Mixin(Player.class)
 public class PlayerMixin {
+	/**
+	 * 玩家消耗食物时根据“耐力提升”附魔等级减少消耗值
+	 * @param instance 食物数据
+	 * @param exhaustion 玩家消耗食物时消耗值
+	 * @param original 原方法
+	 */
 	@WrapOperation(method = "causeFoodExhaustion", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/food/FoodData;addExhaustion(F)V"))
 	public void skullcraft$modifyFoodExhaustion(FoodData instance, float exhaustion, Operation<Void> original) {
 		Player player = (Player)(Object)this;

@@ -11,6 +11,12 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 立方体形生物头颅模型，用于渲染史莱姆、烈焰人、蜘蛛、狼、末影人、雪傀儡、
+ * 旋风人、Technoblade 等立方体形态生物的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation SLIME_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "slime_head"), "main");
@@ -55,6 +61,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建史莱姆头颅模型层定义喵~
+	 *
+	 * @return 史莱姆头颅的层定义喵~
+	 */
 	public static LayerDefinition createSlimeHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -66,6 +77,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建岩浆怪头颅模型层定义喵~
+	 *
+	 * @return 岩浆怪头颅的层定义喵~
+	 */
 	public static LayerDefinition createLavaSlimeLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -81,12 +97,17 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 				k = 19;
 			}
 
-			partdefinition.addOrReplaceChild("cube" + i, CubeListBuilder.create().texOffs(j, k).addBox(-4.0F, (float)(i - 8), -4.0F, 8.0F, 1.0F, 8.0F), PartPose.ZERO);
+			partdefinition.addOrReplaceChild("cube" + i, CubeListBuilder.create().texOffs(j, k).addBox(-4.0F, i - 8.0F, -4.0F, 8.0F, 1.0F, 8.0F), PartPose.ZERO);
 		}
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建蜘蛛类头颅模型层定义喵~
+	 *
+	 * @return 蜘蛛头颅的层定义喵~
+	 */
 	public static LayerDefinition createSpiderHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -96,6 +117,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建猪头颅模型层定义喵~
+	 *
+	 * @return 猪头颅的层定义喵~
+	 */
 	public static LayerDefinition createPigHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -107,6 +133,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建狼头颅模型层定义喵~
+	 *
+	 * @return 狼头颅的层定义喵~
+	 */
 	public static LayerDefinition createWolfHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -120,6 +151,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建末影人头颅模型层定义喵~
+	 *
+	 * @return 末影人头颅的层定义喵~
+	 */
 	public static LayerDefinition createEndermanHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -131,16 +167,31 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
 
+	/**
+	 * 创建雪傀儡头颅模型层定义喵~
+	 *
+	 * @return 雪傀儡头颅的层定义喵~
+	 */
 	public static LayerDefinition createSnowGolemHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	/**
+	 * 创建旋风人头颅模型层定义喵~
+	 *
+	 * @return 旋风人头颅的层定义喵~
+	 */
 	public static LayerDefinition createBreezeHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
+	/**
+	 * 创建 Technoblade 头颅模型层定义喵~
+	 *
+	 * @return Technoblade 头颅的层定义喵~
+	 */
 	public static LayerDefinition createTechnobladeHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -151,6 +202,11 @@ public class CubeSkullModel extends SkullModelBase implements IWallShiftSkullMod
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	/**
+	 * 创建通用立方体生物头颅模型层定义喵~
+	 *
+	 * @return 通用立方体生物头颅的层定义喵~
+	 */
 	public static LayerDefinition createMobHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 32);

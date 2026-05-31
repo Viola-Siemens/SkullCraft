@@ -14,6 +14,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 猪灵头颅模型，用于渲染猪灵蛮兵和僵尸猪灵的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class PiglinSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation PIGLIN_BRUTE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "piglin_brute_head"), "main");
@@ -45,6 +50,11 @@ public class PiglinSkullModel extends SkullModelBase implements IWallShiftSkullM
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建猪灵头颅模型层定义喵~
+	 *
+	 * @return 猪灵头颅的层定义喵~
+	 */
 	public static LayerDefinition createPiglinHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 64);

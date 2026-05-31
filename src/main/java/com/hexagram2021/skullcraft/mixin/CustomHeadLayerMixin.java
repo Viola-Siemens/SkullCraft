@@ -13,8 +13,23 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * 自定义头部渲染层 Mixin，根据物品中的缩放数据调整头颅在生物头上的渲染大小喵~
+ * @param <S> 渲染状态
+ * @author liudongyu
+ */
 @Mixin(CustomHeadLayer.class)
 public class CustomHeadLayerMixin<S extends LivingEntityRenderState> {
+	/**
+	 * 自定义头部渲染层注入点，用于处理物品中的缩放数据
+	 * @param transform 渲染矩阵
+	 * @param source 缓冲源
+	 * @param uv2 UV 坐标
+	 * @param renderState 渲染状态
+	 * @param netHeadYaw 头部偏航角
+	 * @param headPitch 头部俯仰角
+	 * @param ci 回调信息
+	 */
 	@Inject(method = "render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/renderer/entity/state/LivingEntityRenderState;FF)V", at = @At(value = "INVOKE", target = "Lcom/mojang/blaze3d/vertex/PoseStack;translate(DDD)V", shift = At.Shift.BEFORE))
 	public void skullcraft$handleSkullCraftScale(PoseStack transform, MultiBufferSource source, int uv2, S renderState, float netHeadYaw, float headPitch, CallbackInfo ci) {
 		ItemStack itemStack = renderState.headItem;

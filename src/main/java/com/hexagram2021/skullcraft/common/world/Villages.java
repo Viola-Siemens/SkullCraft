@@ -43,15 +43,31 @@ import java.util.function.Supplier;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 村庄集成类，负责注册自定义村民职业（阴阳师）、兴趣点以及交易列表，
+ * 并向原版村庄建筑池中添加模组自定义结构喵~
+ *
+ * @author liudongyu
+ */
 public final class Villages {
+	/** 阴阳师村民职业的资源位置喵~ */
 	public static final ResourceLocation ONMYOUJI = ResourceLocation.fromNamespaceAndPath(MODID, "onmyouji");
 
 	private Villages() {
 	}
 
+	/**
+	 * 懒加载，实现类的初始化
+	 */
 	public static void init() {
+		// Lazy Init
 	}
 
+	/**
+	 * 向平原和沙漠村庄的建筑池中添加阴阳师结构喵~
+	 *
+	 * @param provider Holder 查找提供者喵~
+	 */
 	public static void addAllStructuresToPool(HolderLookup.Provider provider) {
 		SCLogger.info("Adding skullcraft structures to template pools.");
 		addToPool(
@@ -65,6 +81,7 @@ public final class Villages {
 				builder -> builder.add(ResourceLocation.fromNamespaceAndPath(MODID, "village/desert/houses/desert_onmyouji_1"), 3)
 		);
 	}
+
 	private static void addToPool(ResourceLocation poolName, HolderLookup.Provider provider, Consumer<PoolBuilder> consumer) {
 		HolderLookup.RegistryLookup<StructureTemplatePool> registry = provider.lookupOrThrow(Registries.TEMPLATE_POOL);
 		Holder.Reference<StructureTemplatePool> structureTemplatePool = registry.get(ResourceKey.create(Registries.TEMPLATE_POOL, poolName)).orElse(null);
@@ -81,22 +98,30 @@ public final class Villages {
 
 		pool.skullcraft$setRawTemplates(rawTemplates);
 	}
-	private static final class PoolBuilder {
-		StructureTemplatePoolAccess pool;
-		List<Pair<StructurePoolElement, Integer>> rawTemplates;
 
-		public PoolBuilder(StructureTemplatePoolAccess pool, List<Pair<StructurePoolElement, Integer>> rawTemplates) {
-			this.pool = pool;
-			this.rawTemplates = rawTemplates;
+	/**
+	 * 添加结构构建器类
+	 * @param pool
+	 * @param rawTemplates
+	 */
+	private record PoolBuilder(StructureTemplatePoolAccess pool,
+							   List<Pair<StructurePoolElement, Integer>> rawTemplates) {
+		/**
+		 * 添加结构到结构池中
+		 *
+		 * @param toAdd  资源位置
+		 * @param weight 权重
+		 */
+			public void add(ResourceLocation toAdd, int weight) {
+				SinglePoolElement addedElement = StructurePoolElement.single(toAdd.toString()).apply(StructureTemplatePool.Projection.RIGID);
+				this.rawTemplates.add(Pair.of(addedElement, weight));
+				this.pool.skullcraft$getTemplates().add(addedElement);
+			}
 		}
 
-		public void add(ResourceLocation toAdd, int weight) {
-			SinglePoolElement addedElement = StructurePoolElement.single(toAdd.toString()).apply(StructureTemplatePool.Projection.RIGID);
-			this.rawTemplates.add(Pair.of(addedElement, weight));
-			this.pool.skullcraft$getTemplates().add(addedElement);
-		}
-	}
-
+	/**
+	 * 村民职业和兴趣点注册类喵~
+	 */
 	public static class Registers {
 		public static final DeferredRegister<PoiType> POINTS_OF_INTEREST = DeferredRegister.create(Registries.POINT_OF_INTEREST_TYPE, MODID);
 		public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(Registries.VILLAGER_PROFESSION, MODID);
@@ -122,21 +147,37 @@ public final class Villages {
 			ResourceKey<PoiType> poiName = poi.get();
 			return new VillagerProfession(
 					name.toString(),
-					(p) -> p.is(poiName), (p) -> p.is(poiName),
+					p -> p.is(poiName), p -> p.is(poiName),
 					ImmutableSet.of(), ImmutableSet.of(),
 					sound
 			);
 		}
 
+		/**
+		 * 将兴趣点和职业注册到事件总线喵~
+		 *
+		 * @param bus 模组事件总线喵~
+		 */
 		public static void init(IEventBus bus) {
 			POINTS_OF_INTEREST.register(bus);
 			PROFESSIONS.register(bus);
 		}
+
+		private Registers() {
+		}
 	}
 
+	/**
+	 * 村民交易事件处理类喵~
+	 */
 	@SuppressWarnings("SameParameterValue")
 	@EventBusSubscriber(modid = MODID)
 	public static final class Events {
+		/**
+		 * 注册阴阳师村民的交易列表喵~
+		 *
+		 * @param event 村民交易事件喵~
+		 */
 		@SubscribeEvent
 		public static void registerTrades(VillagerTradesEvent event) {
 			Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();

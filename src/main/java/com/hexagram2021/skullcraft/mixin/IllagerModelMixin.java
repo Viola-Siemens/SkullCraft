@@ -18,6 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 
+/**
+ * 灾厄村民模型 Mixin，实现 {@link HattedModel} 接口并提供穿戴头颅时隐藏原版头部/帽子的功能喵~
+ */
 @Mixin(IllagerModel.class)
 public class IllagerModelMixin implements HattedModel {
 	@Shadow @Final
@@ -33,6 +36,11 @@ public class IllagerModelMixin implements HattedModel {
 		return null;
 	}
 
+	/**
+	 * 尝试隐藏原版头部/帽子
+	 * @param renderState 渲染状态
+	 * @param ci 回调信息
+	 */
 	@Inject(method = "setupAnim(Lnet/minecraft/client/renderer/entity/state/IllagerRenderState;)V", at = @At(value = "HEAD"))
 	public void skullcraft$trySkipRenderHead(IllagerRenderState renderState, CallbackInfo ci) {
 		ItemStack itemStack = renderState.headItem;

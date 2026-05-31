@@ -25,12 +25,23 @@ import net.neoforged.neoforge.registries.NeoForgeRegistries;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
-public class SkullNBTOps {
+/**
+ * 头颅 NBT 操作战利品修改器，在头颅方块被破坏掉落时，
+ * 将缩放比例和附魔数据写入掉落物品的 NBT 中喵~
+ *
+ * @author liudongyu
+ */
+public final class SkullNBTOps {
 	private static final DeferredRegister<MapCodec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(NeoForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS, MODID);
 	private static final DeferredHolder<MapCodec<? extends IGlobalLootModifier>, MapCodec<SkullNBTOpsModifier>> SKULL_NBT_OPS = REGISTER.register(
 			"skull_nbt_ops", () -> RecordCodecBuilder.mapCodec(inst -> OrConditionLootModifier.codecStart(inst).apply(inst, SkullNBTOpsModifier::new))
 	);
 
+	/**
+	 * 将 NBT 操作战利品修改器注册到事件总线喵~
+	 *
+	 * @param bus 模组事件总线喵~
+	 */
 	public static void init(IEventBus bus) {
 		REGISTER.register(bus);
 	}
@@ -73,5 +84,8 @@ public class SkullNBTOps {
 		public MapCodec<SkullNBTOpsModifier> codec() {
 			return SkullNBTOps.SKULL_NBT_OPS.get();
 		}
+	}
+
+	private SkullNBTOps() {
 	}
 }

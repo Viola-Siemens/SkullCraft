@@ -14,6 +14,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 监守者头颅模型，用于渲染监守者的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class WardenSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation WARDEN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "warden_head"), "main");
@@ -22,6 +27,11 @@ public class WardenSkullModel extends SkullModelBase implements IWallShiftSkullM
 		super(root);
 	}
 
+	/**
+	 * 创建监守者头颅模型层定义喵~
+	 *
+	 * @return 监守者头颅的层定义喵~
+	 */
 	public static LayerDefinition createWardenHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

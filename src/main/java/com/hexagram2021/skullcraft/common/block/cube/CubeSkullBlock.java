@@ -15,6 +15,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * 立方体形生物头颅方块，支持 16 向旋转放置喵~
+ */
 @SuppressWarnings("deprecation")
 public class CubeSkullBlock extends AbstractSkullBlock {
 	public static final MapCodec<CubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
@@ -65,6 +68,10 @@ public class CubeSkullBlock extends AbstractSkullBlock {
 		builder.add(ROTATION);
 	}
 
+	/**
+	 * 立方体形生物头颅方块类型枚举
+	 * @author liudongyu
+	 */
 	public enum Types implements SkullBlock.Type {
 		SLIME("skullcraft:slime"),
 		LAVASLIME("skullcraft:lavaslime"),

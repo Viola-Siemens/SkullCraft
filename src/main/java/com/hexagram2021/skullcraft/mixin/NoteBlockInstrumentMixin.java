@@ -14,6 +14,9 @@ import java.util.Arrays;
 
 import static com.hexagram2021.skullcraft.common.register.SCNoteBlockInstruments.*;
 
+/**
+ * 音符盒乐器 Mixin，向 {@link NoteBlockInstrument} 枚举中注入 32 种自定义头颅乐器类型喵~
+ */
 @SuppressWarnings("unused")
 @Mixin(NoteBlockInstrument.class)
 public class NoteBlockInstrumentMixin {

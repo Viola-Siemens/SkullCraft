@@ -5,6 +5,9 @@ import com.hexagram2021.skullcraft.common.loot.SkullNBTOps;
 import com.hexagram2021.skullcraft.common.register.*;
 import com.hexagram2021.skullcraft.common.world.Villages;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.enchantment.Enchantable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
@@ -12,6 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.items.wrapper.InvWrapper;
 import net.neoforged.neoforge.items.wrapper.SidedInvWrapper;
 import net.neoforged.neoforge.registries.RegisterEvent;
@@ -20,8 +24,19 @@ import java.util.Set;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 模组内容注册中心，负责方块、物品、数据组件、容器类型、方块实体、
+ * 战利品修改器、创造模式标签页和村庄结构的注册与初始化喵~
+ *
+ * @author liudongyu
+ */
 @EventBusSubscriber(modid = MODID)
-public class SCContent {
+public final class SCContent {
+	/**
+	 * 在模组构造阶段注册所有内容模块喵~
+	 *
+	 * @param bus 模组事件总线喵~
+	 */
 	public static void modConstruction(IEventBus bus) {
 		SCBlocks.init(bus);
 		SCItems.init(bus);
@@ -33,6 +48,11 @@ public class SCContent {
 		SCCreativeModeTabs.init(bus);
 	}
 
+	/**
+	 * 初始化模组内容，将所有自定义头颅方块注册到原版骷髅方块实体类型中，使其能够被音符盒等机制正确识别喵~
+	 * <br/>
+	 * 请保证调用发生在主线程，避免并发修改
+	 */
 	public static void init() {
 		Villages.init();
 		Set<Block> skullValidBlocks = new ObjectOpenHashSet<>(BlockEntityType.SKULL.validBlocks);
@@ -98,11 +118,21 @@ public class SCContent {
 		BlockEntityType.SKULL.validBlocks = skullValidBlocks;
 	}
 
+	/**
+	 * 注册事件处理，负责注册模组的音效事件喵~
+	 *
+	 * @param event 注册事件喵~
+	 */
 	@SubscribeEvent
 	public static void onRegister(RegisterEvent event) {
 		SCSounds.init(event);
 	}
 
+	/**
+	 * 能力注册事件处理，为头颅充能器方块实体注册物品处理能力喵~
+	 *
+	 * @param event 能力注册事件喵~
+	 */
 	@SubscribeEvent
 	public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
 		event.registerBlockEntity(
@@ -110,5 +140,21 @@ public class SCContent {
 				SCBlockEntities.SKULL_CHARGER.get(),
 				(container, side) -> side == null ? new InvWrapper(container) : new SidedInvWrapper(container, side)
 		);
+	}
+
+	/**
+	 * 遍历物品注册表，修改头颅类物品的附魔值
+	 * @param event 物品注册事件喵~
+	 */
+	@SuppressWarnings("deprecation")
+	@SubscribeEvent
+	public static void onModifyEnchantmentValue(ModifyDefaultComponentsEvent event) {
+		event.modifyMatching(
+				item -> item.builtInRegistryHolder().is(ItemTags.SKULLS),
+				builder -> builder.set(DataComponents.ENCHANTABLE, new Enchantable(6))
+		);
+	}
+
+	private SCContent() {
 	}
 }

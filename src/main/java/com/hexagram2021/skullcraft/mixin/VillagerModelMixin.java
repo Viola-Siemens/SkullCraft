@@ -16,6 +16,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.annotation.Nullable;
+
+/**
+ * 村民模型 Mixin，实现 {@link HattedModel} 接口并提供穿戴头颅时隐藏原版头部/帽子的功能喵~
+ */
 @Mixin(VillagerModel.class)
 public class VillagerModelMixin implements HattedModel {
 	@Shadow @Final
@@ -29,12 +34,17 @@ public class VillagerModelMixin implements HattedModel {
 		return this.hat;
 	}
 
-	@Override
+	@Override @Nullable
 	public ModelPart skullcraft$getHatRim() {
 		return this.hatRim;
 	}
 
-	@Inject(method = "setupAnim", at = @At(value = "HEAD"))
+	/**
+	 * 尝试隐藏原版头部/帽子
+	 * @param renderState 渲染状态
+	 * @param ci 回调信息
+	 */
+	@Inject(method = "setupAnim(Lnet/minecraft/client/renderer/entity/state/VillagerRenderState;)V", at = @At(value = "HEAD"))
 	public void skullcraft$trySkipRenderHead(VillagerRenderState renderState, CallbackInfo ci) {
 		ItemStack itemStack = renderState.headItem;
 		HeadedModel model = (HeadedModel) this;

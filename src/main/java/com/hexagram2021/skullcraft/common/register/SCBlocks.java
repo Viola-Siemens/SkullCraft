@@ -38,14 +38,22 @@ import java.util.function.Supplier;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 方块注册类，负责注册模组中所有自定义方块，包括各类头颅方块和头颅充能器喵~
+ *
+ * @author liudongyu
+ */
 public class SCBlocks {
 	private static final DeferredRegister<Block> REGISTER = DeferredRegister.create(Registries.BLOCK, MODID);
 
-	private static final Function<NoteBlockInstrument, BlockBehaviour.Properties> SKULL_PROPERTIES = instrument -> 
+	/** 通用头颅方块属性工厂喵~ */
+	private static final Function<NoteBlockInstrument, BlockBehaviour.Properties> SKULL_PROPERTIES = instrument ->
 			BlockBehaviour.Properties.of().instrument(instrument).strength(1.0F).pushReaction(PushReaction.DESTROY);
-	private static final Function<NoteBlockInstrument, BlockBehaviour.Properties> BOSS_SKULL_PROPERTIES = instrument -> 
+	/** Boss 级头颅方块属性工厂，硬度更高喵~ */
+	private static final Function<NoteBlockInstrument, BlockBehaviour.Properties> BOSS_SKULL_PROPERTIES = instrument ->
 			BlockBehaviour.Properties.of().instrument(instrument).strength(2.0F).pushReaction(PushReaction.DESTROY);
 
+	/** 头颅充能器方块喵~ */
 	public static final BlockEntry<Block> SKULL_CHARGER = new BlockEntry<>(
 			"skull_charger",
 			BlockBehaviour.Properties.of().requiresCorrectToolForDrops()
@@ -53,6 +61,9 @@ public class SCBlocks {
 			SkullChargerBlock::new
 	);
 
+	/**
+	 * 人形生物头颅方块集合喵~
+	 */
 	public static class HumanSkulls {
 		public static final BlockEntry<HumanSkullBlock> VILLAGER_HEAD = new BlockEntry<>(
 				"villager_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_VILLAGER),
@@ -103,6 +114,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 立方体形生物头颅方块集合喵~
+	 */
 	public static class CubeSkulls {
 		public static final BlockEntry<CubeSkullBlock> SLIME_HEAD = new BlockEntry<>(
 				"slime_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SLIME),
@@ -338,6 +352,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 小型立方体形生物头颅方块集合喵~
+	 */
 	public static class SmallCubeSkulls {
 		public static final BlockEntry<SmallCubeSkullBlock> SHEEP_HEAD = new BlockEntry<>(
 				"sheep_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_SHEEP),
@@ -387,6 +404,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 牛形生物头颅方块集合喵~
+	 */
 	public static class CowSkulls {
 		public static final BlockEntry<CowSkullBlock> COW_HEAD = new BlockEntry<>(
 				"cow_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_COW),
@@ -420,6 +440,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 猪灵形生物头颅方块集合喵~
+	 */
 	public static class PiglinSkulls {
 		public static final BlockEntry<PiglinSkullBlock> PIGLIN_BRUTE_HEAD = new BlockEntry<>(
 				"piglin_brute_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_PIGLIN_BRUTE),
@@ -445,6 +468,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 马形生物头颅方块集合喵~
+	 */
 	public static class HorseSkulls {
 		public static final BlockEntry<HorseSkullBlock> BLACK_HORSE_HEAD = new BlockEntry<>(
 				"black_horse_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HORSE),
@@ -542,6 +568,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 监守者头颅方块集合喵~
+	 */
 	public static class WardenSkulls {
 		public static final BlockEntry<WardenSkullBlock> WARDEN_HEAD = new BlockEntry<>(
 				"warden_head", BOSS_SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_WARDEN),
@@ -559,6 +588,9 @@ public class SCBlocks {
 		}
 	}
 
+	/**
+	 * 疣猪兽形生物头颅方块集合喵~
+	 */
 	public static class HoglinSkulls {
 		public static final BlockEntry<HoglinSkullBlock> HOGLIN_HEAD = new BlockEntry<>(
 				"hoglin_head", SKULL_PROPERTIES.apply(SCNoteBlockInstruments.NOTE_BLOCK_IMITATE_HOGLIN),
@@ -586,6 +618,11 @@ public class SCBlocks {
 
 	private SCBlocks() {}
 
+	/**
+	 * 将方块注册到事件总线，并触发所有内部类的延迟初始化喵~
+	 *
+	 * @param bus 模组事件总线喵~
+	 */
 	public static void init(IEventBus bus) {
 		REGISTER.register(bus);
 
@@ -599,10 +636,22 @@ public class SCBlocks {
 		HoglinSkulls.init();
 	}
 
+	/**
+	 * 方块注册项封装类，同时实现 {@link Supplier} 和 {@link ItemLike} 接口喵~
+	 *
+	 * @param <T> 方块类型喵~
+	 */
 	@SuppressWarnings("unused")
 	public static final class BlockEntry<T extends Block> implements Supplier<T>, ItemLike {
 		private final DeferredHolder<Block, T> block;
 
+		/**
+		 * 构造方块注册项喵~
+		 *
+		 * @param name       方块注册名喵~
+		 * @param properties 方块属性喵~
+		 * @param make       方块构造工厂喵~
+		 */
 		public BlockEntry(String name, BlockBehaviour.Properties properties, Function<BlockBehaviour.Properties, T> make) {
 			this.block = REGISTER.register(name, () -> make.apply(properties.setId(
 					ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(MODID, name))
@@ -614,10 +663,20 @@ public class SCBlocks {
 			return this.block.get();
 		}
 
+		/**
+		 * 获取方块的默认方块状态喵~
+		 *
+		 * @return 默认方块状态喵~
+		 */
 		public BlockState defaultBlockState() {
 			return this.get().defaultBlockState();
 		}
 
+		/**
+		 * 获取方块的注册 ID 喵~
+		 *
+		 * @return 方块注册 ID 喵~
+		 */
 		public ResourceLocation getId() {
 			return this.block.getId();
 		}

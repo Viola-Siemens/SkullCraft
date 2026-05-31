@@ -16,6 +16,11 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Map;
 
+/**
+ * 人形生物墙壁头颅方块，支持四个方向的墙壁放置喵~
+ *
+ * @author liudongyu
+ */
 public class HumanWallSkullBlock extends WallSkullBlock {
 	public static final EnumProperty<Direction> FACING = HorizontalDirectionalBlock.FACING;
 	private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(

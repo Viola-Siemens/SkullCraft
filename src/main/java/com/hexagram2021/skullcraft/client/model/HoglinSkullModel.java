@@ -13,6 +13,11 @@ import net.minecraft.util.Mth;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 疣猪兽头颅模型，用于渲染疣猪兽和僵尸疣猪兽的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 public class HoglinSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation HOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "hoglin_head"), "main");
 	public static final ModelLayerLocation ZOGLIN_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "zoglin_head"), "main");
@@ -21,6 +26,11 @@ public class HoglinSkullModel extends SkullModelBase implements IWallShiftSkullM
 		super(root);
 	}
 
+	/**
+	 * 创建疣猪兽类头颅模型层定义喵~
+	 *
+	 * @return 疣猪兽类头颅的层定义喵~
+	 */
 	public static LayerDefinition createHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

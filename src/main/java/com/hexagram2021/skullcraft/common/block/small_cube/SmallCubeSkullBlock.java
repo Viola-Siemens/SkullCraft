@@ -15,6 +15,12 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+/**
+ * 小型立方体形生物头颅方块，支持 16 向旋转放置喵~
+ *
+ * @author liudongyu
+ */
+@SuppressWarnings("deprecation")
 public class SmallCubeSkullBlock extends AbstractSkullBlock {
 	public static final MapCodec<SmallCubeSkullBlock> CODEC = RecordCodecBuilder.mapCodec(
 			instance -> instance.group(SkullBlock.Type.CODEC.fieldOf("kind").forGetter(AbstractSkullBlock::getType), propertiesCodec())
@@ -45,7 +51,7 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(ROTATION, Mth.floor(((double)context.getRotation() * 16.0D / 360.0D) + 0.5D) & 15);
+		return super.getStateForPlacement(context).setValue(ROTATION, Mth.floor((context.getRotation() * 16.0D / 360.0D) + 0.5D) & 15);
 	}
 
 	@Override
@@ -64,6 +70,11 @@ public class SmallCubeSkullBlock extends AbstractSkullBlock {
 		builder.add(ROTATION);
 	}
 
+	/**
+	 * 小型立方体形生物头颅方块类型
+	 *
+	 * @author liudongyu
+	 */
 	public enum Types implements SkullBlock.Type {
 		SHEEP("skullcraft:sheep"),
 		BAT("skullcraft:bat"),

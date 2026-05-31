@@ -11,6 +11,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 人形生物头颅模型，用于渲染村民、灾厄村民、女巫、铁傀儡和僵尸村民的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class HumanSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation VILLAGER_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "villager_head"), "main");
@@ -40,6 +45,11 @@ public class HumanSkullModel extends SkullModelBase implements IWallShiftSkullMo
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建女巫头颅模型层定义喵~
+	 *
+	 * @return 女巫头颅的层定义喵~
+	 */
 	public static LayerDefinition createWitchHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -63,11 +73,21 @@ public class HumanSkullModel extends SkullModelBase implements IWallShiftSkullMo
 		return LayerDefinition.create(meshdefinition, 64, 128);
 	}
 
+	/**
+	 * 创建通用人形生物头颅模型层定义喵~
+	 *
+	 * @return 通用人形生物头颅的层定义喵~
+	 */
 	public static LayerDefinition createMobHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	/**
+	 * 创建铁傀儡头颅模型层定义喵~
+	 *
+	 * @return 铁傀儡头颅的层定义喵~
+	 */
 	public static LayerDefinition createIronGolemHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		return LayerDefinition.create(meshdefinition, 128, 128);

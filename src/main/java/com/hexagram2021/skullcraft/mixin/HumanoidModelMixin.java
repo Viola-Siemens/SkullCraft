@@ -18,8 +18,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import javax.annotation.Nullable;
 
+/**
+ * 人形生物模型 Mixin，实现 {@link HattedModel} 接口并提供穿戴头颅时隐藏原版头部/帽子的功能喵~
+ */
 @Mixin(HumanoidModel.class)
 public class HumanoidModelMixin implements HattedModel {
+	/** 帽子 */
 	@Shadow @Final
 	public ModelPart hat;
 
@@ -33,6 +37,11 @@ public class HumanoidModelMixin implements HattedModel {
 		return null;
 	}
 
+	/**
+	 * 尝试隐藏原版头部/帽子
+	 * @param renderState 渲染状态
+	 * @param ci 回调信息
+	 */
 	@Inject(method = "setupAnim(Lnet/minecraft/client/renderer/entity/state/HumanoidRenderState;)V", at = @At(value = "HEAD"))
 	public void skullcraft$trySkipRenderHead(HumanoidRenderState renderState, CallbackInfo ci) {
 		ItemStack itemStack = renderState.headItem;

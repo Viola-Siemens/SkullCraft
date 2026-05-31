@@ -19,8 +19,20 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * 抽象头颅方块 Mixin，在方块放置时将物品中的缩放比例和附魔数据写入方块实体喵~
+ */
 @Mixin(Block.class)
 public class AbstractSkullBlockMixin {
+	/**
+	 * 在方块放置时将物品中的缩放比例和附魔数据写入方块实体
+	 * @param level 世界
+	 * @param blockPos 方块位置
+	 * @param blockState 方块状态
+	 * @param entity 放置方块的玩家
+	 * @param itemStack 放置方块的玩家手持的物品
+	 * @param ci 回调信息
+	 */
 	@Inject(method = "setPlacedBy", at = @At(value = "TAIL"))
 	@SuppressWarnings("ConstantConditions")
 	public void setSkullScaleAndEnchantments(Level level, BlockPos blockPos, BlockState blockState, LivingEntity entity, ItemStack itemStack, CallbackInfo ci) {

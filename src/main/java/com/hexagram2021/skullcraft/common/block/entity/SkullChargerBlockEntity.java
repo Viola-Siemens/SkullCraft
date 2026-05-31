@@ -37,18 +37,31 @@ import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * 头颅充能器方块实体，负责处理头颅的缩放调整和附魔操作喵~
+ * 包含三个槽位：输入槽（头颅）、燃料槽（灵魂土）和附魔珠槽喵~
+ *
+ * @author liudongyu
+ */
 @SuppressWarnings("unused")
 public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, StackedContentsCompatible {
 	protected static final int SLOT_INPUT = 0;
 	protected static final int SLOT_FUEL = 1;
 	protected static final int SLOT_ENCHANTING_BEAD = 2;
+	/** 能量数据索引喵~ */
 	public static final int DATA_ENERGY = 0;
+	/** X 轴增量数据索引喵~ */
 	public static final int DATA_ADDX = 1;
+	/** Y 轴增量数据索引喵~ */
 	public static final int DATA_ADDY = 2;
+	/** Z 轴增量数据索引喵~ */
 	public static final int DATA_ADDZ = 3;
+	/** 每次添加的能量值喵~ */
 	public static final int ENERGY_ADD = 2;
+	/** 最大能量等级喵~ */
 	public static final int MAX_ENERGY_LEVEL = 100;
 
+	/** 两次音效之间的最小间隔（tick）喵~ */
 	public static final long MIN_SOUND_GAP = 40;
 
 	private static final int[] SLOTS_FOR_UP = new int[]{SLOT_INPUT};
@@ -59,7 +72,9 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 
 	int energy;
 
-	int addX, addY, addZ;
+	int addX;
+	int addY;
+	int addZ;
 
 	protected final ContainerData dataAccess = new ContainerData() {
 		@Override
@@ -110,6 +125,11 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		return true;
 	}
 
+	/**
+	 * 创建头颅充能器方块实体
+	 * @param pos 方块位置
+	 * @param state 方块状态
+	 */
 	public SkullChargerBlockEntity(BlockPos pos, BlockState state) {
 		super(SCBlockEntities.SKULL_CHARGER.get(), pos, state);
 	}
@@ -228,6 +248,14 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 
 	private long lastSoundTime = 0;
 
+	/**
+	 * 服务端 tick 方法，处理燃料消耗、能量充能和头颅缩放喵~
+	 *
+	 * @param level       所在世界喵~
+	 * @param blockPos    方块位置喵~
+	 * @param blockState  方块状态喵~
+	 * @param blockEntity 方块实体喵~
+	 */
 	public static void serverTick(Level level, BlockPos blockPos, BlockState blockState, SkullChargerBlockEntity blockEntity) {
 		ItemStack ingredient = blockEntity.items.get(SLOT_INPUT);
 		ItemStack fuel = blockEntity.items.get(SLOT_FUEL);
@@ -268,6 +296,13 @@ public class SkullChargerBlockEntity extends BaseContainerBlockEntity implements
 		}
 	}
 
+	/**
+	 * 执行附魔操作，消耗附魔珠并从可用附魔列表中随机选取一个附魔应用到输入的头颅上喵~
+	 *
+	 * @param level          所在世界喵~
+	 * @param registryAccess 注册表访问接口喵~
+	 * @param randomSource   随机源喵~
+	 */
 	public void performEnchant(Level level, RegistryAccess registryAccess, RandomSource randomSource) {
 		ItemStack ingredient = this.items.get(SLOT_INPUT);
 		ItemStack bead = this.items.get(SLOT_ENCHANTING_BEAD);

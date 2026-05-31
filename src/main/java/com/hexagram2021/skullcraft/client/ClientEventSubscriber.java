@@ -24,8 +24,19 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 客户端事件订阅器，负责注册头颅模型的渲染层定义、头颅模型创建、
+ * 纹理映射和菜单屏幕注册喵~
+ *
+ * @author liudongyu
+ */
 @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
 public final class ClientEventSubscriber {
+	/**
+	 * 注册所有自定义头颅的模型层定义喵~
+	 *
+	 * @param event 模型层注册事件喵~
+	 */
 	@SubscribeEvent
 	public static void onRegisterLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
 		event.registerLayerDefinition(HumanSkullModel.VILLAGER_HEAD, HumanSkullModel::createMobHeadLayer);
@@ -94,6 +105,11 @@ public final class ClientEventSubscriber {
 		event.registerLayerDefinition(HoglinSkullModel.ZOGLIN_HEAD, HoglinSkullModel::createHeadLayer);
 	}
 
+	/**
+	 * 创建并注册所有自定义头颅的渲染模型喵~
+	 *
+	 * @param event 头颅模型创建事件喵~
+	 */
 	@SubscribeEvent
 	public static void onCreateSkullModel(EntityRenderersEvent.CreateSkullModels event) {
 		event.registerSkullModel(HumanSkullBlock.Types.VILLAGER, new HumanSkullModel(event.getEntityModelSet().bakeLayer(HumanSkullModel.VILLAGER_HEAD)));
@@ -160,6 +176,11 @@ public final class ClientEventSubscriber {
 		event.registerSkullModel(HoglinSkullBlock.Types.ZOGLIN, new HoglinSkullModel(event.getEntityModelSet().bakeLayer(HoglinSkullModel.ZOGLIN_HEAD)));
 	}
 
+	/**
+	 * 客户端设置事件，注册所有头颅方块的纹理映射喵~
+	 *
+	 * @param event 客户端设置事件喵~
+	 */
 	@SubscribeEvent
 	public static void setup(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
@@ -225,6 +246,11 @@ public final class ClientEventSubscriber {
 		});
 	}
 
+	/**
+	 * 注册菜单屏幕，将头颅充能器菜单绑定到对应的屏幕类喵~
+	 *
+	 * @param event 菜单屏幕注册事件喵~
+	 */
 	@SubscribeEvent
 	public static void registerMenus(RegisterMenuScreensEvent event) {
 		event.register(SCContainerTypes.SKULL_CHARGER_MENU.get(), SkullChargerScreen::new);

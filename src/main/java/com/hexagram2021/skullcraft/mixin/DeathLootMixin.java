@@ -29,8 +29,20 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * 生物死亡掉落 Mixin，在生物被苦力怕爆炸或 Kopis 剑击杀时掉落对应的头颅物品喵~
+ *
+ * @author liudongyu
+ */
 @Mixin(Mob.class)
 public class DeathLootMixin {
+	/**
+	 * 掉落头颅
+	 * @param level 服务器世界
+	 * @param damageSource 伤害源
+	 * @param recentHit 是否最近被攻击
+	 * @param ci 回调
+	 */
 	@Inject(method = "dropCustomDeathLoot", at = @At(value = "TAIL"))
 	public void skullcraft$dropCustomHead(ServerLevel level, DamageSource damageSource, boolean recentHit, CallbackInfo ci) {
 		Entity entity = damageSource.getEntity();

@@ -11,6 +11,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 马形生物头颅模型，用于渲染马、驴、骡、骷髅马和僵尸马的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class HorseSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation BLACK_HORSE_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "black_horse_head"), "main");
@@ -58,6 +63,11 @@ public class HorseSkullModel extends SkullModelBase implements IWallShiftSkullMo
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建马头颅模型层定义喵~
+	 *
+	 * @return 马头颅的层定义喵~
+	 */
 	public static LayerDefinition createHorseHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition head = meshdefinition.getRoot().getChild("head_parts").getChild("head");
@@ -75,6 +85,11 @@ public class HorseSkullModel extends SkullModelBase implements IWallShiftSkullMo
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	/**
+	 * 创建驮马类头颅模型层定义喵~
+	 *
+	 * @return 驮马类头颅的层定义喵~
+	 */
 	public static LayerDefinition createChestedHorseHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel();
 		PartDefinition head = meshdefinition.getRoot().getChild("head_parts").getChild("head");

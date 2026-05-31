@@ -20,8 +20,22 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+/**
+ * 头颅方块渲染器 Mixin，根据方块实体的缩放数据调整头颅的渲染大小，并支持墙壁头颅的 Z 轴偏移喵~
+ * @author liudongyu
+ */
 @Mixin(SkullBlockRenderer.class)
 public class SkullBlockRendererMixin {
+	/**
+	 * 缩放头颅
+	 * @param blockEntity 方块实体
+	 * @param partialTick 刻
+	 * @param poseStack 渲染矩阵
+	 * @param bufferSource 缓冲区
+	 * @param packedLight 光照颜色
+	 * @param packedOverlay 叠加颜色
+	 * @param ci 回调
+	 */
 	@Inject(method = "render(Lnet/minecraft/world/level/block/entity/SkullBlockEntity;FLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;II)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/blockentity/SkullBlockRenderer;renderSkull(Lnet/minecraft/core/Direction;FFLcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource;ILnet/minecraft/client/model/SkullModelBase;Lnet/minecraft/client/renderer/RenderType;)V", shift = At.Shift.BEFORE))
 	public void skullcraft$renderScale(SkullBlockEntity blockEntity, float partialTick, PoseStack poseStack,
 									   MultiBufferSource bufferSource, int packedLight, int packedOverlay,

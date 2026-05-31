@@ -20,8 +20,14 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
+/**
+ * 头颅充能器方块，用于调整头颅的缩放比例并为头颅附魔喵~
+ *
+ * @author liudongyu
+ */
 public class SkullChargerBlock extends BaseEntityBlock {
 	public static final MapCodec<SkullChargerBlock> CODEC = simpleCodec(SkullChargerBlock::new);
+	/** 头颅充能器的容器标题喵~ */
 	public static final Component CONTAINER_TITLE = Component.translatable("container.skull_charger");
 	public SkullChargerBlock(Properties props) {
 		super(props);
@@ -48,6 +54,7 @@ public class SkullChargerBlock extends BaseEntityBlock {
 		return new SkullChargerBlockEntity(blockPos, blockState);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public RenderShape getRenderShape(BlockState blockState) {
 		return RenderShape.MODEL;
@@ -59,6 +66,14 @@ public class SkullChargerBlock extends BaseEntityBlock {
 		return createSkullChargerTicker(level, type, SCBlockEntities.SKULL_CHARGER.get());
 	}
 
+	/**
+	 * 创建头颅充能器的 ticker，仅在服务端运行喵~
+	 *
+	 * @param level           所在世界喵~
+	 * @param type            方块实体类型喵~
+	 * @param blockEntityType 目标方块实体类型喵~
+	 * @return ticker 实例，客户端返回 {@code null} 喵~
+	 */
 	@Nullable
 	protected static <T extends BlockEntity> BlockEntityTicker<T> createSkullChargerTicker(Level level, BlockEntityType<T> type, BlockEntityType<? extends SkullChargerBlockEntity> blockEntityType) {
 		return level.isClientSide ? null : createTickerHelper(type, blockEntityType, SkullChargerBlockEntity::serverTick);

@@ -11,6 +11,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 小型立方体形生物头颅模型，用于渲染绵羊、蝙蝠、潜影贝、悦灵和恼鬼的头颅方块喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class SmallCubeSkullModel extends SkullModelBase implements IWallShiftSkullModel {
 	public static final ModelLayerLocation SHEEP_HEAD = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(MODID, "sheep_head"), "main");
@@ -36,6 +41,11 @@ public class SmallCubeSkullModel extends SkullModelBase implements IWallShiftSku
 		return meshdefinition;
 	}
 
+	/**
+	 * 创建绵羊头颅模型层定义喵~
+	 *
+	 * @return 绵羊头颅的层定义喵~
+	 */
 	public static LayerDefinition createSheepHeadLayer() {
 		MeshDefinition meshdefinition = createHeadModel(0, 32);
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -47,6 +57,11 @@ public class SmallCubeSkullModel extends SkullModelBase implements IWallShiftSku
 		return LayerDefinition.create(meshdefinition, 64, 64);
 	}
 
+	/**
+	 * 创建蝙蝠头颅模型层定义喵~
+	 *
+	 * @return 蝙蝠头颅的层定义喵~
+	 */
 	public static LayerDefinition createBatHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
@@ -64,10 +79,20 @@ public class SmallCubeSkullModel extends SkullModelBase implements IWallShiftSku
 		return LayerDefinition.create(meshdefinition, 32, 32);
 	}
 
+	/**
+	 * 创建潜影贝头颅模型层定义喵~
+	 *
+	 * @return 潜影贝头颅的层定义喵~
+	 */
 	public static LayerDefinition createShulkerHeadLayer() {
 		return LayerDefinition.create(createHeadModel(0, 52), 64, 64);
 	}
 
+	/**
+	 * 创建悦灵类头颅模型层定义喵~
+	 *
+	 * @return 悦灵类头颅的层定义喵~
+	 */
 	public static LayerDefinition createAllayHeadLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();

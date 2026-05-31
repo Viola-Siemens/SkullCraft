@@ -16,6 +16,11 @@ import net.neoforged.api.distmarker.OnlyIn;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 头颅充能器 GUI 屏幕，提供缩放调整按钮和附魔按钮的交互界面喵~
+ *
+ * @author liudongyu
+ */
 @OnlyIn(Dist.CLIENT)
 public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu> {
 	private static final ResourceLocation BG_LOCATION = ResourceLocation.fromNamespaceAndPath(MODID, "textures/gui/container/skull_charger.png");
@@ -90,7 +95,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
 				}
 
-				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
+				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, (float)i * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
 			}
 			if(this.menu.hasEnchantingBead()) {
 				int curX = recipeX + BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH;
@@ -102,7 +107,7 @@ public class SkullChargerScreen extends AbstractContainerScreen<SkullChargerMenu
 					h += RECIPES_IMAGE_SIZE_HEIGHT * 2;
 				}
 
-				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
+				transform.blit(RenderType::guiTextured, BG_LOCATION, curX, curY - 1, (float)BUTTON_ENCHANT_INDEX * RECIPES_IMAGE_SIZE_WIDTH, h, RECIPES_IMAGE_SIZE_WIDTH, RECIPES_IMAGE_SIZE_HEIGHT, 256, 256);
 			}
 		}
 	}

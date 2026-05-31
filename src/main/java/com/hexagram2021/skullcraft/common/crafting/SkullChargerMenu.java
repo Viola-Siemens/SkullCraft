@@ -13,6 +13,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.AbstractSkullBlock;
 
+/**
+ * 头颅充能器菜单，提供头颅缩放调整和附魔操作的交互界面喵~
+ *
+ * @author liudongyu
+ */
 public class SkullChargerMenu extends AbstractContainerMenu {
 	public static final int INPUT_SLOT = 0;
 	public static final int FUEL_SLOT = 1;
@@ -30,10 +35,23 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 	final Slot inputSlot;
 	final Slot enchantSlot;
 
+	/**
+	 * 创建头颅充电站菜单
+	 * @param id 菜单 ID
+	 * @param inventory 玩家物品栏
+	 */
 	public SkullChargerMenu(int id, Inventory inventory) {
 		this(id, inventory, new SimpleContainer(SLOT_COUNT), new SimpleContainerData(DATA_COUNT));
 	}
 
+	/**
+	 * 构造头颅充能器菜单喵~
+	 *
+	 * @param id        容器 ID 喵~
+	 * @param inventory 玩家物品栏喵~
+	 * @param container 方块实体容器喵~
+	 * @param data      同步数据喵~
+	 */
 	public SkullChargerMenu(int id, Inventory inventory, Container container, ContainerData data) {
 		super(SCContainerTypes.SKULL_CHARGER_MENU.get(), id);
 		checkContainerSize(container, SLOT_COUNT);
@@ -103,10 +121,18 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		return SCContainerTypes.SKULL_CHARGER_MENU.get();
 	}
 
+	/**
+	 * 是否已经放入准备被充电的头颅
+	 * @return true 表示有输入，否则为 false
+	 */
 	public boolean hasInputItem() {
 		return this.inputSlot.hasItem() && this.canCharge(this.inputSlot.getItem());
 	}
 
+	/**
+	 * 是否已经放入附魔珠
+	 * @return true 表示已放入头颅副模铸，否则为 false
+	 */
 	public boolean hasEnchantingBead() {
 		return this.enchantSlot.hasItem() && this.isEnchantingBead(this.enchantSlot.getItem());
 	}
@@ -189,14 +215,30 @@ public class SkullChargerMenu extends AbstractContainerMenu {
 		return itemstack;
 	}
 
+	/**
+	 * 获取当前能量值喵~
+	 *
+	 * @return 能量值喵~
+	 */
 	public int getEnergy() {
 		return this.skullChargerData.get(SkullChargerBlockEntity.DATA_ENERGY);
 	}
 
+	/**
+	 * 检查指定索引的增量值是否非零喵~
+	 *
+	 * @param index 增量索引（0=X, 1=Y, 2=Z）喵~
+	 * @return 增量是否非零喵~
+	 */
 	public boolean hasAddXYZ(int index) {
 		return this.skullChargerData.get(index + 1) != 0;
 	}
 
+	/**
+	 * 为指定索引的增量值增加 5 喵~
+	 *
+	 * @param index 增量索引（0=X, 1=Y, 2=Z）喵~
+	 */
 	public void setAddXYZ(int index) {
 		this.skullChargerData.set(index + 1, this.skullChargerData.get(index + 1) + 5);
 	}

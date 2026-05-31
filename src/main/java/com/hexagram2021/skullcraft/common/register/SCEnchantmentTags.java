@@ -7,7 +7,13 @@ import net.minecraft.world.item.enchantment.Enchantment;
 
 import static com.hexagram2021.skullcraft.SkullCraft.MODID;
 
+/**
+ * 附魔标签定义类，定义模组中所有自定义附魔标签喵~
+ *
+ * @author liudongyu
+ */
 public final class SCEnchantmentTags {
+	/** 可在头颅充能器中使用的附魔标签喵~ */
 	public static final TagKey<Enchantment> IN_SKULL_CHARGER = create("in_skull_charger");
 
 	private SCEnchantmentTags() {
